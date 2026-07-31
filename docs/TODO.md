@@ -30,3 +30,14 @@
 ## Backlog
 
 后续任务由技术负责人确认后添加。
+
+## ISSUE-0009 Codex 工作流完善
+
+- [x] 创建 `docs/EnvironmentSetup.md`
+- [x] 记录环境安装步骤和软件版本基线
+- [x] 创建 `docs/DevelopmentWorkflow.md`
+- [x] 记录项目开发、Git 提交和每日开发流程
+- [x] 在 README 中添加文档入口
+- [x] 完成文档验收检查
+- [ ] Tech Lead 确认并锁定完整工具链版本
+- [ ] 配置远程仓库后补充克隆地址

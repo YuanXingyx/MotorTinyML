@@ -47,3 +47,39 @@
 ### Git Commit 建议
 
 `chore: initialize project structure and documentation`
+
+## 2026-08-01 — ISSUE-0009 Codex 工作流完善
+
+### 目标
+
+补充可用于新电脑环境恢复的环境搭建文档和标准开发工作流。
+
+### 已完成
+
+- 创建 `EnvironmentSetup.md`，记录安装步骤、版本基线、验证清单和环境变更规则。
+- 创建 `DevelopmentWorkflow.md`，记录项目开发、Git 提交和每日开发流程。
+- 在 README 中添加两份文档的入口。
+
+### 环境检测
+
+- Git：`2.54.0.windows.1`，已验证。
+- Python、CMake、Ninja、Arm GNU Toolchain：当前未在 `PATH` 中检测到。
+- 其余版本等待 Tech Lead 确认，不作为既定架构或工具链决策。
+
+### 测试与检查
+
+- 规定文档完整性检查：2/2 通过。
+- README 文档链接检查：2/2 通过。
+- 环境文档必需章节检查：3/3 通过。
+- 工作流文档必需章节检查：3/3 通过。
+- `git diff --check`：通过。
+- Git 变更范围：仅包含 ISSUE-0009 文档及同步记录。
+
+### 阻塞项
+
+- 软件工具链精确版本尚待 Tech Lead 确认。
+- 远程仓库尚未配置，克隆地址待补充。
+
+### Git Commit 建议
+
+`docs: add environment setup and development workflow`
