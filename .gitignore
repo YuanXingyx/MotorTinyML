@@ -1,0 +1,107 @@
+# Operating systems
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editors and IDEs
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.code-workspace
+*~
+*.swp
+*.swo
+
+# STM32CubeIDE / Eclipse
+.metadata/
+.settings/
+.project
+.cproject
+.mxproject
+.externalToolBuilders/
+Debug/
+Release/
+STM32CubeIDE/
+*.launch
+
+# STM32 generated and build artifacts
+*.elf
+*.hex
+*.bin
+*.map
+*.list
+*.lst
+*.o
+*.obj
+*.a
+*.lib
+*.d
+*.su
+*.cyclo
+*.srec
+*.dis
+*.dep
+
+# CMake and generic build outputs
+build/
+out/
+dist/
+cmake-build-*/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+compile_commands.json
+Makefile
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+coverage.xml
+htmlcov/
+.ipynb_checkpoints/
+
+# Python environments and packaging
+.venv/
+venv/
+env/
+ENV/
+pip-wheel-metadata/
+*.egg
+*.egg-info/
+.eggs/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.temp
+*.bak
+*.orig
+.cache/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Generated model/runtime artifacts
+*.tflite
+*.onnx
+*.pt
+*.pth
+*.h5
+*.keras
+
+# Dataset archives and generated data
+dataset/raw/
+dataset/processed/
+*.zip
+*.tar
+*.tar.gz
