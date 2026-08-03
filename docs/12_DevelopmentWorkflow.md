@@ -53,7 +53,7 @@ git log -1 --oneline
 
 ### 3.3 实施
 
-- 遵守 `CodingStandard.md` 和已批准架构。
+- 遵守 [编码规范](06_CodingStandard.md)、[项目规则](ProjectRules.md) 和已批准架构。
 - 保持模块职责单一和命名一致。
 - 不把所有逻辑放入单个文件。
 - 不提交生成产物、密钥或本地环境文件。
@@ -72,28 +72,28 @@ git log -1 --oneline
 | 模型 | 训练配置、指标、转换、资源占用和设备端验证 |
 | 构建环境 | 新环境恢复、版本核对和干净构建 |
 
-无法执行的测试必须在 `DevelopmentLog.md` 中说明原因和风险。
+无法执行的测试必须在 [开发日志](10_DevelopmentLog.md) 中说明原因和风险。
 
 ### 3.5 文档同步
 
 每项任务至少检查：
 
 - `README.md`：项目入口、里程碑或使用方式是否变化。
-- `Architecture.md`：仅记录 Tech Lead 批准的架构决策。
-- `DevelopmentLog.md`：记录进展、测试、阻塞项和结果。
-- `TODO.md`：更新完成项和后续项。
+- `04_Architecture.md`：仅记录 Tech Lead 批准的架构决策。
+- `10_DevelopmentLog.md`：记录进展、测试、阻塞项和结果。
+- `13_TODO.md`：更新完成项和后续项。
 - API、测试报告和部署说明：按实际变更更新。
-- `CHANGELOG.md`：项目建立后记录用户可见或交付相关变更。
+- `11_CHANGELOG.md`：记录用户可见或交付相关变更。
 
 ### 3.6 完成检查
 
-对照 `DefinitionOfDone.md` 验收。未通过测试、文档未同步或存在未记录阻塞时，不得标记完成。
+对照 [完成定义](08_DefinitionOfDone.md) 验收。未通过测试、文档未同步或存在未记录阻塞时，不得标记完成。
 
 ## 4. Git 提交流程
 
 ### 4.1 分支
 
-正式分支策略等待 Tech Lead 确认。获得任务分支授权后，按 `GitConvention.md` 命名；不要自行创建长期分支。
+正式分支策略等待 Tech Lead 确认。获得任务分支授权后，按 [Git 规范](07_GitConvention.md) 命名；不要自行创建长期分支。
 
 ### 4.2 提交前检查
 
@@ -207,7 +207,7 @@ git status --short
 
 ## 7. 新电脑恢复后的首次开发检查
 
-1. 按 `EnvironmentSetup.md` 恢复并验证工具版本。
+1. 按 [环境配置](05_EnvironmentSetup.md) 恢复并验证工具版本。
 2. 获取仓库并确认当前分支和最新提交。
 3. 阅读 README、ProjectPlan、Architecture、Sprint 和 TODO。
 4. 执行项目已定义的构建、测试和静态检查。
@@ -215,11 +215,17 @@ git status --short
 
 ## 8. 相关文档
 
-- `EnvironmentSetup.md`
-- `ProjectPlan.md`
-- `Architecture.md`
-- `CodingStandard.md`
-- `GitConvention.md`
-- `DefinitionOfDone.md`
-- `DevelopmentLog.md`
-- `TODO.md`
+- [Project Dashboard](00_ProjectDashboard.md)
+- [产品需求文档](01_PRD.md)
+- [Roadmap](02_Roadmap.md)
+- [项目计划](03_ProjectPlan.md)
+- [系统架构](04_Architecture.md)
+- [环境配置](05_EnvironmentSetup.md)
+- [编码规范](06_CodingStandard.md)
+- [Git 规范](07_GitConvention.md)
+- [完成定义](08_DefinitionOfDone.md)
+- [Sprint](09_Sprint.md)
+- [开发日志](10_DevelopmentLog.md)
+- [更新日志](11_CHANGELOG.md)
+- [TODO](13_TODO.md)
+- [Milestones](14_Milestones.md)

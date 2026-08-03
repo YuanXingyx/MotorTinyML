@@ -1,136 +1,144 @@
-# MotorTinyML Project Dashboard
+# MotorTinyML 项目总览
 
-> MotorTinyML 项目管理唯一入口。项目状态、Issue、Epic、里程碑和最新进展均从本 Dashboard 查看。
+> 本文档是 MotorTinyML 项目管理的唯一入口。项目状态、Epic、Issue、Sprint、里程碑、风险和最新进展均从本 Dashboard 查看。
 
-## Project Overview
+## 项目概况
 
-| Field | Current Value |
+| 字段 | 当前内容 |
 |---|---|
-| Project Name | MotorTinyML |
-| Version | Unreleased |
-| Current Epic | EPIC-01 — Project Initialization |
-| Current Sprint | Sprint 0 — Project Initialization |
-| Current Day | Day 2 — 2026-08-02 |
-| Overall Progress | `[██░░░░░░░░░░░░░░░░░░] 9%` |
-| Repository | [YuanXingyx/MotorTinyML](https://github.com/YuanXingyx/MotorTinyML) |
-| Current Development Board | 待 Tech Lead 确认；EPIC-02 计划使用 STM32F103 系列 |
-| Current Sensor | 待 Tech Lead 确认 |
-| Current Hardware | MCU、开发板、电机、驱动器及采集硬件待 Tech Lead 确认 |
-| Next Milestone | 完成 EPIC-01 项目初始化和技术基线确认 |
-| Latest Commit | `82c6416` — `docs: add environment setup and development workflow` |
-| Latest Update | 2026-08-02 |
+| 项目名称 | MotorTinyML |
+| 当前版本 | v0.1.0-alpha |
+| 当前 Epic | [EPIC-02 — STM32F103 Bring-up](epics/EPIC-02.md) |
+| 当前 Sprint | Sprint 1 — 计划中 |
+| 当前日期 | Sprint 0 已完成 — 2026-08-03 |
+| 整体进度 | `[██░░░░░░░░░░░░░░░░░░] 10%` |
+| 项目健康度 | 黄色（AMBER）— 技术基线决策待确认 |
+| 当前风险 | 硬件、传感器、采样参数和完整工具链尚未批准 |
+| 当前里程碑 | [Milestone 1 — STM32 Bring-up](14_Milestones.md#milestone-1--stm32-bring-up) |
+| 开发板 | STM32F103 系列，具体型号待 Tech Lead 确认 |
+| 当前传感器 | 待 Tech Lead 确认 |
+| 当前硬件 | MCU、开发板、电机、驱动器和采集硬件待确认 |
+| 仓库 | [YuanXingyx/MotorTinyML](https://github.com/YuanXingyx/MotorTinyML) |
+| 最新提交 | `dede031` — 本次标准化前的最新已提交基线 |
+| 文档状态 | Sprint 0 文档体系已标准化 |
+| 文档覆盖率 | 结构覆盖率 100%；技术内容批准待完成 |
+| 最新更新 | 2026-08-03 — ISSUE-0019 Prompt Library 已完成 |
 
-## Overall Progress
+## 整体进度
 
 ```text
-[██░░░░░░░░░░░░░░░░░░] 9%
+[██░░░░░░░░░░░░░░░░░░] 10%
 ```
 
-计算规则：
+- EPIC-01 已完成，进度为 100%。
+- EPIC-02 至 EPIC-10 尚未开始。
+- 当前采用 10 个 Epic 等权计算；权重变更需 Tech Lead 批准。
 
-- Overall Progress 为 10 个 Epic 进度的等权平均值。
-- 当前 EPIC-01 进度为 90%，其余 Epic 为 0%。
-- 当 Epic 权重由 Tech Lead 确认后，应按批准的权重重新计算。
+## 当前开发板
 
-## Current Development Board
-
-| Item | Status | Notes |
+| 项目 | 状态 | 说明 |
 |---|---|---|
-| MCU Family | Planned | EPIC-02 指定 STM32F103 |
-| Development Board | Pending Decision | 具体板卡型号待 Tech Lead 确认 |
-| Toolchain | Pending Decision | STM32CubeIDE 和 Arm GNU Toolchain 版本待确认 |
-| Firmware Project | Not Created | ISSUE-0017 仅建立项目管理体系 |
+| MCU 系列 | 规划中 | EPIC-02 指定 STM32F103 |
+| 具体 MCU | 待确认 | 由 Tech Lead 确认 |
+| 开发板 | 待确认 | 具体板卡型号未批准 |
+| 工具链 | 待确认 | STM32CubeIDE 与 Arm GNU Toolchain 版本未锁定 |
+| 固件工程 | 未创建 | Sprint 0 未创建任何 STM32 工程 |
 
-## Current Sensor
+## 当前传感器
 
-| Item | Status | Notes |
+| 项目 | 状态 | 说明 |
 |---|---|---|
-| Sensor Type | Pending Decision | 待 Tech Lead 确认 |
-| Sensor Model | Pending Decision | 待 Tech Lead 确认 |
-| Interface | Pending Decision | ADC、I2C、SPI 或其他接口待确认 |
-| Sampling Rate | Pending Decision | 待数据采集需求确认 |
+| 传感器类型 | 待确认 | 由 Tech Lead 确认 |
+| 传感器型号 | 待确认 | 由 Tech Lead 确认 |
+| 接口 | 待确认 | ADC、I2C、SPI 或其他接口未批准 |
+| 采样频率 | 待确认 | 依赖采集需求 |
 
-## Current Hardware
+## 当前硬件
 
-| Component | Status | Notes |
+| 组件 | 状态 | 说明 |
 |---|---|---|
-| MCU | Planned | STM32F103 系列，具体型号待确认 |
-| Development Board | Pending Decision | 待 Tech Lead 确认 |
-| Motor | Pending Decision | 型号和工作参数待确认 |
-| Motor Driver | Pending Decision | 型号和接口待确认 |
-| Sensor | Pending Decision | 类型和型号待确认 |
-| Data Interface | Pending Decision | 串口、USB、SD 卡或其他方案待确认 |
+| STM32F103 | 规划中 | 具体型号与开发板待确认 |
+| STM32F407 | 后续规划 | EPIC-07 的目标平台，具体型号待确认 |
+| 电机 | 待确认 | 型号与运行参数未批准 |
+| 电机驱动器 | 待确认 | 型号与接口未批准 |
+| 传感器 | 待确认 | 类型与型号未批准 |
+| 数据接口 | 待确认 | 串口、USB、SD 卡或其他方案未批准 |
 
-## Current Issues
+## 当前 Issues
 
-当前没有进行中的 Issue。
+当前没有已批准且正在执行的 Issue。
 
-## Completed Issues
+## 已完成 Issues
 
-| Issue ID | Title | Status | Result |
+| Issue ID | 标题 | 状态 | 结果 |
 |---|---|---|---|
-| ISSUE-0009 | Codex 工作流完善 | Completed | 环境搭建和开发流程文档已建立 |
-| ISSUE-0017 | Project Dashboard 与 Roadmap | Completed | 项目管理中心、路线图及管理目录已建立 |
+| [ISSUE-0009](issues/ISSUE-0009.md) | Codex 工作流完善 | 已完成 | 环境搭建和开发流程文档已建立 |
+| [ISSUE-0017](issues/ISSUE-0017.md) | Project Dashboard 与 Roadmap | 已完成 | 项目管理中心和路线图已建立 |
+| [ISSUE-0019](issues/ISSUE-0019.md) | Prompt Library | 已完成 | AI 辅助开发通用 Prompt Library 已建立并通过验证 |
 
-## Upcoming Issues
+## 即将开展的工作
 
-Issue 编号和执行顺序由 Tech Lead 分配。
+Issue 编号和执行顺序由 Tech Lead 分配，不在 Dashboard 中虚构 Issue。
 
-| Proposed Work Item | Status | Dependency |
+| 候选工作项 | 状态 | 依赖 |
 |---|---|---|
-| 确认项目技术基线 | Awaiting Assignment | Tech Lead 决策 |
-| 确认 STM32F103 具体型号与开发板 | Awaiting Assignment | 硬件选型 |
-| 锁定 STM32CubeIDE 与编译器版本 | Awaiting Assignment | MCU 与开发板确认 |
-| 确认传感器、接口和采样要求 | Awaiting Assignment | 采集目标确认 |
-| 制定 EPIC-02 Sprint 计划 | Awaiting Assignment | 技术基线完成 |
+| 确认 Sprint 1 技术基线 | 待分配 | Tech Lead 决策 |
+| 确认 STM32F103 型号与开发板 | 待分配 | 硬件选型 |
+| 锁定 STM32CubeIDE 与编译器版本 | 待分配 | MCU 与开发板确认 |
+| 确认传感器、接口和采样要求 | 待分配 | 采集目标确认 |
+| 制定 EPIC-02 的 Sprint 1 计划 | 待分配 | 技术基线完成 |
 
-## Next Milestone
+## 下一里程碑
 
-### EPIC-01 — Project Initialization Complete
+### Milestone 1 — STM32 Bring-up
 
-完成条件：
+- [ ] Tech Lead 确认 MCU 与开发板。
+- [ ] 锁定 STM32CubeIDE 和编译器版本。
+- [ ] 批准 Sprint 1 范围和验收标准。
+- [ ] 创建并验证 STM32F103 最小固件基线。
+- [ ] 完成构建、下载、调试和测试记录。
 
-- [x] 创建标准项目目录。
-- [x] 建立 Git 仓库和远程仓库。
-- [x] 建立基础项目文档。
-- [x] 建立环境恢复和开发工作流。
-- [x] 建立 Project Dashboard。
-- [x] 建立项目 Roadmap。
-- [x] 创建 Epic 和 Issue 管理目录。
-- [ ] Tech Lead 确认技术基线。
-- [ ] Sprint 0 完成验收。
+## 文档导航
 
-## Project Navigation
-
-### Management
+### 核心管理
 
 - [Project Dashboard](00_ProjectDashboard.md)
-- [Roadmap](02_Roadmap.md)
-- [Project Plan](ProjectPlan.md)
-- [Sprint](Sprint.md)
-- [TODO](TODO.md)
-- [Development Log](DevelopmentLog.md)
+- [产品需求文档](01_PRD.md)
+- [项目路线图](02_Roadmap.md)
+- [项目计划](03_ProjectPlan.md)
+- [Sprint 记录](09_Sprint.md)
+- [开发日志](10_DevelopmentLog.md)
+- [更新日志](11_CHANGELOG.md)
+- [TODO](13_TODO.md)
+- [项目里程碑](14_Milestones.md)
+- [项目规则](ProjectRules.md)
 
-### Engineering
+### 工程规范
 
-- [Architecture](Architecture.md)
-- [Environment Setup](EnvironmentSetup.md)
-- [Development Workflow](DevelopmentWorkflow.md)
-- [Coding Standard](CodingStandard.md)
-- [Git Convention](GitConvention.md)
-- [Definition of Done](DefinitionOfDone.md)
+- [系统架构](04_Architecture.md)
+- [环境配置](05_EnvironmentSetup.md)
+- [编码规范](06_CodingStandard.md)
+- [Git 规范](07_GitConvention.md)
+- [完成定义](08_DefinitionOfDone.md)
+- [开发工作流](12_DevelopmentWorkflow.md)
 
-### Tracking
+### 追踪与模板
 
 - [Epics](epics/)
 - [Issues](issues/)
+- [Issue 模板](templates/IssueTemplate.md)
+- [Epic 模板](templates/EpicTemplate.md)
+- [Sprint 模板](templates/SprintTemplate.md)
+- [每日报告模板](templates/DailyReportTemplate.md)
+- [评审模板](templates/ReviewTemplate.md)
+- [Prompt Library](../prompts/)
 
-## Dashboard Maintenance Rules
+## Dashboard 维护规则
 
 1. Dashboard 是项目状态的唯一入口。
-2. 每次 Issue 状态变化后更新 Current Issues 和 Completed Issues。
-3. 每个开发日结束前更新 Current Day、Overall Progress 和 Latest Update。
-4. 每次 Commit 后更新 Latest Commit。
-5. 每次硬件、传感器或技术栈决策批准后更新对应字段。
-6. Roadmap 进度变化时同步更新 Overall Progress。
-7. 未经 Tech Lead 确认的架构信息必须标记为 `Pending Decision`。
+2. Issue 状态变化后更新“当前 Issues”和“已完成 Issues”。
+3. 每个开发日结束前更新当前日期、项目健康度、风险和整体进度。
+4. 每次 Commit 后更新最新提交。
+5. 硬件、传感器或工具链决策批准后更新对应字段。
+6. Epic 或里程碑进度变化时同步更新 Dashboard、Roadmap 和 Milestones。
+7. 未经 Tech Lead 确认的信息必须标记为“待确认”。

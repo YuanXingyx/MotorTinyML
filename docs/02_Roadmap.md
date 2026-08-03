@@ -34,16 +34,16 @@ EPIC-10  Project Release
 
 | Epic | Name | Status | Progress |
 |---|---|---|---:|
-| EPIC-01 | Project Initialization | In Progress | 90% |
-| EPIC-02 | STM32F103 Bring-up | Planned | 0% |
-| EPIC-03 | Sensor Driver Development | Planned | 0% |
-| EPIC-04 | Data Acquisition | Planned | 0% |
-| EPIC-05 | Dataset Processing | Planned | 0% |
-| EPIC-06 | AI Model Training | Planned | 0% |
-| EPIC-07 | Platform Migration (STM32F407) | Planned | 0% |
-| EPIC-08 | TinyML Deployment | Planned | 0% |
-| EPIC-09 | System Integration & Testing | Planned | 0% |
-| EPIC-10 | Project Release | Planned | 0% |
+| [EPIC-01](epics/EPIC-01.md) | Project Initialization | Completed | 100% |
+| [EPIC-02](epics/EPIC-02.md) | STM32F103 Bring-up | Planned | 0% |
+| [EPIC-03](epics/EPIC-03.md) | Sensor Driver Development | Planned | 0% |
+| [EPIC-04](epics/EPIC-04.md) | Data Acquisition | Planned | 0% |
+| [EPIC-05](epics/EPIC-05.md) | Dataset Processing | Planned | 0% |
+| [EPIC-06](epics/EPIC-06.md) | AI Model Training | Planned | 0% |
+| [EPIC-07](epics/EPIC-07.md) | Platform Migration (STM32F407) | Planned | 0% |
+| [EPIC-08](epics/EPIC-08.md) | TinyML Deployment | Planned | 0% |
+| [EPIC-09](epics/EPIC-09.md) | System Integration & Testing | Planned | 0% |
+| [EPIC-10](epics/EPIC-10.md) | Project Release | Planned | 0% |
 
 ## EPIC-01 — Project Initialization
 
@@ -65,12 +65,12 @@ EPIC-10  Project Release
 
 ### Status
 
-In Progress
+Completed
 
 ### Progress
 
 ```text
-[██████████████████░░] 90%
+[████████████████████] 100%
 ```
 
 ## EPIC-02 — STM32F103 Bring-up
@@ -320,9 +320,9 @@ Planned
 6. 每次 Epic 进度变化必须同步更新：
    - `00_ProjectDashboard.md`
    - `02_Roadmap.md`
-   - `Sprint.md`
-   - `DevelopmentLog.md`
-   - `TODO.md`
+   - `09_Sprint.md`
+   - `10_DevelopmentLog.md`
+   - `13_TODO.md`
 
 ## Dependencies and Risks
 
@@ -338,6 +338,6 @@ Planned
 
 ## Latest Update
 
-- Date: 2026-08-02
-- Issue: ISSUE-0017
-- Update: Project Dashboard、Roadmap 及管理目录已创建并通过验证。
+- Date: 2026-08-03
+- Issue: Sprint 0 Final Documentation Standardization
+- Update: EPIC-01 与 Sprint 0 已完成，文档体系统一为编号结构。

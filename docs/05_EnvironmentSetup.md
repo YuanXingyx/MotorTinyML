@@ -44,10 +44,10 @@ git config --global user.email "<your-email>"
 
 ### 3.2 获取项目
 
-远程仓库地址由 Tech Lead 提供。不要使用来源不明的镜像。
+批准的远程仓库地址为 `https://github.com/YuanXingyx/MotorTinyML.git`。不要使用来源不明的镜像。
 
 ```powershell
-git clone <repository-url> MotorTinyML
+git clone https://github.com/YuanXingyx/MotorTinyML.git MotorTinyML
 Set-Location MotorTinyML
 git status
 ```
@@ -168,4 +168,3 @@ build: update development environment to <version>
 - 确认 MCU、STM32CubeIDE 与 Arm GNU Toolchain 版本。
 - 确认 Python、依赖管理方式和测试工具版本。
 - 确认 CMake、Ninja 及 AI 工具链版本。
-- 配置远程仓库地址后补充克隆示例。

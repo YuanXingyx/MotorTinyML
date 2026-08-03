@@ -14,12 +14,22 @@ MotorTinyML 是一个面向电机状态监测的嵌入式 AI 项目，目标是�
 - `models/`：训练模型与部署模型
 - `docs/`：项目计划、架构和开发文档
 - `hardware/`：硬件设计资料与接口说明
+- `prompts/`：AI 辅助开发的通用 Prompt Library
 
 ## 当前状态
 
 Sprint 0：项目初始化。
 
-## 开发文档
+## 项目文档
 
-- [开发环境搭建](docs/EnvironmentSetup.md)
-- [项目开发工作流](docs/DevelopmentWorkflow.md)
+[Project Dashboard](docs/00_ProjectDashboard.md) 是项目管理和进度查看的唯一入口。
+
+- [产品需求文档](docs/01_PRD.md)
+- [项目路线图](docs/02_Roadmap.md)
+- [项目计划](docs/03_ProjectPlan.md)
+- [系统架构](docs/04_Architecture.md)
+- [开发环境搭建](docs/05_EnvironmentSetup.md)
+- [项目里程碑](docs/14_Milestones.md)
+- [项目开发工作流](docs/12_DevelopmentWorkflow.md)
+- [项目规则](docs/ProjectRules.md)
+- [Prompt Library](prompts/)

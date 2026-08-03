@@ -25,8 +25,10 @@
 
 - README 与项目当前状态一致。
 - 架构、接口、部署及测试文档按需更新。
-- DevelopmentLog 和 TODO 已更新。
-- CHANGELOG 已更新；若项目尚未建立 CHANGELOG，则在对应任务中创建。
+- [开发日志](10_DevelopmentLog.md) 和 [TODO](13_TODO.md) 已更新。
+- [更新日志](11_CHANGELOG.md) 已按适用范围更新。
+- Dashboard、Roadmap、Milestones、Epic 和 Issue 状态已同步。
+- 本地 Markdown 链接检查通过。
 
 ## Git
 
