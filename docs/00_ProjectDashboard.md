@@ -10,19 +10,19 @@
 | 当前版本 | v0.1.0-alpha |
 | 当前 Epic | [EPIC-02 — STM32F103 Bring-up](epics/EPIC-02.md) |
 | 当前 Sprint | Sprint 1 — 计划中 |
-| 当前日期 | Sprint 0 已完成 — 2026-08-03 |
+| 当前日期 | 2026-08-08 — ISSUE-0022 已完成 |
 | 整体进度 | `[██░░░░░░░░░░░░░░░░░░] 10%` |
 | 项目健康度 | 黄色（AMBER）— 技术基线决策待确认 |
 | 当前风险 | 硬件、传感器、采样参数和完整工具链尚未批准 |
 | 当前里程碑 | [Milestone 1 — STM32 Bring-up](14_Milestones.md#milestone-1--stm32-bring-up) |
-| 开发板 | STM32F103 系列，具体型号待 Tech Lead 确认 |
+| 开发板 | STM32F103C8T6 Blue Pill — 已验证 |
 | 当前传感器 | 待 Tech Lead 确认 |
-| 当前硬件 | MCU、开发板、电机、驱动器和采集硬件待确认 |
+| 当前硬件 | STM32F103C8T6 Blue Pill、ST-Link V2 与 USB-TTL UART 已完成验证 |
 | 仓库 | [YuanXingyx/MotorTinyML](https://github.com/YuanXingyx/MotorTinyML) |
 | 最新提交 | `dede031` — 本次标准化前的最新已提交基线 |
 | 文档状态 | Sprint 0 文档体系已标准化 |
 | 文档覆盖率 | 结构覆盖率 100%；技术内容批准待完成 |
-| 最新更新 | 2026-08-03 — ISSUE-0019 Prompt Library 已完成 |
+| 最新更新 | 2026-08-08 — ISSUE-0022 UART 调试控制台验收通过 |
 
 ## 整体进度
 
@@ -42,7 +42,9 @@
 | 具体 MCU | 待确认 | 由 Tech Lead 确认 |
 | 开发板 | 待确认 | 具体板卡型号未批准 |
 | 工具链 | 待确认 | STM32CubeIDE 与 Arm GNU Toolchain 版本未锁定 |
-| 固件工程 | 未创建 | Sprint 0 未创建任何 STM32 工程 |
+| 固件工程 | 已创建并构建 | `firmware/stm32f103/MotorTinyML_F103` |
+| 工具链 | 已验证 | STM32CubeIDE 2.2.0、Arm GNU Toolchain |
+| 下载验证 | 已通过 | ST-Link V2 下载成功 |
 
 ## 当前传感器
 
@@ -75,6 +77,8 @@
 | [ISSUE-0009](issues/ISSUE-0009.md) | Codex 工作流完善 | 已完成 | 环境搭建和开发流程文档已建立 |
 | [ISSUE-0017](issues/ISSUE-0017.md) | Project Dashboard 与 Roadmap | 已完成 | 项目管理中心和路线图已建立 |
 | [ISSUE-0019](issues/ISSUE-0019.md) | Prompt Library | 已完成 | AI 辅助开发通用 Prompt Library 已建立并通过验证 |
+| [ISSUE-0021](issues/ISSUE-0021.md) | STM32F103 开发环境搭建与验证 | 已完成 | 工程构建、下载和 PC13 LED Blink 验证通过 |
+| [ISSUE-0022](issues/ISSUE-0022.md) | STM32F103 UART 调试控制台 | 已完成 | USART1 115200 8-N-1、PA9 TX、启动消息和 LED 保持验证通过 |
 
 ## 即将开展的工作
 
@@ -87,6 +91,7 @@ Issue 编号和执行顺序由 Tech Lead 分配，不在 Dashboard 中虚构 Iss
 | 锁定 STM32CubeIDE 与编译器版本 | 待分配 | MCU 与开发板确认 |
 | 确认传感器、接口和采样要求 | 待分配 | 采集目标确认 |
 | 制定 EPIC-02 的 Sprint 1 计划 | 待分配 | 技术基线完成 |
+| 确认 EPIC-02 与 Milestone 1 是否关闭 | 待 Tech Lead 确认 | ISSUE-0021 已完成 |
 
 ## 下一里程碑
 

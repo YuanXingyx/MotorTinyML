@@ -177,3 +177,85 @@ Development Infrastructure — Sprint 0 Post-Sprint Maintenance
 ### 状态
 
 已完成（Completed）。
+
+## 2026-08-08 — ISSUE-0021 STM32F103 开发环境搭建与验证
+
+### 类型
+
+Hardware Bring-up / Development Infrastructure
+
+### 目标
+
+建立 STM32F103C8T6 基础开发环境，完成工程构建、下载和第一次硬件验证。
+
+### 已完成
+
+- 创建并打开 `firmware/stm32f103/MotorTinyML_F103` STM32CubeIDE 工程。
+- 配置 STM32F103C8T6 和 PC13 LED。
+- Clean Project 成功。
+- Build Project 成功。
+- ST-Link V2 下载成功。
+- MCU 复位后正常运行。
+- PC13 LED 按约 500 ms 周期闪烁。
+
+### 验证结果
+
+- IDE：STM32CubeIDE 2.2.0。
+- MCU：STM32F103C8T6。
+- 开发板：STM32F103C8T6 Blue Pill。
+- LED：PC13。
+- 固件构建产物：ELF、MAP、LIST 已生成。
+- 硬件结果：Project Engineer 确认通过。
+
+### 文档状态
+
+- Level 1 文档已同步。
+- EPIC-02 和 Milestone 1 是否关闭：待 Tech Lead 确认。
+- Level 2 和 Level 3 文档未修改。
+
+### 风险
+
+- 传感器、采样参数和后续数据采集方案仍待确认。
+- Debug 构建产物的版本控制策略仍需确认。
+
+### 项目完成度
+
+- ISSUE-0021：100%。
+- EPIC-02：保持原状态，待里程碑关闭决策。
+- 整体项目：保持 10%，等待 Epic 状态更新。
+
+## 2026-08-08 — ISSUE-0022 STM32F103 UART 调试控制台
+
+### 类型
+
+Hardware Bring-up / Debug Infrastructure
+
+### 目标
+
+建立 STM32F103C8T6 的 USART1 调试输出通道，为后续外设与 TinyML 调试提供稳定日志接口。
+
+### 已完成
+
+- USART1 配置为 115200 8-N-1，无流控。
+- PA9 作为 UART TX，USB-TTL 通信验证通过。
+- MCU 复位后输出 `MotorTinyML STM32F103 boot`。
+- 原有 PC13 LED Blink 功能保持正常。
+- 未启动 SPI 或 ADXL345 实现。
+
+### 验收结果
+
+- STM32F103C8T6 启动：通过。
+- UART TX 与串口终端通信：通过。
+- 启动日志可读性：通过。
+- LED 回归验证：通过。
+
+### 文档同步
+
+- 已同步 Level 1 动态文档。
+- EPIC-02 与 Milestone 1 关闭状态仍待 Tech Lead 决策。
+- Level 2、Level 3 文档未修改。
+
+### 风险
+
+- USB-TTL 电平、接线和终端参数需在后续调试中保持一致。
+- 尚未建立自动化串口回归测试。

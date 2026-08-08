@@ -55,3 +55,28 @@
 - [x] 更新 Dashboard、Roadmap 和 README
 - [x] 完成本地链接和文档验证
 - [x] 确认未创建或修改 STM32、Python、数据集、模型和硬件文件
+
+## ISSUE-0021 STM32F103 开发环境搭建与验证
+
+- [x] 创建 STM32F103C8T6 STM32CubeIDE 工程
+- [x] 完成 Clean Project
+- [x] 完成 Build Project
+- [x] 使用 ST-Link V2 下载到 MCU
+- [x] 完成 MCU 复位运行验证
+- [x] 完成 PC13 LED Blink 验证
+- [x] 创建 ISSUE-0021 记录
+- [x] 同步 Level 1 项目文档
+- [ ] Tech Lead 确认是否关闭 EPIC-02
+- [ ] Tech Lead 确认是否关闭 Milestone 1
+
+## ISSUE-0022 STM32F103 UART 调试控制台
+
+- [x] 配置 USART1：115200 8-N-1
+- [x] 配置 PA9 UART TX
+- [x] 完成 USB-TTL 通信验证
+- [x] 验证 MCU 复位启动消息
+- [x] 回归验证 PC13 LED Blink
+- [x] 创建 ISSUE-0022 记录
+- [x] 同步 Level 1 项目文档
+- [ ] Tech Lead 确认是否关闭 EPIC-02
+- [ ] Tech Lead 确认是否关闭 Milestone 1
