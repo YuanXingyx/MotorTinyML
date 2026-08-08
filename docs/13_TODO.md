@@ -69,6 +69,21 @@
 - [ ] Tech Lead 确认是否关闭 EPIC-02
 - [ ] Tech Lead 确认是否关闭 Milestone 1
 
+## ISSUE-0023 STM32F103 SPI1 Bring-up
+
+- [x] 配置 SPI1 Master、2 Lines Full Duplex、8 Bits
+- [x] 配置 SPI Mode 3（CPOL High、CPHA 2 Edge）
+- [x] 配置 Prescaler 32、MSB First、Software NSS
+- [x] 配置 PA5 SCK、PA6 MISO、PA7 MOSI
+- [x] 配置 PA4 `ADXL345_CS`，空闲状态 HIGH
+- [x] 完成 0 错误构建
+- [x] 完成固件下载
+- [x] 回归验证 UART Boot Log 和 PC13 LED Blink
+- [x] 创建 ISSUE-0023 记录
+- [x] 同步 Level 1 项目文档
+- [ ] Tech Lead 确认是否关闭 EPIC-02
+- [ ] Tech Lead 确认是否关闭 Milestone 1
+
 ## ISSUE-0022 STM32F103 UART 调试控制台
 
 - [x] 配置 USART1：115200 8-N-1

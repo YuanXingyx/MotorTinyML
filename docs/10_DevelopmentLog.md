@@ -259,3 +259,42 @@ Hardware Bring-up / Debug Infrastructure
 
 - USB-TTL 电平、接线和终端参数需在后续调试中保持一致。
 - 尚未建立自动化串口回归测试。
+
+## 2026-08-08 — ISSUE-0023 STM32F103 SPI1 Bring-up
+
+### 类型
+
+Hardware Bring-up / Peripheral Infrastructure
+
+### 目标
+
+在现有 STM32F103C8T6 工程中建立 SPI1 主机通信基础，为后续 ADXL345 驱动提供稳定接口。
+
+### 已完成
+
+- SPI1 配置为 Master、2 Lines Full Duplex、8 Bits。
+- SPI Mode 3：CPOL High、CPHA 2 Edge。
+- Prescaler 32、MSB First、Software NSS、CRC Disabled。
+- PA5：SPI1_SCK；PA6：SPI1_MISO；PA7：SPI1_MOSI。
+- PA4 配置为 `ADXL345_CS` GPIO，空闲状态为 HIGH。
+
+### 验收结果
+
+- CubeMX SPI1 配置：通过。
+- 工程构建错误数：0。
+- 固件下载：通过。
+- UART Boot Log：通过。
+- PC13 LED 回归测试：通过。
+- `ADXL345_CS` 空闲电平 HIGH：通过。
+
+### 范围控制
+
+- 未实现 ADXL345 寄存器协议。
+- 未实现 DMA 或中断。
+- 未启动 ISSUE-0024。
+
+### 文档同步
+
+- 已同步 Level 1 动态文档。
+- EPIC-02 与 Milestone 1 关闭状态仍待 Tech Lead 决策。
+- Level 2、Level 3 文档未修改。

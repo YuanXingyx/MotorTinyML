@@ -10,19 +10,19 @@
 | 当前版本 | v0.1.0-alpha |
 | 当前 Epic | [EPIC-02 — STM32F103 Bring-up](epics/EPIC-02.md) |
 | 当前 Sprint | Sprint 1 — 计划中 |
-| 当前日期 | 2026-08-08 — ISSUE-0022 已完成 |
+| 当前日期 | 2026-08-08 — ISSUE-0023 已完成 |
 | 整体进度 | `[██░░░░░░░░░░░░░░░░░░] 10%` |
 | 项目健康度 | 黄色（AMBER）— 技术基线决策待确认 |
 | 当前风险 | 硬件、传感器、采样参数和完整工具链尚未批准 |
 | 当前里程碑 | [Milestone 1 — STM32 Bring-up](14_Milestones.md#milestone-1--stm32-bring-up) |
 | 开发板 | STM32F103C8T6 Blue Pill — 已验证 |
 | 当前传感器 | 待 Tech Lead 确认 |
-| 当前硬件 | STM32F103C8T6 Blue Pill、ST-Link V2 与 USB-TTL UART 已完成验证 |
+| 当前硬件 | STM32F103C8T6 Blue Pill、ST-Link V2、USB-TTL UART 与 SPI1 已完成验证 |
 | 仓库 | [YuanXingyx/MotorTinyML](https://github.com/YuanXingyx/MotorTinyML) |
 | 最新提交 | `dede031` — 本次标准化前的最新已提交基线 |
 | 文档状态 | Sprint 0 文档体系已标准化 |
 | 文档覆盖率 | 结构覆盖率 100%；技术内容批准待完成 |
-| 最新更新 | 2026-08-08 — ISSUE-0022 UART 调试控制台验收通过 |
+| 最新更新 | 2026-08-08 — ISSUE-0023 SPI1 Bring-up 验收通过 |
 
 ## 整体进度
 
@@ -79,6 +79,7 @@
 | [ISSUE-0019](issues/ISSUE-0019.md) | Prompt Library | 已完成 | AI 辅助开发通用 Prompt Library 已建立并通过验证 |
 | [ISSUE-0021](issues/ISSUE-0021.md) | STM32F103 开发环境搭建与验证 | 已完成 | 工程构建、下载和 PC13 LED Blink 验证通过 |
 | [ISSUE-0022](issues/ISSUE-0022.md) | STM32F103 UART 调试控制台 | 已完成 | USART1 115200 8-N-1、PA9 TX、启动消息和 LED 保持验证通过 |
+| [ISSUE-0023](issues/ISSUE-0023.md) | STM32F103 SPI1 Bring-up | 已完成 | SPI1 Mode 3、PA4 CS、构建下载和回归验证通过 |
 
 ## 即将开展的工作
 
