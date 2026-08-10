@@ -255,6 +255,34 @@ Hardware Bring-up / Debug Infrastructure
 - EPIC-02 与 Milestone 1 关闭状态仍待 Tech Lead 决策。
 - Level 2、Level 3 文档未修改。
 
+## 2026-08-10 — ISSUE-0025 TB6612 PWM Speed Control
+
+### 类型
+
+Hardware Bring-up / Motor Control Infrastructure
+
+### 已完成
+
+- 完成 TB6612 A 通道电机控制。
+- PB0/PB1/PB10/PA8 已用于电机控制信号。
+- 新增 `App/Motor/motor.c` 和 `App/Motor/motor.h`。
+- 实现 `Motor_Init()`、`Motor_Start()`、`Motor_Stop()`。
+- PWM 速度控制已实现并完成硬件验证。
+- TB6612 AO1/AO2、电源和共地连接验证通过。
+
+### 验收结果
+
+- 工程构建错误数：0。
+- 固件下载：通过。
+- UART Boot Log：通过。
+- PC13 LED 回归测试：通过。
+- 电机启动、停止和约 2 秒运行/2 秒停止循环：通过。
+
+### 范围控制
+
+- 未实现闭环速度控制或保护机制。
+- ISSUE-0024 保留为 ADXL345 驱动任务，当前因器件未到货而阻塞。
+
 ### 风险
 
 - USB-TTL 电平、接线和终端参数需在后续调试中保持一致。

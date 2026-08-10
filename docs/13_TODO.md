@@ -69,6 +69,24 @@
 - [ ] Tech Lead 确认是否关闭 EPIC-02
 - [ ] Tech Lead 确认是否关闭 Milestone 1
 
+## ISSUE-0025 TB6612 PWM Speed Control
+
+- [x] 配置 TB6612 A 通道控制引脚
+- [x] 创建 `App/Motor/motor.c`
+- [x] 创建 `App/Motor/motor.h`
+- [x] 实现 `Motor_Init()`、`Motor_Start()`、`Motor_Stop()`
+- [x] 完成 PWM 速度控制
+- [x] 完成 0 错误构建和固件下载
+- [x] 回归验证 UART Boot Log 和 PC13 LED
+- [x] 完成电机启停及周期运行验证
+- [x] 创建 ISSUE-0025 记录
+- [x] 同步 Level 1 项目文档
+
+## ISSUE-0024 ADXL345 Driver Bring-up
+
+- [ ] 等待 ADXL345 器件到货
+- [ ] 器件到货后执行 SPI Device ID 验证
+
 ## ISSUE-0023 STM32F103 SPI1 Bring-up
 
 - [x] 配置 SPI1 Master、2 Lines Full Duplex、8 Bits

@@ -23,6 +23,7 @@
 /* USER CODE BEGIN Includes */
 #include "led.h"
 #include "Delay.h"
+#include "motor.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -81,7 +82,7 @@ int main(void)
 
   /* USER CODE BEGIN Init */
   LED_Init();
-
+  Motor_Init();
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -126,6 +127,11 @@ int main(void)
 	  LED_Off();
 	  Delay_ms(50);
 
+	  Motor_Start();
+	  HAL_Delay(2000);
+
+	  Motor_Stop();
+	  HAL_Delay(2000);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -253,12 +259,19 @@ static void MX_GPIO_Init(void)
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LED_GPIO_Port, LED_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(ADXL345_CS_GPIO_Port, ADXL345_CS_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, MOTOR_AIN1_Pin|MOTOR_AIN2_Pin|MOTOR_STBY_Pin, GPIO_PIN_RESET);
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(MOTOR_PWMA_GPIO_Port, MOTOR_PWMA_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : LED_Pin */
   GPIO_InitStruct.Pin = LED_Pin;
@@ -267,12 +280,19 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LED_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : ADXL345_CS_Pin */
-  GPIO_InitStruct.Pin = ADXL345_CS_Pin;
+  /*Configure GPIO pins : ADXL345_CS_Pin MOTOR_PWMA_Pin */
+  GPIO_InitStruct.Pin = ADXL345_CS_Pin|MOTOR_PWMA_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(ADXL345_CS_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : MOTOR_AIN1_Pin MOTOR_AIN2_Pin MOTOR_STBY_Pin */
+  GPIO_InitStruct.Pin = MOTOR_AIN1_Pin|MOTOR_AIN2_Pin|MOTOR_STBY_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
 

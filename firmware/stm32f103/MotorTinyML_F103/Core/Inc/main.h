@@ -61,6 +61,14 @@ void Error_Handler(void);
 #define LED_GPIO_Port GPIOC
 #define ADXL345_CS_Pin GPIO_PIN_4
 #define ADXL345_CS_GPIO_Port GPIOA
+#define MOTOR_AIN1_Pin GPIO_PIN_0
+#define MOTOR_AIN1_GPIO_Port GPIOB
+#define MOTOR_AIN2_Pin GPIO_PIN_1
+#define MOTOR_AIN2_GPIO_Port GPIOB
+#define MOTOR_STBY_Pin GPIO_PIN_10
+#define MOTOR_STBY_GPIO_Port GPIOB
+#define MOTOR_PWMA_Pin GPIO_PIN_8
+#define MOTOR_PWMA_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 
