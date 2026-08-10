@@ -278,6 +278,15 @@ Hardware Bring-up / Motor Control Infrastructure
 - PC13 LED 回归测试：通过。
 - 电机启动、停止和约 2 秒运行/2 秒停止循环：通过。
 
+### PWM 硬件验收补充
+
+- PA8 配置为 `TIM1_CH1`。
+- TIM1 PWM 生成正常，PWM 频率配置有效。
+- `Motor_Init()` 在 `MX_TIM1_Init()` 后启动 TIM1 PWM。
+- `Motor_Start()`、`Motor_SetSpeed()` 和 `Motor_Stop()` 验证通过。
+- 40%、60%、80% 和 100% 占空比均已完成硬件验证。
+- UART 和 LED 回归测试保持通过。
+
 ### 范围控制
 
 - 未实现闭环速度控制或保护机制。

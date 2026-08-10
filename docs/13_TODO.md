@@ -76,6 +76,11 @@
 - [x] 创建 `App/Motor/motor.h`
 - [x] 实现 `Motor_Init()`、`Motor_Start()`、`Motor_Stop()`
 - [x] 完成 PWM 速度控制
+- [x] 配置 PA8 为 TIM1_CH1
+- [x] 验证 TIM1 PWM 生成和频率配置
+- [x] 验证 `Motor_Init()` 在 `MX_TIM1_Init()` 后启动 PWM
+- [x] 实现并验证 `Motor_SetSpeed()`
+- [x] 完成 40%、60%、80% 和 100% 占空比硬件验证
 - [x] 完成 0 错误构建和固件下载
 - [x] 回归验证 UART Boot Log 和 PC13 LED
 - [x] 完成电机启停及周期运行验证

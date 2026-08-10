@@ -20,13 +20,16 @@
 - PB1：`MOTOR_AIN2`
 - PB10：`MOTOR_STBY`
 - PA8：`MOTOR_PWMA`
+- PA8 配置为 `TIM1_CH1`
 - 电机连接至 TB6612 `AO1/AO2`
 - 新增 `App/Motor/motor.c`
 - 新增 `App/Motor/motor.h`
 - 实现 `Motor_Init()`
 - 实现 `Motor_Start()`
 - 实现 `Motor_Stop()`
+- 实现 `Motor_SetSpeed()`
 - 实现 PWM 速度控制
+- `Motor_Init()` 在 `MX_TIM1_Init()` 后启动 TIM1 PWM
 
 ## 硬件连接与供电
 
@@ -44,6 +47,13 @@
 - [x] 电机停止成功
 - [x] 电机约运行 2 秒、停止 2 秒，重复运行正常
 - [x] PWM 速度控制实现并完成硬件验证
+- [x] TIM1 PWM 生成正常
+- [x] PWM 频率配置有效
+- [x] 40% 占空比硬件验证通过
+- [x] 60% 占空比硬件验证通过
+- [x] 80% 占空比硬件验证通过
+- [x] 100% 占空比硬件验证通过
+- [x] `Motor_SetSpeed()` 硬件验证通过
 
 ## 明确不包含
 

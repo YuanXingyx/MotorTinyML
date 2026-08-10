@@ -8,8 +8,11 @@
 #ifndef MOTOR_MOTOR_H_
 #define MOTOR_MOTOR_H_
 
+#include <stdint.h>
+
 void Motor_Init(void);
 void Motor_Start(void);
 void Motor_Stop(void);
+void Motor_SetSpeed(uint8_t percent);
 
 #endif /* MOTOR_MOTOR_H_ */
