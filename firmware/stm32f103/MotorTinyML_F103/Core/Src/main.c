@@ -24,6 +24,9 @@
 #include "led.h"
 #include "Delay.h"
 #include "motor.h"
+#include "adxl345.h"
+#include <stdio.h>
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -42,7 +45,7 @@
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
-SPI_HandleTypeDef hspi1;
+I2C_HandleTypeDef hi2c1;
 
 TIM_HandleTypeDef htim1;
 
@@ -56,8 +59,8 @@ UART_HandleTypeDef huart1;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART1_UART_Init(void);
-static void MX_SPI1_Init(void);
 static void MX_TIM1_Init(void);
+static void MX_I2C1_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -98,53 +101,149 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART1_UART_Init();
-  MX_SPI1_Init();
   MX_TIM1_Init();
+  MX_I2C1_Init();
   /* USER CODE BEGIN 2 */
-  Motor_Init();
 
+ // Motor_Init();
   char boot_msg[] = "MotorTinyML STM32F103 boot\r\n";
 
-  HAL_UART_Transmit(
-      &huart1,
-      (uint8_t *)boot_msg,
-      sizeof(boot_msg) - 1,
-      HAL_MAX_DELAY
-	  );
+  HAL_UART_Transmit(&huart1,
+                    (uint8_t *)boot_msg,
+                    sizeof(boot_msg) - 1,
+                    HAL_MAX_DELAY);
+  /* 先确认芯片 ID */
+  uint8_t devid = ADXL345_ReadDeviceID();
 
-  HAL_GPIO_WritePin(ADXL345_CS_GPIO_Port,
-                    ADXL345_CS_Pin,
-                    GPIO_PIN_RESET);
+  char msg[100];
 
-  HAL_Delay(100);
+  snprintf(msg,
+           sizeof(msg),
+           "ADXL345 Device ID = 0x%02X\r\n",
+           devid);
 
-  HAL_GPIO_WritePin(ADXL345_CS_GPIO_Port,
-                    ADXL345_CS_Pin,
-                    GPIO_PIN_SET);
+  HAL_UART_Transmit(&huart1,
+                    (uint8_t *)msg,
+                    strlen(msg),
+                    HAL_MAX_DELAY);
+
+  /* 再初始化 ADXL345 */
+  if (ADXL345_Init() != HAL_OK)
+  {
+      char err[] = "ADXL345 init failed\r\n";
+
+      HAL_UART_Transmit(&huart1,
+                        (uint8_t *)err,
+                        sizeof(err) - 1,
+                        HAL_MAX_DELAY);
+  }
+
+/*I2C方式扫描模块ID
+  char boot_msg[] = "MotorTinyML STM32F103 boot\r\n";
+
+  HAL_UART_Transmit(&huart1,
+                    (uint8_t *)boot_msg,
+                    sizeof(boot_msg) - 1,
+                    HAL_MAX_DELAY);
+
+  char msg[64];
+
+  HAL_UART_Transmit(&huart1,
+                    (uint8_t *)"I2C scan start\r\n",
+                    strlen("I2C scan start\r\n"),
+                    HAL_MAX_DELAY);
+
+  for (uint16_t addr = 1; addr < 128; addr++)
+  {
+      if (HAL_I2C_IsDeviceReady(&hi2c1,
+                                addr << 1,
+                                1,
+                                10) == HAL_OK)
+      {
+          snprintf(msg,
+                   sizeof(msg),
+                   "I2C device found: 0x%02X\r\n",
+                   addr);
+
+          HAL_UART_Transmit(&huart1,
+                            (uint8_t *)msg,
+                            strlen(msg),
+                            HAL_MAX_DELAY);
+      }
+  }
+
+  HAL_UART_Transmit(&huart1,
+                    (uint8_t *)"I2C scan done\r\n",
+                    strlen("I2C scan done\r\n"),
+                    HAL_MAX_DELAY);
+
+*/
+
+  /*SPI方式读取ADXL345的ID
+  char boot_msg[] = "MotorTinyML STM32F103 boot\r\n";
+
+  HAL_UART_Transmit(&huart1,
+                    (uint8_t *)boot_msg,
+                    sizeof(boot_msg) - 1,
+                    HAL_MAX_DELAY);
+
+  uint8_t devid = ADXL345_ReadDeviceID();
+
+  char msg[64];
+
+  snprintf(msg,
+           sizeof(msg),
+           "ADXL345 Device ID = 0x%02X\r\n",
+           devid);
+
+  HAL_UART_Transmit(&huart1,
+                    (uint8_t *)msg,
+                    strlen(msg),
+                    HAL_MAX_DELAY);
+*/
+  Motor_Init();
+  Motor_SetSpeed(60);
+  Motor_Start();
+
+
+  ADXL345_Data_t accel;
+  uint32_t last_sample = HAL_GetTick();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
     /* USER CODE END WHILE */
-	  Motor_Start();
 
-	  Motor_SetSpeed(40);
-	  HAL_Delay(3000);
-
-	  Motor_SetSpeed(60);
-	  HAL_Delay(3000);
-
-	  Motor_SetSpeed(80);
-	  HAL_Delay(3000);
-
-	  Motor_SetSpeed(100);
-	  HAL_Delay(3000);
-
-	  Motor_Stop();
-	  HAL_Delay(3000);
     /* USER CODE BEGIN 3 */
+
+	 uint32_t now = HAL_GetTick();
+
+	     if ((now - last_sample) >= 5)
+	     {
+	         last_sample += 5;
+
+	         if (ADXL345_ReadXYZ(&accel) == HAL_OK)
+	         {
+	             uint32_t sample_time = HAL_GetTick();
+
+	             snprintf(msg,
+	                      sizeof(msg),
+	                      "%lu,%d,%d,%d\r\n",
+	                      sample_time,
+	                      accel.x,
+	                      accel.y,
+	                      accel.z);
+
+	             HAL_UART_Transmit(&huart1,
+	                               (uint8_t *)msg,
+	                               strlen(msg),
+	                               HAL_MAX_DELAY);
+	         }
+	      }
+
   }
   /* USER CODE END 3 */
 }
@@ -161,10 +260,13 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
-  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     Error_Handler();
@@ -174,52 +276,48 @@ void SystemClock_Config(void)
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
-  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
-  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_0) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
   {
     Error_Handler();
   }
 }
 
 /**
-  * @brief SPI1 Initialization Function
+  * @brief I2C1 Initialization Function
   * @param None
   * @retval None
   */
-static void MX_SPI1_Init(void)
+static void MX_I2C1_Init(void)
 {
 
-  /* USER CODE BEGIN SPI1_Init 0 */
+  /* USER CODE BEGIN I2C1_Init 0 */
 
-  /* USER CODE END SPI1_Init 0 */
+  /* USER CODE END I2C1_Init 0 */
 
-  /* USER CODE BEGIN SPI1_Init 1 */
+  /* USER CODE BEGIN I2C1_Init 1 */
 
-  /* USER CODE END SPI1_Init 1 */
-  /* SPI1 parameter configuration*/
-  hspi1.Instance = SPI1;
-  hspi1.Init.Mode = SPI_MODE_MASTER;
-  hspi1.Init.Direction = SPI_DIRECTION_2LINES;
-  hspi1.Init.DataSize = SPI_DATASIZE_8BIT;
-  hspi1.Init.CLKPolarity = SPI_POLARITY_HIGH;
-  hspi1.Init.CLKPhase = SPI_PHASE_2EDGE;
-  hspi1.Init.NSS = SPI_NSS_SOFT;
-  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_32;
-  hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
-  hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
-  hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
-  hspi1.Init.CRCPolynomial = 10;
-  if (HAL_SPI_Init(&hspi1) != HAL_OK)
+  /* USER CODE END I2C1_Init 1 */
+  hi2c1.Instance = I2C1;
+  hi2c1.Init.ClockSpeed = 100000;
+  hi2c1.Init.DutyCycle = I2C_DUTYCYCLE_2;
+  hi2c1.Init.OwnAddress1 = 0;
+  hi2c1.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
+  hi2c1.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
+  hi2c1.Init.OwnAddress2 = 0;
+  hi2c1.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
+  hi2c1.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
+  if (HAL_I2C_Init(&hi2c1) != HAL_OK)
   {
     Error_Handler();
   }
-  /* USER CODE BEGIN SPI1_Init 2 */
+  /* USER CODE BEGIN I2C1_Init 2 */
 
-  /* USER CODE END SPI1_Init 2 */
+  /* USER CODE END I2C1_Init 2 */
 
 }
 
@@ -335,6 +433,7 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
 

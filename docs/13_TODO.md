@@ -89,8 +89,31 @@
 
 ## ISSUE-0024 ADXL345 Driver Bring-up
 
-- [ ] 等待 ADXL345 器件到货
-- [ ] 器件到货后执行 SPI Device ID 验证
+- [x] ADXL345 器件到货
+- [x] 配置 I²C1：PB6=SCL、PB7=SDA
+- [x] 确认器件地址 `0x53`
+- [x] 读取 `DEVID=0xE5`
+- [x] 读取 XYZ 三轴原始数据
+- [x] 保留 SPI loopback 调试结论并切换至 I²C1
+
+## ISSUE-0026 ADXL345 Continuous Sampling and UART Data Streaming
+
+- [x] 配置 ADXL345 I²C 200 Hz
+- [x] 完成 STM32 约 5 ms 稳定采样
+- [x] 输出 UART `timestamp,x,y,z`
+- [x] 完成 `python/serial_logger.py`
+- [x] 保存 CSV 数据到 `dataset/raw/`
+- [x] 完成 `python/plot_accel.py` 时域绘图
+- [x] 完成 X/Y/Z 基础统计分析
+- [x] 建立 Python `.venv`
+- [x] 验证 STM32 系统时钟 72 MHz
+- [x] 验证 TIM1 PWM 20 kHz
+- [x] 验证电机 60% PWM 运行
+- [x] 完成 ISSUE-0026 记录
+
+## ISSUE-0027 建议
+
+- [ ] 数据集完整性和采样一致性验证（待创建和批准）
 
 ## ISSUE-0023 STM32F103 SPI1 Bring-up
 

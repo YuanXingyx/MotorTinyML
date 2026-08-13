@@ -10,14 +10,14 @@
 | 当前版本 | v0.1.0-alpha |
 | 当前 Epic | [EPIC-02 — STM32F103 Bring-up](epics/EPIC-02.md) |
 | 当前 Sprint | Sprint 1 — 计划中 |
-| 当前日期 | 2026-08-10 — ISSUE-0025 已完成；ISSUE-0024 阻塞 |
+| 当前日期 | 2026-08-13 — ISSUE-0026 已完成 |
 | 整体进度 | `[██░░░░░░░░░░░░░░░░░░] 10%` |
 | 项目健康度 | 黄色（AMBER）— 技术基线决策待确认 |
 | 当前风险 | 硬件、传感器、采样参数和完整工具链尚未批准 |
 | 当前里程碑 | [Milestone 1 — STM32 Bring-up](14_Milestones.md#milestone-1--stm32-bring-up) |
 | 开发板 | STM32F103C8T6 Blue Pill — 已验证 |
-| 当前传感器 | 待 Tech Lead 确认 |
-| 当前硬件 | STM32F103C8T6 Blue Pill、ST-Link V2、USB-TTL UART、SPI1 与 TB6612 PWM 已完成验证 |
+| 当前传感器 | ADXL345 — I²C1，200 Hz 采样与 XYZ 数据流已验证 |
+| 当前硬件 | STM32F103C8T6、ST-Link V2、USB-TTL UART、TB6612 PWM 与 ADXL345 采集链路已验证 |
 | 仓库 | [YuanXingyx/MotorTinyML](https://github.com/YuanXingyx/MotorTinyML) |
 | 最新提交 | `dede031` — 本次标准化前的最新已提交基线 |
 | 文档状态 | Sprint 0 文档体系已标准化 |
@@ -81,10 +81,11 @@
 | [ISSUE-0022](issues/ISSUE-0022.md) | STM32F103 UART 调试控制台 | 已完成 | USART1 115200 8-N-1、PA9 TX、启动消息和 LED 保持验证通过 |
 | [ISSUE-0023](issues/ISSUE-0023.md) | STM32F103 SPI1 Bring-up | 已完成 | SPI1 Mode 3、PA4 CS、构建下载和回归验证通过 |
 | [ISSUE-0025](issues/ISSUE-0025.md) | TB6612 PWM Speed Control | 已完成 | TIM1_CH1 PWM、Motor_SetSpeed 和 40/60/80/100% 占空比验证通过 |
+| [ISSUE-0024](issues/ISSUE-0024.md) | ADXL345 Driver Bring-up | 已完成 | I²C1、DEVID 0xE5 和 XYZ 原始数据读取验证通过 |
+| [ISSUE-0026](issues/ISSUE-0026.md) | ADXL345 Continuous Sampling and UART Data Streaming | 已完成 | 200 Hz 采样、UART CSV 数据流、Python 采集与绘图验证通过 |
 
 ## 即将开展的工作
 
-| [ISSUE-0024](issues/ISSUE-0024.md) | ADXL345 Driver Bring-up | 阻塞 | 等待 ADXL345 器件到货 |
 
 Issue 编号和执行顺序由 Tech Lead 分配，不在 Dashboard 中虚构 Issue。
 

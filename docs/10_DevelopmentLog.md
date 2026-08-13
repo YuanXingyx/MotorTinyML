@@ -292,6 +292,68 @@ Hardware Bring-up / Motor Control Infrastructure
 - 未实现闭环速度控制或保护机制。
 - ISSUE-0024 保留为 ADXL345 驱动任务，当前因器件未到货而阻塞。
 
+## 2026-08-13 — ISSUE-0024 ADXL345 Driver Bring-up
+
+### 类型
+
+Sensor Driver Development / Hardware Bring-up
+
+### 已完成
+
+- ADXL345 器件已到货并完成硬件 Bring-up。
+- 最终采用 I²C1：PB6=SCL、PB7=SDA。
+- 器件地址：`0x53`。
+- 成功读取 `DEVID=0xE5`。
+- 成功读取 XYZ 三轴原始数据。
+
+### SPI 调试经过
+
+- STM32 SPI loopback 验证正常。
+- ADXL345 模块 SPI 通信未建立。
+- 项目实现因此切换为 I²C1。
+
+### 验收结果
+
+- I²C1 通信：通过。
+- Device ID 读取：通过。
+- XYZ 原始数据读取：通过。
+- ISSUE-0024：DONE。
+
+### 范围控制
+
+- 未修改其他 Issue。
+- 未引入 DMA、中断、FIFO、滤波或 TinyML 功能。
+
+## 2026-08-13 — ISSUE-0026 ADXL345 Continuous Sampling and UART Data Streaming
+
+### 类型
+
+Data Acquisition / PC Collection Infrastructure
+
+### 已完成
+
+- ADXL345 I²C 200 Hz 配置完成。
+- STM32 以约 5 ms 周期稳定采样 XYZ 原始数据。
+- UART 输出 `timestamp,x,y,z`。
+- `python/serial_logger.py` 已完成串口采集和 CSV 保存。
+- `python/plot_accel.py` 已完成 XYZ 时域绘图和基础统计分析。
+- Python `.venv` 已建立。
+- STM32 系统时钟为 72 MHz。
+- TIM1 PWM 频率验证为 20 kHz，电机 60% PWM 运行正常。
+
+### 验收结果
+
+- 采样频率和周期：通过基础验证。
+- UART CSV-like 数据流：通过。
+- PC 端 CSV 文件生成：通过。
+- 时域波形和统计输出：通过。
+
+### 范围控制
+
+- 未实现 FFT、滤波、机器学习或复杂特征工程。
+- 未修改原始 CSV 数据。
+- 建议后续 ISSUE-0027 处理数据质量和采样一致性验证。
+
 ### 风险
 
 - USB-TTL 电平、接线和终端参数需在后续调试中保持一致。
