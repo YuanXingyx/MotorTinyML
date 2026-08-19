@@ -354,6 +354,32 @@ Data Acquisition / PC Collection Infrastructure
 - 未修改原始 CSV 数据。
 - 建议后续 ISSUE-0027 处理数据质量和采样一致性验证。
 
+## 2026-08-19 — ISSUE-0027 Dataset Baseline Collection and Quality Validation
+
+### 正式采集结果
+
+- `sensor_idle`：15.000 s、3001 samples、200.000 Hz、5.000 ms 平均间隔。
+- `motor_normal_60`：15.000 s、3001 samples、200.000 Hz、5.000 ms 平均间隔。
+- 两组数据均完成 CSV 保存、时域图生成和 TXT 统计报告生成。
+- 时间戳单调、无重复，CSV 无缺失字段或解析错误。
+
+### 基线对比
+
+- `sensor_idle` 的 XYZ std：1.241 / 1.482 / 1.107；peak-to-peak：9 / 10 / 8。
+- `motor_normal_60` 的 XYZ std：134.460 / 83.422 / 110.859；peak-to-peak：458 / 312 / 339。
+- 电机运行振动相对于静止传感器噪声存在明显差异。
+- `sensor_idle` 是静止基线，不等同于最终模型类别 Normal。
+
+### 稳定性验证
+
+- 曾出现 `ADXL345 read error`；增加电机端子 100 nF 电容及 TB6612 VM-GND 的 100 uF 和 100 nF 去耦后，I²C 读取错误消失。
+- 随后 `motor_normal_60` 正式采集成功。
+
+### 状态
+
+- ISSUE-0027：DONE。
+- 下一步建议：ISSUE-0028 Dataset Quality Report and Baseline Comparison。
+
 ### 风险
 
 - USB-TTL 电平、接线和终端参数需在后续调试中保持一致。

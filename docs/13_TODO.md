@@ -111,9 +111,21 @@
 - [x] 验证电机 60% PWM 运行
 - [x] 完成 ISSUE-0026 记录
 
-## ISSUE-0027 建议
+## ISSUE-0027 Dataset Baseline Collection and Quality Validation
 
-- [ ] 数据集完整性和采样一致性验证（待创建和批准）
+- [x] 完成 `sensor_idle` 正式基线采集
+- [x] 完成 `motor_normal_60` 正式基线采集
+- [x] 验证约 15 秒、约 200 Hz 和约 5 ms 采样间隔
+- [x] 验证时间戳单调、无重复和无潜在缺样
+- [x] 验证 CSV 数据完整性
+- [x] 生成两组时域图和 TXT 统计报告
+- [x] 完成静止与电机运行基线对比
+- [x] 完成电机干扰抑制后的稳定性验证
+- [x] 完成 ISSUE-0027 记录
+
+## ISSUE-0028 建议
+
+- [ ] Dataset Quality Report and Baseline Comparison（待创建和批准）
 
 ## ISSUE-0023 STM32F103 SPI1 Bring-up
 

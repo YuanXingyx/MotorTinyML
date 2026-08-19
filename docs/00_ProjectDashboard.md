@@ -10,7 +10,7 @@
 | 当前版本 | v0.1.0-alpha |
 | 当前 Epic | [EPIC-02 — STM32F103 Bring-up](epics/EPIC-02.md) |
 | 当前 Sprint | Sprint 1 — 计划中 |
-| 当前日期 | 2026-08-13 — ISSUE-0026 已完成 |
+| 当前日期 | 2026-08-19 — ISSUE-0027 已完成 |
 | 整体进度 | `[██░░░░░░░░░░░░░░░░░░] 10%` |
 | 项目健康度 | 黄色（AMBER）— 技术基线决策待确认 |
 | 当前风险 | 硬件、传感器、采样参数和完整工具链尚未批准 |
@@ -83,6 +83,7 @@
 | [ISSUE-0025](issues/ISSUE-0025.md) | TB6612 PWM Speed Control | 已完成 | TIM1_CH1 PWM、Motor_SetSpeed 和 40/60/80/100% 占空比验证通过 |
 | [ISSUE-0024](issues/ISSUE-0024.md) | ADXL345 Driver Bring-up | 已完成 | I²C1、DEVID 0xE5 和 XYZ 原始数据读取验证通过 |
 | [ISSUE-0026](issues/ISSUE-0026.md) | ADXL345 Continuous Sampling and UART Data Streaming | 已完成 | 200 Hz 采样、UART CSV 数据流、Python 采集与绘图验证通过 |
+| [ISSUE-0027](issues/ISSUE-0027.md) | Dataset Baseline Collection and Quality Validation | 已完成 | sensor_idle 与 motor_normal_60 基线采集、质量验证和对比完成 |
 
 ## 即将开展的工作
 
