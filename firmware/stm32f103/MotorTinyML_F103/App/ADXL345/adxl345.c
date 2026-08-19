@@ -92,7 +92,7 @@ HAL_StatusTypeDef ADXL345_ReadXYZ(ADXL345_Data_t *data)
                          I2C_MEMADD_SIZE_8BIT,
                          buf,
                          6,
-                         HAL_MAX_DELAY) != HAL_OK)
+                         20) != HAL_OK)
     {
         return HAL_ERROR;
     }

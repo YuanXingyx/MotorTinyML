@@ -208,6 +208,7 @@ int main(void)
 
   ADXL345_Data_t accel;
   uint32_t last_sample = HAL_GetTick();
+  uint32_t last_heartbeat = HAL_GetTick();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -220,7 +221,14 @@ int main(void)
     /* USER CODE BEGIN 3 */
 
 	 uint32_t now = HAL_GetTick();
+	 /* 心跳灯：每 500 ms 翻转一次 */
+	 if ((now - last_heartbeat) >= 500)
+	 {
+	     last_heartbeat = now;
+	     HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
+	 }
 
+	 /* ADXL345 200 Hz 采样 */
 	     if ((now - last_sample) >= 5)
 	     {
 	         last_sample += 5;
@@ -241,6 +249,15 @@ int main(void)
 	                               (uint8_t *)msg,
 	                               strlen(msg),
 	                               HAL_MAX_DELAY);
+	         }
+	         else
+	         {
+	             char err[] = "ADXL345 read error\r\n";
+
+	             HAL_UART_Transmit(&huart1,
+	                               (uint8_t *)err,
+	                               sizeof(err) - 1,
+	                               100);
 	         }
 	      }
 
