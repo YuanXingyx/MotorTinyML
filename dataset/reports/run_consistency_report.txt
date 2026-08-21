@@ -1,0 +1,204 @@
+MotorTinyML Run Consistency Report
+===================================
+Purpose: detect experimental run consistency; this is not a model-accuracy-based data selection tool.
+Training data was not modified, deleted, or reclassified.
+
+
+Group: mechanical_looseness_40
+==============================
+feature means / std / CV:
+  x_std: mean=12.998, std=1.006, CV=0.077
+  y_std: mean=74.539, std=2.021, CV=0.027
+  z_std: mean=10.953, std=0.505, CV=0.046
+  x_p2p: mean=71.333, std=8.179, CV=0.115
+  y_p2p: mean=241.000, std=4.320, CV=0.018
+  z_p2p: mean=128.000, std=106.774, CV=0.834
+runs:
+  mechanical_looseness_40_20260820_165705.csv: status=CONSISTENT, sample_count=3000, duration_s=15.000, avg_interval_ms=5.002, sampling_frequency_hz=199.933, std=(13.689, 72.691, 11.514), p2p=(79.000, 237.000, 279.000), centroid_distance=2.505
+  mechanical_looseness_40_20260820_165941.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(11.576, 77.351, 11.056), p2p=(60.000, 247.000, 52.000), centroid_distance=2.887
+  mechanical_looseness_40_20260820_170143.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(13.731, 73.576, 10.290), p2p=(75.000, 239.000, 53.000), centroid_distance=1.842
+pairwise normalized distance matrix:
+  mechanical_looseness_40_20260820_165705 | mechanical_looseness_40_20260820_165941 | mechanical_looseness_40_20260820_170143
+  mechanical_looseness_40_20260820_165705 | 0.000 | 5.082 | 3.317
+  mechanical_looseness_40_20260820_165941 | 5.082 | 0.000 | 4.144
+  mechanical_looseness_40_20260820_170143 | 3.317 | 4.144 | 0.000
+most similar pair: mechanical_looseness_40_20260820_165705.csv <-> mechanical_looseness_40_20260820_170143.csv, distance=3.317
+Note: outlier flags are diagnostic only; no file is automatically removed.
+
+Group: mechanical_looseness_60
+==============================
+feature means / std / CV:
+  x_std: mean=67.098, std=35.425, CV=0.528
+  y_std: mean=211.500, std=70.420, CV=0.333
+  z_std: mean=49.687, std=17.267, CV=0.348
+  x_p2p: mean=252.750, std=114.404, CV=0.453
+  y_p2p: mean=655.750, std=209.051, CV=0.319
+  z_p2p: mean=178.500, std=53.153, CV=0.298
+runs:
+  mechanical_looseness_60_20260820_170815.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(99.268, 276.609, 62.841), p2p=(351.000, 860.000, 214.000), centroid_distance=2.097
+  mechanical_looseness_60_20260820_171323.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(52.914, 211.233, 54.408), p2p=(221.000, 636.000, 193.000), centroid_distance=0.629
+  mechanical_looseness_60_20260820_171626.csv: status=POTENTIAL_OUTLIER, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(15.550, 96.937, 20.285), p2p=(79.000, 323.000, 88.000), centroid_distance=3.925
+  mechanical_looseness_60_20260820_172224.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(100.661, 261.220, 61.212), p2p=(360.000, 804.000, 219.000), centroid_distance=1.950
+pairwise normalized distance matrix:
+  mechanical_looseness_60_20260820_170815 | mechanical_looseness_60_20260820_171323 | mechanical_looseness_60_20260820_171626 | mechanical_looseness_60_20260820_172224
+  mechanical_looseness_60_20260820_170815 | 0.000 | 2.326 | 6.003 | 0.381
+  mechanical_looseness_60_20260820_171323 | 2.326 | 0.000 | 3.916 | 2.199
+  mechanical_looseness_60_20260820_171626 | 6.003 | 3.916 | 0.000 | 5.851
+  mechanical_looseness_60_20260820_172224 | 0.381 | 2.199 | 5.851 | 0.000
+most similar pair: mechanical_looseness_60_20260820_170815.csv <-> mechanical_looseness_60_20260820_172224.csv, distance=0.381
+Note: outlier flags are diagnostic only; no file is automatically removed.
+diagnostic candidates: mechanical_looseness_60_20260820_171626.csv (EXCLUDED_FROM_TRAINING)
+official 60% runs are compared together; excluded candidates are shown only diagnostically.
+
+Group: normal_40
+================
+feature means / std / CV:
+  x_std: mean=10.505, std=0.293, CV=0.028
+  y_std: mean=56.777, std=4.687, CV=0.083
+  z_std: mean=11.225, std=1.235, CV=0.110
+  x_p2p: mean=63.667, std=5.437, CV=0.085
+  y_p2p: mean=189.000, std=13.928, CV=0.074
+  z_p2p: mean=62.667, std=5.558, CV=0.089
+runs:
+  motor_normal_40_20260819_225032.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(10.812, 62.733, 12.950), p2p=(58.000, 208.000, 65.000), centroid_distance=2.790
+  motor_normal_40_20260819_225634.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(10.593, 51.280, 10.131), p2p=(71.000, 175.000, 68.000), centroid_distance=2.450
+  motor_normal_40_20260819_225920.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(10.109, 56.317, 10.593), p2p=(62.000, 184.000, 55.000), centroid_distance=2.052
+pairwise normalized distance matrix:
+  motor_normal_40_20260819_225032 | motor_normal_40_20260819_225634 | motor_normal_40_20260819_225920
+  motor_normal_40_20260819_225032 | 0.000 | 4.833 | 4.242
+  motor_normal_40_20260819_225634 | 4.833 | 0.000 | 3.556
+  motor_normal_40_20260819_225920 | 4.242 | 3.556 | 0.000
+most similar pair: motor_normal_40_20260819_225634.csv <-> motor_normal_40_20260819_225920.csv, distance=3.556
+Note: outlier flags are diagnostic only; no file is automatically removed.
+
+Group: normal_60
+================
+feature means / std / CV:
+  x_std: mean=117.205, std=15.044, CV=0.128
+  y_std: mean=93.873, std=8.253, CV=0.088
+  z_std: mean=85.536, std=23.116, CV=0.270
+  x_p2p: mean=403.667, std=71.946, CV=0.178
+  y_p2p: mean=322.000, std=19.305, CV=0.060
+  z_p2p: mean=296.000, std=61.520, CV=0.208
+runs:
+  motor_normal_60_20260819_204215.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(134.460, 83.422, 110.859), p2p=(458.000, 312.000, 339.000), centroid_distance=2.334
+  motor_normal_60_20260819_230403.csv: status=REVIEW, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(97.799, 103.598, 54.970), p2p=(302.000, 305.000, 209.000), centroid_distance=3.094
+  motor_normal_60_20260819_230612.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(119.357, 94.597, 90.778), p2p=(451.000, 349.000, 340.000), centroid_distance=1.726
+pairwise normalized distance matrix:
+  motor_normal_60_20260819_204215 | motor_normal_60_20260819_230403 | motor_normal_60_20260819_230612
+  motor_normal_60_20260819_204215 | 0.000 | 5.202 | 2.698
+  motor_normal_60_20260819_230403 | 5.202 | 0.000 | 4.434
+  motor_normal_60_20260819_230612 | 2.698 | 4.434 | 0.000
+most similar pair: motor_normal_60_20260819_204215.csv <-> motor_normal_60_20260819_230612.csv, distance=2.698
+Note: outlier flags are diagnostic only; no file is automatically removed.
+
+Group: normal_80
+================
+feature means / std / CV:
+  x_std: mean=80.851, std=3.435, CV=0.042
+  y_std: mean=78.299, std=7.828, CV=0.100
+  z_std: mean=193.792, std=17.761, CV=0.092
+  x_p2p: mean=352.333, std=18.517, CV=0.053
+  y_p2p: mean=293.000, std=37.157, CV=0.127
+  z_p2p: mean=609.000, std=46.676, CV=0.077
+runs:
+  motor_normal_80_20260819_231002.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(82.863, 75.168, 188.639), p2p=(378.000, 294.000, 627.000), centroid_distance=1.630
+  motor_normal_80_20260819_231204.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(83.674, 70.669, 175.078), p2p=(335.000, 247.000, 545.000), centroid_distance=2.650
+  motor_normal_80_20260819_231433.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(76.016, 89.060, 217.659), p2p=(344.000, 338.000, 655.000), centroid_distance=2.884
+pairwise normalized distance matrix:
+  motor_normal_80_20260819_231002 | motor_normal_80_20260819_231204 | motor_normal_80_20260819_231433
+  motor_normal_80_20260819_231002 | 0.000 | 3.324 | 3.863
+  motor_normal_80_20260819_231204 | 3.324 | 0.000 | 5.294
+  motor_normal_80_20260819_231433 | 3.863 | 5.294 | 0.000
+most similar pair: motor_normal_80_20260819_231002.csv <-> motor_normal_80_20260819_231204.csv, distance=3.324
+Note: outlier flags are diagnostic only; no file is automatically removed.
+
+Group: overload_40
+==================
+feature means / std / CV:
+  x_std: mean=12.723, std=1.142, CV=0.090
+  y_std: mean=16.799, std=0.799, CV=0.048
+  z_std: mean=5.628, std=0.259, CV=0.046
+  x_p2p: mean=80.000, std=3.266, CV=0.041
+  y_p2p: mean=78.333, std=0.471, CV=0.006
+  z_p2p: mean=37.000, std=0.816, CV=0.022
+runs:
+  motor_overload_40_20260820_175854.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(14.337, 16.036, 5.994), p2p=(76.000, 78.000, 37.000), centroid_distance=2.629
+  motor_overload_40_20260820_180320.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(11.947, 16.459, 5.445), p2p=(80.000, 79.000, 38.000), centroid_distance=2.155
+  motor_overload_40_20260820_180451.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(11.885, 17.902, 5.445), p2p=(84.000, 78.000, 36.000), centroid_distance=2.539
+pairwise normalized distance matrix:
+  motor_overload_40_20260820_175854 | motor_overload_40_20260820_180320 | motor_overload_40_20260820_180451
+  motor_overload_40_20260820_175854 | 0.000 | 4.082 | 4.698
+  motor_overload_40_20260820_180320 | 4.082 | 0.000 | 3.907
+  motor_overload_40_20260820_180451 | 4.698 | 3.907 | 0.000
+most similar pair: motor_overload_40_20260820_180320.csv <-> motor_overload_40_20260820_180451.csv, distance=3.907
+Note: outlier flags are diagnostic only; no file is automatically removed.
+
+Group: overload_60
+==================
+feature means / std / CV:
+  x_std: mean=26.393, std=0.561, CV=0.021
+  y_std: mean=137.685, std=4.207, CV=0.031
+  z_std: mean=6.643, std=0.214, CV=0.032
+  x_p2p: mean=144.000, std=2.944, CV=0.020
+  y_p2p: mean=431.000, std=17.146, CV=0.040
+  z_p2p: mean=39.667, std=2.055, CV=0.052
+runs:
+  motor_overload_60_20260820_180954.csv: status=REVIEW, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(25.948, 132.074, 6.345), p2p=(145.000, 407.000, 37.000), centroid_distance=2.847
+  motor_overload_60_20260820_181115.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(26.047, 138.776, 6.837), p2p=(140.000, 440.000, 42.000), centroid_distance=2.165
+  motor_overload_60_20260820_181249.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(27.184, 142.205, 6.746), p2p=(147.000, 446.000, 40.000), centroid_distance=2.282
+pairwise normalized distance matrix:
+  motor_overload_60_20260820_180954 | motor_overload_60_20260820_181115 | motor_overload_60_20260820_181249
+  motor_overload_60_20260820_180954 | 0.000 | 4.514 | 4.684
+  motor_overload_60_20260820_181115 | 4.514 | 0.000 | 3.417
+  motor_overload_60_20260820_181249 | 4.684 | 3.417 | 0.000
+most similar pair: motor_overload_60_20260820_181115.csv <-> motor_overload_60_20260820_181249.csv, distance=3.417
+Note: outlier flags are diagnostic only; no file is automatically removed.
+
+Group: rotor_unbalance_40
+=========================
+feature means / std / CV:
+  x_std: mean=160.102, std=9.912, CV=0.062
+  y_std: mean=554.801, std=22.515, CV=0.041
+  z_std: mean=65.059, std=2.501, CV=0.038
+  x_p2p: mean=601.667, std=41.250, CV=0.069
+  y_p2p: mean=1576.000, std=72.586, CV=0.046
+  z_p2p: mean=330.667, std=32.273, CV=0.098
+runs:
+  rotor_unbalance_40_20260820_141437.csv: status=POTENTIAL_OUTLIER, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(173.684, 586.630, 61.665), p2p=(660.000, 1678.000, 287.000), centroid_distance=3.395
+  rotor_unbalance_40_20260820_142102.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(156.311, 539.627, 67.617), p2p=(573.000, 1535.000, 364.000), centroid_distance=1.875
+  rotor_unbalance_40_20260820_142345.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(150.310, 538.145, 65.895), p2p=(572.000, 1515.000, 341.000), centroid_distance=1.721
+pairwise normalized distance matrix:
+  rotor_unbalance_40_20260820_141437 | rotor_unbalance_40_20260820_142102 | rotor_unbalance_40_20260820_142345
+  rotor_unbalance_40_20260820_141437 | 0.000 | 5.207 | 5.045
+  rotor_unbalance_40_20260820_142102 | 5.207 | 0.000 | 1.196
+  rotor_unbalance_40_20260820_142345 | 5.045 | 1.196 | 0.000
+most similar pair: rotor_unbalance_40_20260820_142102.csv <-> rotor_unbalance_40_20260820_142345.csv, distance=1.196
+Note: outlier flags are diagnostic only; no file is automatically removed.
+
+Group: rotor_unbalance_60
+=========================
+feature means / std / CV:
+  x_std: mean=68.162, std=6.029, CV=0.088
+  y_std: mean=371.386, std=28.160, CV=0.076
+  z_std: mean=27.333, std=2.189, CV=0.080
+  x_p2p: mean=437.667, std=83.284, CV=0.190
+  y_p2p: mean=1469.333, std=158.380, CV=0.108
+  z_p2p: mean=203.333, std=26.600, CV=0.131
+runs:
+  rotor_unbalance_60_20260820_143613.csv: status=REVIEW, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(60.381, 390.056, 25.227), p2p=(321.000, 1247.000, 166.000), centroid_distance=2.989
+  rotor_unbalance_60_20260820_144640.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(69.034, 331.586, 26.421), p2p=(482.000, 1557.000, 218.000), centroid_distance=1.757
+  rotor_unbalance_60_20260820_145113.csv: status=CONSISTENT, sample_count=3001, duration_s=15.000, avg_interval_ms=5.000, sampling_frequency_hz=200.000, std=(75.070, 392.515, 30.351), p2p=(510.000, 1604.000, 226.000), centroid_distance=2.445
+pairwise normalized distance matrix:
+  rotor_unbalance_60_20260820_143613 | rotor_unbalance_60_20260820_144640 | rotor_unbalance_60_20260820_145113
+  rotor_unbalance_60_20260820_143613 | 0.000 | 4.250 | 5.171
+  rotor_unbalance_60_20260820_144640 | 4.250 | 0.000 | 3.033
+  rotor_unbalance_60_20260820_145113 | 5.171 | 3.033 | 0.000
+most similar pair: rotor_unbalance_60_20260820_144640.csv <-> rotor_unbalance_60_20260820_145113.csv, distance=3.033
+Note: outlier flags are diagnostic only; no file is automatically removed.
+
+重点 mechanical_looseness summary
+--------------------------------
+mechanical_looseness_40: centroid distances and most similar pair are reported above; review candidates=none
+mechanical_looseness_60: centroid distances and most similar pair are reported above; review candidates=['mechanical_looseness_60_20260820_171626.csv']
+171626: included only when explicitly requested with --diagnostic; remains EXCLUDED_FROM_TRAINING because it is an excluded/unstable-power-condition run.

@@ -1,0 +1,60 @@
+MotorTinyML Looseness-60 Reference Comparison
+==================================================
+All files were required to be INCLUDED by dataset_audit.py.
+This is a diagnostic comparison only; no CSV is deleted, relabeled, or excluded automatically.
+window_size: 200
+sample_rate_hz: 200.0
+
+Reference distributions: normal_60 and overload_60
+--------------------------------------------
+normal:
+  y_std: mean=93.688, std=9.801, min=77.613, max=120.733
+  y_rms: mean=94.121, std=9.895, min=78.044, max=120.983
+  y_peak_to_peak: mean=288.022, std=17.558, min=256.000, max=349.000
+  y_dominant_frequency: mean=80.822, std=14.726, min=57.000, max=100.000
+  y_dominant_amplitude: mean=77.469, std=18.559, min=46.481, max=136.464
+  y_spectral_centroid: mean=78.318, std=13.567, min=59.275, max=95.272
+  y_spectral_energy: mean=17377.945, std=3579.891, min=12047.165, max=28861.805
+overload:
+  y_std: mean=137.675, std=4.441, min=128.071, max=144.191
+  y_rms: mean=138.055, std=4.427, min=128.536, max=144.590
+  y_peak_to_peak: mean=408.467, std=16.507, min=379.000, max=446.000
+  y_dominant_frequency: mean=71.222, std=0.696, min=70.000, max=72.000
+  y_dominant_amplitude: mean=130.832, std=19.741, min=91.344, max=159.839
+  y_spectral_centroid: mean=71.427, std=0.888, min=69.372, max=73.133
+  y_spectral_energy: mean=37945.155, std=2430.532, min=32785.006, max=41577.933
+
+Looseness run comparisons
+----------------------------
+
+mechanical_looseness_60_20260820_170815.csv
+  centroid distance: normal=19.436, overload=15.468, looseness=3.395
+  window nearest reference: closer_to_normal=0, closer_to_overload=0, closer_to_looseness_reference=15
+  diagnostic state: DISTINCT_FROM_REFERENCES
+  Y dominant frequency: mean=71.600, std=3.007, range=66.000..76.000
+
+mechanical_looseness_60_20260820_171323.csv
+  centroid distance: normal=11.395, overload=7.792, looseness=5.720
+  window nearest reference: closer_to_normal=0, closer_to_overload=1, closer_to_looseness_reference=14
+  diagnostic state: DISTINCT_FROM_REFERENCES
+  Y dominant frequency: mean=94.333, std=4.126, range=84.000..99.000
+
+mechanical_looseness_60_20260820_172224.csv
+  centroid distance: normal=18.224, overload=14.059, looseness=3.530
+  window nearest reference: closer_to_normal=0, closer_to_overload=0, closer_to_looseness_reference=15
+  diagnostic state: DISTINCT_FROM_REFERENCES
+  Y dominant frequency: mean=47.800, std=5.319, range=40.000..57.000
+
+Reference Y dominant frequency
+----------------------------------
+normal_60: mean=80.822, std=14.726, range=57.000..100.000
+overload_60: mean=71.222, std=0.696, range=70.000..72.000
+looseness_60: mean=71.244, std=19.470, range=40.000..99.000
+
+Interpretation
+----------------
+170815 model overload-like tendency: this tool can only report distance and window evidence; it does not establish an overload label.
+172224 model normal-like tendency: proximity to a reference is diagnostic and does not change its looseness label.
+171323 looseness recognition tendency: window-level nearest-reference counts show whether it is internally mixed or closer to the looseness reference.
+Different distances may indicate different operating states, looseness strengths, or fixture conditions; they are not sufficient grounds for deleting data.
+No evidence from this script authorizes re-collecting or excluding mechanical_looseness_60 files.

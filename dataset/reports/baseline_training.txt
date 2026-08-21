@@ -1,0 +1,71 @@
+MotorTinyML Baseline Training Report
+======================================
+timestamp: 2026-08-21T18:07:27
+random_seed: 42
+class_mapping: 0=normal, 1=rotor_unbalance, 2=mechanical_looseness, 3=overload
+
+Dataset split (CSV files, not individual windows)
+train: csv_count=17, window_count=255
+  - motor_normal_60_20260819_204215.csv
+  - motor_normal_80_20260819_231002.csv
+  - motor_normal_80_20260819_231204.csv
+  - motor_normal_60_20260819_230403.csv
+  - motor_normal_80_20260819_231433.csv
+  - rotor_unbalance_60_20260820_143613.csv
+  - rotor_unbalance_40_20260820_142102.csv
+  - rotor_unbalance_40_20260820_142345.csv
+  - rotor_unbalance_40_20260820_141437.csv
+  - mechanical_looseness_40_20260820_165941.csv
+  - mechanical_looseness_40_20260820_170143.csv
+  - mechanical_looseness_60_20260820_170815.csv
+  - mechanical_looseness_60_20260820_171323.csv
+  - motor_overload_40_20260820_180320.csv
+  - motor_overload_60_20260820_180954.csv
+  - motor_overload_40_20260820_180451.csv
+  - motor_overload_40_20260820_175854.csv
+validation: csv_count=5, window_count=75
+  - motor_normal_40_20260819_225920.csv
+  - motor_normal_60_20260819_230612.csv
+  - rotor_unbalance_60_20260820_144640.csv
+  - mechanical_looseness_60_20260820_172224.csv
+  - motor_overload_60_20260820_181249.csv
+test: csv_count=5, window_count=75
+  - motor_normal_40_20260819_225032.csv
+  - motor_normal_40_20260819_225634.csv
+  - rotor_unbalance_60_20260820_145113.csv
+  - mechanical_looseness_40_20260820_165705.csv
+  - motor_overload_60_20260820_181115.csv
+included_csv_count: 27
+included_window_count: 405
+
+normalization_mean: [-26.371784210205078, -7.162764549255371, 258.7672424316406]
+normalization_std: [91.7989501953125, 272.74267578125, 94.35661315917969]
+
+model_architecture: Conv1D(16,5) -> MaxPooling1D(2) -> Conv1D(32,5) -> MaxPooling1D(2) -> GlobalAveragePooling1D -> Dense(16) -> Dense(4)
+parameter_count: 3444
+best_epoch: 13
+train_accuracy: 1.0000
+validation_accuracy: 0.7067
+test_accuracy: 0.6000
+
+confusion_matrix:
+[[ 0  0  0 30]
+ [ 0 15  0  0]
+ [ 0  0 15  0]
+ [ 0  0  0 15]]
+
+classification_report:
+                      precision    recall  f1-score   support
+
+              normal       0.00      0.00      0.00        30
+     rotor_unbalance       1.00      1.00      1.00        15
+mechanical_looseness       1.00      1.00      1.00        15
+            overload       0.33      1.00      0.50        15
+
+            accuracy                           0.60        75
+           macro avg       0.58      0.75      0.62        75
+        weighted avg       0.47      0.60      0.50        75
+
+
+Known dataset limitation:
+normal / mechanical_looseness 与 rotor_unbalance / overload 可能存在 fan-related experimental confounding。当前 test accuracy 不能直接解释为真实未知电机故障泛化能力。

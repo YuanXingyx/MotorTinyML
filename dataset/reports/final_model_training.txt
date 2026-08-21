@@ -1,0 +1,68 @@
+MotorTinyML Final Model Training Report
+==========================================
+timestamp: 2026-08-21T19:39:25
+training_scope: all dataset_audit.py INCLUDED four-class windows
+included_csv_count: 27
+window_count: 405
+class_distribution: {'mechanical_looseness': 90, 'normal': 135, 'overload': 90, 'rotor_unbalance': 90}
+speed_distribution_csv_count: {'40': 12, '60': 12, '80': 3}
+class_mapping: 0=normal, 1=rotor_unbalance, 2=mechanical_looseness, 3=overload
+
+normalization_mean: [-26.244976043701172, -7.357481479644775, 257.181396484375]
+normalization_std: [81.74789428710938, 247.98873901367188, 78.34064483642578]
+normalization_contract: normalized = (raw - mean) / std
+
+model_architecture: Input(200,3) -> Conv1D(16,5,relu,same) -> MaxPooling1D(2) -> Conv1D(32,5,relu,same) -> MaxPooling1D(2) -> GlobalAveragePooling1D -> Dense(16,relu) -> Dense(4,softmax)
+parameter_count: 3444
+epochs: 25
+batch_size: 16
+optimizer: Adam
+loss: sparse_categorical_crossentropy
+random_seed: 42
+final_training_loss: 0.003450
+final_training_accuracy: 1.000000
+
+model_input_contract:
+  input_shape: (1, 200, 3)
+  input_order: X, Y, Z
+  dtype_before_future_quantization: float32
+  class_order: 0 normal, 1 rotor_unbalance, 2 mechanical_looseness, 3 overload
+
+Evaluation interpretation:
+Training accuracy is NOT an independent test metric.
+Independent experimental evaluation reference: LORO CV mean accuracy = 0.9926, std = 0.0060, mechanical_looseness recall = 0.97.
+
+Known limitations:
+Only three independent runs per class+speed were collected.
+LORO results represent CSV-level run generalization on the current experimental dataset, not unknown real-device generalization.
+fan-related experimental confounding remains unresolved.
+No TFLite conversion, quantization, STM32 integration, or C-array generation is performed by this script.
+
+Included source files:
+  - mechanical_looseness_40_20260820_165705.csv (mechanical_looseness, speed=40, windows=15)
+  - mechanical_looseness_40_20260820_165941.csv (mechanical_looseness, speed=40, windows=15)
+  - mechanical_looseness_40_20260820_170143.csv (mechanical_looseness, speed=40, windows=15)
+  - mechanical_looseness_60_20260820_170815.csv (mechanical_looseness, speed=60, windows=15)
+  - mechanical_looseness_60_20260820_171323.csv (mechanical_looseness, speed=60, windows=15)
+  - mechanical_looseness_60_20260820_172224.csv (mechanical_looseness, speed=60, windows=15)
+  - motor_normal_40_20260819_225032.csv (normal, speed=40, windows=15)
+  - motor_normal_40_20260819_225634.csv (normal, speed=40, windows=15)
+  - motor_normal_40_20260819_225920.csv (normal, speed=40, windows=15)
+  - motor_normal_60_20260819_204215.csv (normal, speed=60, windows=15)
+  - motor_normal_60_20260819_230403.csv (normal, speed=60, windows=15)
+  - motor_normal_60_20260819_230612.csv (normal, speed=60, windows=15)
+  - motor_normal_80_20260819_231002.csv (normal, speed=80, windows=15)
+  - motor_normal_80_20260819_231204.csv (normal, speed=80, windows=15)
+  - motor_normal_80_20260819_231433.csv (normal, speed=80, windows=15)
+  - motor_overload_40_20260820_175854.csv (overload, speed=40, windows=15)
+  - motor_overload_40_20260820_180320.csv (overload, speed=40, windows=15)
+  - motor_overload_40_20260820_180451.csv (overload, speed=40, windows=15)
+  - motor_overload_60_20260820_180954.csv (overload, speed=60, windows=15)
+  - motor_overload_60_20260820_181115.csv (overload, speed=60, windows=15)
+  - motor_overload_60_20260820_181249.csv (overload, speed=60, windows=15)
+  - rotor_unbalance_40_20260820_141437.csv (rotor_unbalance, speed=40, windows=15)
+  - rotor_unbalance_40_20260820_142102.csv (rotor_unbalance, speed=40, windows=15)
+  - rotor_unbalance_40_20260820_142345.csv (rotor_unbalance, speed=40, windows=15)
+  - rotor_unbalance_60_20260820_143613.csv (rotor_unbalance, speed=60, windows=15)
+  - rotor_unbalance_60_20260820_144640.csv (rotor_unbalance, speed=60, windows=15)
+  - rotor_unbalance_60_20260820_145113.csv (rotor_unbalance, speed=60, windows=15)

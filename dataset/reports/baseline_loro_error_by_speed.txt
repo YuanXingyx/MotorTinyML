@@ -1,0 +1,506 @@
+MotorTinyML Out-of-Fold Error Localization Report
+================================================
+This diagnostic is for error localization only.
+No CSV is automatically excluded based on model performance.
+Each formal CSV is expected to appear once in aggregate test; source metadata is retained per test window.
+
+Class + speed metrics
+------------------------
+mechanical_looseness_40:
+  support = 45
+  correct = 45
+  accuracy = 1.0000
+  recall = 1.0000
+  predicted = {'normal': 0, 'rotor_unbalance': 0, 'mechanical_looseness': 45, 'overload': 0}
+mechanical_looseness_60:
+  support = 45
+  correct = 42
+  accuracy = 0.9333
+  recall = 0.9333
+  predicted = {'normal': 1, 'rotor_unbalance': 2, 'mechanical_looseness': 42, 'overload': 0}
+normal_40:
+  support = 45
+  correct = 45
+  accuracy = 1.0000
+  recall = 1.0000
+  predicted = {'normal': 45, 'rotor_unbalance': 0, 'mechanical_looseness': 0, 'overload': 0}
+normal_60:
+  support = 45
+  correct = 45
+  accuracy = 1.0000
+  recall = 1.0000
+  predicted = {'normal': 45, 'rotor_unbalance': 0, 'mechanical_looseness': 0, 'overload': 0}
+normal_80:
+  support = 45
+  correct = 45
+  accuracy = 1.0000
+  recall = 1.0000
+  predicted = {'normal': 45, 'rotor_unbalance': 0, 'mechanical_looseness': 0, 'overload': 0}
+overload_40:
+  support = 45
+  correct = 45
+  accuracy = 1.0000
+  recall = 1.0000
+  predicted = {'normal': 0, 'rotor_unbalance': 0, 'mechanical_looseness': 0, 'overload': 45}
+overload_60:
+  support = 45
+  correct = 45
+  accuracy = 1.0000
+  recall = 1.0000
+  predicted = {'normal': 0, 'rotor_unbalance': 0, 'mechanical_looseness': 0, 'overload': 45}
+rotor_unbalance_40:
+  support = 45
+  correct = 45
+  accuracy = 1.0000
+  recall = 1.0000
+  predicted = {'normal': 0, 'rotor_unbalance': 45, 'mechanical_looseness': 0, 'overload': 0}
+rotor_unbalance_60:
+  support = 45
+  correct = 45
+  accuracy = 1.0000
+  recall = 1.0000
+  predicted = {'normal': 0, 'rotor_unbalance': 45, 'mechanical_looseness': 0, 'overload': 0}
+
+Per-CSV test results
+------------------------
+mechanical_looseness_40_20260820_165705.csv: class=mechanical_looseness, speed=40, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'mechanical_looseness': 15}
+mechanical_looseness_40_20260820_165941.csv: class=mechanical_looseness, speed=40, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'mechanical_looseness': 15}
+mechanical_looseness_40_20260820_170143.csv: class=mechanical_looseness, speed=40, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'mechanical_looseness': 15}
+mechanical_looseness_60_20260820_170815.csv: class=mechanical_looseness, speed=60, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'mechanical_looseness': 15}
+mechanical_looseness_60_20260820_171323.csv: class=mechanical_looseness, speed=60, window_count=15, correct_windows=14, accuracy=0.9333, predicted={'normal': 1, 'mechanical_looseness': 14}
+mechanical_looseness_60_20260820_172224.csv: class=mechanical_looseness, speed=60, window_count=15, correct_windows=13, accuracy=0.8667, predicted={'rotor_unbalance': 2, 'mechanical_looseness': 13}
+motor_normal_40_20260819_225032.csv: class=normal, speed=40, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'normal': 15}
+motor_normal_40_20260819_225634.csv: class=normal, speed=40, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'normal': 15}
+motor_normal_40_20260819_225920.csv: class=normal, speed=40, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'normal': 15}
+motor_normal_60_20260819_204215.csv: class=normal, speed=60, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'normal': 15}
+motor_normal_60_20260819_230403.csv: class=normal, speed=60, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'normal': 15}
+motor_normal_60_20260819_230612.csv: class=normal, speed=60, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'normal': 15}
+motor_normal_80_20260819_231002.csv: class=normal, speed=80, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'normal': 15}
+motor_normal_80_20260819_231204.csv: class=normal, speed=80, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'normal': 15}
+motor_normal_80_20260819_231433.csv: class=normal, speed=80, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'normal': 15}
+motor_overload_40_20260820_175854.csv: class=overload, speed=40, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'overload': 15}
+motor_overload_40_20260820_180320.csv: class=overload, speed=40, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'overload': 15}
+motor_overload_40_20260820_180451.csv: class=overload, speed=40, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'overload': 15}
+motor_overload_60_20260820_180954.csv: class=overload, speed=60, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'overload': 15}
+motor_overload_60_20260820_181115.csv: class=overload, speed=60, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'overload': 15}
+motor_overload_60_20260820_181249.csv: class=overload, speed=60, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'overload': 15}
+rotor_unbalance_40_20260820_141437.csv: class=rotor_unbalance, speed=40, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'rotor_unbalance': 15}
+rotor_unbalance_40_20260820_142102.csv: class=rotor_unbalance, speed=40, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'rotor_unbalance': 15}
+rotor_unbalance_40_20260820_142345.csv: class=rotor_unbalance, speed=40, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'rotor_unbalance': 15}
+rotor_unbalance_60_20260820_143613.csv: class=rotor_unbalance, speed=60, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'rotor_unbalance': 15}
+rotor_unbalance_60_20260820_144640.csv: class=rotor_unbalance, speed=60, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'rotor_unbalance': 15}
+rotor_unbalance_60_20260820_145113.csv: class=rotor_unbalance, speed=60, window_count=15, correct_windows=15, accuracy=1.0000, predicted={'rotor_unbalance': 15}
+
+Aggregate out-of-fold prediction records
+--------------------------------------
+source_csv=motor_normal_40_20260819_225920.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.971232
+source_csv=motor_normal_40_20260819_225920.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.977617
+source_csv=motor_normal_40_20260819_225920.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.975107
+source_csv=motor_normal_40_20260819_225920.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.977440
+source_csv=motor_normal_40_20260819_225920.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.975864
+source_csv=motor_normal_40_20260819_225920.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.976803
+source_csv=motor_normal_40_20260819_225920.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.978980
+source_csv=motor_normal_40_20260819_225920.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.978340
+source_csv=motor_normal_40_20260819_225920.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.977146
+source_csv=motor_normal_40_20260819_225920.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.971803
+source_csv=motor_normal_40_20260819_225920.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.973728
+source_csv=motor_normal_40_20260819_225920.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.977013
+source_csv=motor_normal_40_20260819_225920.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.973101
+source_csv=motor_normal_40_20260819_225920.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.977535
+source_csv=motor_normal_40_20260819_225920.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.976414
+source_csv=motor_normal_60_20260819_230612.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999998
+source_csv=motor_normal_60_20260819_230612.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999991
+source_csv=motor_normal_60_20260819_230612.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999975
+source_csv=motor_normal_60_20260819_230612.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999910
+source_csv=motor_normal_60_20260819_230612.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999977
+source_csv=motor_normal_60_20260819_230612.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999883
+source_csv=motor_normal_60_20260819_230612.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999640
+source_csv=motor_normal_60_20260819_230612.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999787
+source_csv=motor_normal_60_20260819_230612.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999904
+source_csv=motor_normal_60_20260819_230612.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999922
+source_csv=motor_normal_60_20260819_230612.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.998352
+source_csv=motor_normal_60_20260819_230612.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.995985
+source_csv=motor_normal_60_20260819_230612.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999108
+source_csv=motor_normal_60_20260819_230612.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999839
+source_csv=motor_normal_60_20260819_230612.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999539
+source_csv=motor_normal_80_20260819_231433.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=0.999125
+source_csv=motor_normal_80_20260819_231433.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=0.997450
+source_csv=motor_normal_80_20260819_231433.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=0.994644
+source_csv=motor_normal_80_20260819_231433.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=0.989494
+source_csv=motor_normal_80_20260819_231433.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=0.955949
+source_csv=motor_normal_80_20260819_231433.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=0.999175
+source_csv=motor_normal_80_20260819_231433.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=0.986765
+source_csv=motor_normal_80_20260819_231433.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=0.999813
+source_csv=motor_normal_80_20260819_231433.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=0.998212
+source_csv=motor_normal_80_20260819_231433.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=0.999767
+source_csv=motor_normal_80_20260819_231433.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=0.999465
+source_csv=motor_normal_80_20260819_231433.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=0.999955
+source_csv=motor_normal_80_20260819_231433.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=0.999932
+source_csv=motor_normal_80_20260819_231433.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=0.999628
+source_csv=motor_normal_80_20260819_231433.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=0.999857
+source_csv=rotor_unbalance_40_20260820_142102.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_142102.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999975
+source_csv=rotor_unbalance_40_20260820_142102.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_142102.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_142102.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_142102.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_142102.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_142102.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_142102.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_142102.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_142102.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_142102.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_142102.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_142102.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_142102.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_60_20260820_144640.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.893858
+source_csv=rotor_unbalance_60_20260820_144640.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.912596
+source_csv=rotor_unbalance_60_20260820_144640.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.994086
+source_csv=rotor_unbalance_60_20260820_144640.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.989375
+source_csv=rotor_unbalance_60_20260820_144640.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.990846
+source_csv=rotor_unbalance_60_20260820_144640.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.982266
+source_csv=rotor_unbalance_60_20260820_144640.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999527
+source_csv=rotor_unbalance_60_20260820_144640.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999999
+source_csv=rotor_unbalance_60_20260820_144640.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999748
+source_csv=rotor_unbalance_60_20260820_144640.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999897
+source_csv=rotor_unbalance_60_20260820_144640.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999985
+source_csv=rotor_unbalance_60_20260820_144640.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999995
+source_csv=rotor_unbalance_60_20260820_144640.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999976
+source_csv=rotor_unbalance_60_20260820_144640.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999431
+source_csv=rotor_unbalance_60_20260820_144640.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.982631
+source_csv=mechanical_looseness_40_20260820_165941.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.996830
+source_csv=mechanical_looseness_40_20260820_165941.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.994339
+source_csv=mechanical_looseness_40_20260820_165941.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.996789
+source_csv=mechanical_looseness_40_20260820_165941.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.995055
+source_csv=mechanical_looseness_40_20260820_165941.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.997070
+source_csv=mechanical_looseness_40_20260820_165941.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.997779
+source_csv=mechanical_looseness_40_20260820_165941.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.996320
+source_csv=mechanical_looseness_40_20260820_165941.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.997176
+source_csv=mechanical_looseness_40_20260820_165941.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.995449
+source_csv=mechanical_looseness_40_20260820_165941.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.997900
+source_csv=mechanical_looseness_40_20260820_165941.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.997105
+source_csv=mechanical_looseness_40_20260820_165941.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.996734
+source_csv=mechanical_looseness_40_20260820_165941.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.997516
+source_csv=mechanical_looseness_40_20260820_165941.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.995673
+source_csv=mechanical_looseness_40_20260820_165941.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.997154
+source_csv=mechanical_looseness_60_20260820_171323.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=normal, prediction_confidence=0.525852
+source_csv=mechanical_looseness_60_20260820_171323.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.980498
+source_csv=mechanical_looseness_60_20260820_171323.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.851861
+source_csv=mechanical_looseness_60_20260820_171323.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.612247
+source_csv=mechanical_looseness_60_20260820_171323.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.976878
+source_csv=mechanical_looseness_60_20260820_171323.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.653107
+source_csv=mechanical_looseness_60_20260820_171323.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.799600
+source_csv=mechanical_looseness_60_20260820_171323.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.706130
+source_csv=mechanical_looseness_60_20260820_171323.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.804628
+source_csv=mechanical_looseness_60_20260820_171323.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.983283
+source_csv=mechanical_looseness_60_20260820_171323.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.793482
+source_csv=mechanical_looseness_60_20260820_171323.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.893928
+source_csv=mechanical_looseness_60_20260820_171323.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.877082
+source_csv=mechanical_looseness_60_20260820_171323.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.808376
+source_csv=mechanical_looseness_60_20260820_171323.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.832858
+source_csv=motor_overload_40_20260820_180320.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.961108
+source_csv=motor_overload_40_20260820_180320.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.963122
+source_csv=motor_overload_40_20260820_180320.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.973568
+source_csv=motor_overload_40_20260820_180320.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.975344
+source_csv=motor_overload_40_20260820_180320.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.969972
+source_csv=motor_overload_40_20260820_180320.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.966608
+source_csv=motor_overload_40_20260820_180320.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.971377
+source_csv=motor_overload_40_20260820_180320.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.968369
+source_csv=motor_overload_40_20260820_180320.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.971521
+source_csv=motor_overload_40_20260820_180320.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.972768
+source_csv=motor_overload_40_20260820_180320.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.969654
+source_csv=motor_overload_40_20260820_180320.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.971514
+source_csv=motor_overload_40_20260820_180320.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.970335
+source_csv=motor_overload_40_20260820_180320.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.973656
+source_csv=motor_overload_40_20260820_180320.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.971559
+source_csv=motor_overload_60_20260820_181249.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999768
+source_csv=motor_overload_60_20260820_181249.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999193
+source_csv=motor_overload_60_20260820_181249.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999858
+source_csv=motor_overload_60_20260820_181249.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999859
+source_csv=motor_overload_60_20260820_181249.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999625
+source_csv=motor_overload_60_20260820_181249.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999741
+source_csv=motor_overload_60_20260820_181249.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999766
+source_csv=motor_overload_60_20260820_181249.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999754
+source_csv=motor_overload_60_20260820_181249.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999776
+source_csv=motor_overload_60_20260820_181249.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999676
+source_csv=motor_overload_60_20260820_181249.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999827
+source_csv=motor_overload_60_20260820_181249.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999727
+source_csv=motor_overload_60_20260820_181249.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999785
+source_csv=motor_overload_60_20260820_181249.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999764
+source_csv=motor_overload_60_20260820_181249.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999716
+source_csv=motor_normal_40_20260819_225634.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.658657
+source_csv=motor_normal_40_20260819_225634.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.628946
+source_csv=motor_normal_40_20260819_225634.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.511087
+source_csv=motor_normal_40_20260819_225634.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.650279
+source_csv=motor_normal_40_20260819_225634.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.865748
+source_csv=motor_normal_40_20260819_225634.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.887306
+source_csv=motor_normal_40_20260819_225634.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.735508
+source_csv=motor_normal_40_20260819_225634.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.677675
+source_csv=motor_normal_40_20260819_225634.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.666940
+source_csv=motor_normal_40_20260819_225634.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.800867
+source_csv=motor_normal_40_20260819_225634.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.878866
+source_csv=motor_normal_40_20260819_225634.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.837235
+source_csv=motor_normal_40_20260819_225634.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.806384
+source_csv=motor_normal_40_20260819_225634.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.840070
+source_csv=motor_normal_40_20260819_225634.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.830271
+source_csv=motor_normal_60_20260819_230403.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.975600
+source_csv=motor_normal_60_20260819_230403.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.994561
+source_csv=motor_normal_60_20260819_230403.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.897960
+source_csv=motor_normal_60_20260819_230403.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.951874
+source_csv=motor_normal_60_20260819_230403.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.994693
+source_csv=motor_normal_60_20260819_230403.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.998916
+source_csv=motor_normal_60_20260819_230403.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.921149
+source_csv=motor_normal_60_20260819_230403.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.994549
+source_csv=motor_normal_60_20260819_230403.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.992318
+source_csv=motor_normal_60_20260819_230403.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.990089
+source_csv=motor_normal_60_20260819_230403.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.991211
+source_csv=motor_normal_60_20260819_230403.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.996700
+source_csv=motor_normal_60_20260819_230403.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999096
+source_csv=motor_normal_60_20260819_230403.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999531
+source_csv=motor_normal_60_20260819_230403.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.996853
+source_csv=motor_normal_80_20260819_231204.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231204.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231204.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231204.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231204.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231204.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231204.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231204.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231204.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231204.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231204.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231204.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231204.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231204.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=0.999998
+source_csv=motor_normal_80_20260819_231204.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_141437.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_141437.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_141437.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_141437.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_141437.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_141437.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_141437.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_141437.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_141437.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_141437.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_141437.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_141437.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_141437.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_141437.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_141437.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=1.000000
+source_csv=rotor_unbalance_60_20260820_143613.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999995
+source_csv=rotor_unbalance_60_20260820_143613.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999995
+source_csv=rotor_unbalance_60_20260820_143613.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999997
+source_csv=rotor_unbalance_60_20260820_143613.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999996
+source_csv=rotor_unbalance_60_20260820_143613.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999997
+source_csv=rotor_unbalance_60_20260820_143613.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999997
+source_csv=rotor_unbalance_60_20260820_143613.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999998
+source_csv=rotor_unbalance_60_20260820_143613.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999997
+source_csv=rotor_unbalance_60_20260820_143613.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999997
+source_csv=rotor_unbalance_60_20260820_143613.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999997
+source_csv=rotor_unbalance_60_20260820_143613.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999996
+source_csv=rotor_unbalance_60_20260820_143613.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999992
+source_csv=rotor_unbalance_60_20260820_143613.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999938
+source_csv=rotor_unbalance_60_20260820_143613.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.998765
+source_csv=rotor_unbalance_60_20260820_143613.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.998150
+source_csv=mechanical_looseness_40_20260820_170143.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.993527
+source_csv=mechanical_looseness_40_20260820_170143.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.969575
+source_csv=mechanical_looseness_40_20260820_170143.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.968508
+source_csv=mechanical_looseness_40_20260820_170143.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.999008
+source_csv=mechanical_looseness_40_20260820_170143.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.991115
+source_csv=mechanical_looseness_40_20260820_170143.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.987647
+source_csv=mechanical_looseness_40_20260820_170143.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.988424
+source_csv=mechanical_looseness_40_20260820_170143.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.989847
+source_csv=mechanical_looseness_40_20260820_170143.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.988030
+source_csv=mechanical_looseness_40_20260820_170143.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.988209
+source_csv=mechanical_looseness_40_20260820_170143.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.989573
+source_csv=mechanical_looseness_40_20260820_170143.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.987661
+source_csv=mechanical_looseness_40_20260820_170143.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.987440
+source_csv=mechanical_looseness_40_20260820_170143.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.987219
+source_csv=mechanical_looseness_40_20260820_170143.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.986590
+source_csv=mechanical_looseness_60_20260820_170815.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.801253
+source_csv=mechanical_looseness_60_20260820_170815.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.794175
+source_csv=mechanical_looseness_60_20260820_170815.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.724193
+source_csv=mechanical_looseness_60_20260820_170815.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.820583
+source_csv=mechanical_looseness_60_20260820_170815.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.859534
+source_csv=mechanical_looseness_60_20260820_170815.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.973630
+source_csv=mechanical_looseness_60_20260820_170815.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.996798
+source_csv=mechanical_looseness_60_20260820_170815.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.968102
+source_csv=mechanical_looseness_60_20260820_170815.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.912103
+source_csv=mechanical_looseness_60_20260820_170815.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.981981
+source_csv=mechanical_looseness_60_20260820_170815.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.918895
+source_csv=mechanical_looseness_60_20260820_170815.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.861718
+source_csv=mechanical_looseness_60_20260820_170815.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.937661
+source_csv=mechanical_looseness_60_20260820_170815.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.985714
+source_csv=mechanical_looseness_60_20260820_170815.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.993265
+source_csv=motor_overload_40_20260820_175854.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.981690
+source_csv=motor_overload_40_20260820_175854.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.970178
+source_csv=motor_overload_40_20260820_175854.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.982534
+source_csv=motor_overload_40_20260820_175854.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.979523
+source_csv=motor_overload_40_20260820_175854.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.973932
+source_csv=motor_overload_40_20260820_175854.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.977567
+source_csv=motor_overload_40_20260820_175854.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.964319
+source_csv=motor_overload_40_20260820_175854.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.975545
+source_csv=motor_overload_40_20260820_175854.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.959320
+source_csv=motor_overload_40_20260820_175854.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.974089
+source_csv=motor_overload_40_20260820_175854.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.972506
+source_csv=motor_overload_40_20260820_175854.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.972252
+source_csv=motor_overload_40_20260820_175854.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.980816
+source_csv=motor_overload_40_20260820_175854.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.976640
+source_csv=motor_overload_40_20260820_175854.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.966412
+source_csv=motor_overload_60_20260820_180954.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999682
+source_csv=motor_overload_60_20260820_180954.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999709
+source_csv=motor_overload_60_20260820_180954.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999793
+source_csv=motor_overload_60_20260820_180954.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999753
+source_csv=motor_overload_60_20260820_180954.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999730
+source_csv=motor_overload_60_20260820_180954.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999782
+source_csv=motor_overload_60_20260820_180954.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999778
+source_csv=motor_overload_60_20260820_180954.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999750
+source_csv=motor_overload_60_20260820_180954.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999791
+source_csv=motor_overload_60_20260820_180954.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999796
+source_csv=motor_overload_60_20260820_180954.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999741
+source_csv=motor_overload_60_20260820_180954.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999796
+source_csv=motor_overload_60_20260820_180954.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999770
+source_csv=motor_overload_60_20260820_180954.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999798
+source_csv=motor_overload_60_20260820_180954.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999811
+source_csv=motor_normal_40_20260819_225032.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.716520
+source_csv=motor_normal_40_20260819_225032.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.509510
+source_csv=motor_normal_40_20260819_225032.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.577886
+source_csv=motor_normal_40_20260819_225032.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.775333
+source_csv=motor_normal_40_20260819_225032.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.703049
+source_csv=motor_normal_40_20260819_225032.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.809005
+source_csv=motor_normal_40_20260819_225032.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.805037
+source_csv=motor_normal_40_20260819_225032.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.873041
+source_csv=motor_normal_40_20260819_225032.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.873985
+source_csv=motor_normal_40_20260819_225032.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.866136
+source_csv=motor_normal_40_20260819_225032.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.885179
+source_csv=motor_normal_40_20260819_225032.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.890678
+source_csv=motor_normal_40_20260819_225032.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.832735
+source_csv=motor_normal_40_20260819_225032.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.848978
+source_csv=motor_normal_40_20260819_225032.csv, true_class=normal, speed=40, true_label=normal, predicted_label=normal, prediction_confidence=0.796400
+source_csv=motor_normal_60_20260819_204215.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999999
+source_csv=motor_normal_60_20260819_204215.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999999
+source_csv=motor_normal_60_20260819_204215.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_60_20260819_204215.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999997
+source_csv=motor_normal_60_20260819_204215.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999991
+source_csv=motor_normal_60_20260819_204215.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999999
+source_csv=motor_normal_60_20260819_204215.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999976
+source_csv=motor_normal_60_20260819_204215.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999999
+source_csv=motor_normal_60_20260819_204215.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999999
+source_csv=motor_normal_60_20260819_204215.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999999
+source_csv=motor_normal_60_20260819_204215.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999999
+source_csv=motor_normal_60_20260819_204215.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999999
+source_csv=motor_normal_60_20260819_204215.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999999
+source_csv=motor_normal_60_20260819_204215.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999999
+source_csv=motor_normal_60_20260819_204215.csv, true_class=normal, speed=60, true_label=normal, predicted_label=normal, prediction_confidence=0.999999
+source_csv=motor_normal_80_20260819_231002.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=0.999942
+source_csv=motor_normal_80_20260819_231002.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=0.999692
+source_csv=motor_normal_80_20260819_231002.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=0.998709
+source_csv=motor_normal_80_20260819_231002.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=0.999733
+source_csv=motor_normal_80_20260819_231002.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231002.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231002.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231002.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231002.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231002.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231002.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231002.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231002.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231002.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=motor_normal_80_20260819_231002.csv, true_class=normal, speed=80, true_label=normal, predicted_label=normal, prediction_confidence=1.000000
+source_csv=rotor_unbalance_40_20260820_142345.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999985
+source_csv=rotor_unbalance_40_20260820_142345.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999980
+source_csv=rotor_unbalance_40_20260820_142345.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999979
+source_csv=rotor_unbalance_40_20260820_142345.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999977
+source_csv=rotor_unbalance_40_20260820_142345.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999985
+source_csv=rotor_unbalance_40_20260820_142345.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999990
+source_csv=rotor_unbalance_40_20260820_142345.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999996
+source_csv=rotor_unbalance_40_20260820_142345.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999961
+source_csv=rotor_unbalance_40_20260820_142345.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999995
+source_csv=rotor_unbalance_40_20260820_142345.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999979
+source_csv=rotor_unbalance_40_20260820_142345.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999990
+source_csv=rotor_unbalance_40_20260820_142345.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999991
+source_csv=rotor_unbalance_40_20260820_142345.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999981
+source_csv=rotor_unbalance_40_20260820_142345.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999982
+source_csv=rotor_unbalance_40_20260820_142345.csv, true_class=rotor_unbalance, speed=40, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999994
+source_csv=rotor_unbalance_60_20260820_145113.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999017
+source_csv=rotor_unbalance_60_20260820_145113.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.998030
+source_csv=rotor_unbalance_60_20260820_145113.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.997758
+source_csv=rotor_unbalance_60_20260820_145113.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.997083
+source_csv=rotor_unbalance_60_20260820_145113.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999976
+source_csv=rotor_unbalance_60_20260820_145113.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999970
+source_csv=rotor_unbalance_60_20260820_145113.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999972
+source_csv=rotor_unbalance_60_20260820_145113.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999982
+source_csv=rotor_unbalance_60_20260820_145113.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.999950
+source_csv=rotor_unbalance_60_20260820_145113.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.996713
+source_csv=rotor_unbalance_60_20260820_145113.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.993511
+source_csv=rotor_unbalance_60_20260820_145113.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.988155
+source_csv=rotor_unbalance_60_20260820_145113.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.990607
+source_csv=rotor_unbalance_60_20260820_145113.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.993131
+source_csv=rotor_unbalance_60_20260820_145113.csv, true_class=rotor_unbalance, speed=60, true_label=rotor_unbalance, predicted_label=rotor_unbalance, prediction_confidence=0.995547
+source_csv=mechanical_looseness_40_20260820_165705.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.971314
+source_csv=mechanical_looseness_40_20260820_165705.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.984049
+source_csv=mechanical_looseness_40_20260820_165705.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.997372
+source_csv=mechanical_looseness_40_20260820_165705.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.954709
+source_csv=mechanical_looseness_40_20260820_165705.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.994143
+source_csv=mechanical_looseness_40_20260820_165705.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.986360
+source_csv=mechanical_looseness_40_20260820_165705.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.993327
+source_csv=mechanical_looseness_40_20260820_165705.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.983338
+source_csv=mechanical_looseness_40_20260820_165705.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.987211
+source_csv=mechanical_looseness_40_20260820_165705.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.974016
+source_csv=mechanical_looseness_40_20260820_165705.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.987465
+source_csv=mechanical_looseness_40_20260820_165705.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.980207
+source_csv=mechanical_looseness_40_20260820_165705.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.986794
+source_csv=mechanical_looseness_40_20260820_165705.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.985153
+source_csv=mechanical_looseness_40_20260820_165705.csv, true_class=mechanical_looseness, speed=40, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.994469
+source_csv=mechanical_looseness_60_20260820_172224.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.999882
+source_csv=mechanical_looseness_60_20260820_172224.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.999834
+source_csv=mechanical_looseness_60_20260820_172224.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.999265
+source_csv=mechanical_looseness_60_20260820_172224.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.999322
+source_csv=mechanical_looseness_60_20260820_172224.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.999174
+source_csv=mechanical_looseness_60_20260820_172224.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.998102
+source_csv=mechanical_looseness_60_20260820_172224.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.993339
+source_csv=mechanical_looseness_60_20260820_172224.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.984057
+source_csv=mechanical_looseness_60_20260820_172224.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.985515
+source_csv=mechanical_looseness_60_20260820_172224.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.819912
+source_csv=mechanical_looseness_60_20260820_172224.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.623769
+source_csv=mechanical_looseness_60_20260820_172224.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.666424
+source_csv=mechanical_looseness_60_20260820_172224.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=mechanical_looseness, prediction_confidence=0.518893
+source_csv=mechanical_looseness_60_20260820_172224.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=rotor_unbalance, prediction_confidence=0.745183
+source_csv=mechanical_looseness_60_20260820_172224.csv, true_class=mechanical_looseness, speed=60, true_label=mechanical_looseness, predicted_label=rotor_unbalance, prediction_confidence=0.713372
+source_csv=motor_overload_40_20260820_180451.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.970884
+source_csv=motor_overload_40_20260820_180451.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.975382
+source_csv=motor_overload_40_20260820_180451.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.964544
+source_csv=motor_overload_40_20260820_180451.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.980107
+source_csv=motor_overload_40_20260820_180451.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.978909
+source_csv=motor_overload_40_20260820_180451.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.970708
+source_csv=motor_overload_40_20260820_180451.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.971516
+source_csv=motor_overload_40_20260820_180451.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.984068
+source_csv=motor_overload_40_20260820_180451.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.982493
+source_csv=motor_overload_40_20260820_180451.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.974130
+source_csv=motor_overload_40_20260820_180451.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.967357
+source_csv=motor_overload_40_20260820_180451.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.979750
+source_csv=motor_overload_40_20260820_180451.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.979016
+source_csv=motor_overload_40_20260820_180451.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.960624
+source_csv=motor_overload_40_20260820_180451.csv, true_class=overload, speed=40, true_label=overload, predicted_label=overload, prediction_confidence=0.963334
+source_csv=motor_overload_60_20260820_181115.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999943
+source_csv=motor_overload_60_20260820_181115.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999963
+source_csv=motor_overload_60_20260820_181115.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999933
+source_csv=motor_overload_60_20260820_181115.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999935
+source_csv=motor_overload_60_20260820_181115.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999934
+source_csv=motor_overload_60_20260820_181115.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999923
+source_csv=motor_overload_60_20260820_181115.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999973
+source_csv=motor_overload_60_20260820_181115.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999898
+source_csv=motor_overload_60_20260820_181115.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999966
+source_csv=motor_overload_60_20260820_181115.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999933
+source_csv=motor_overload_60_20260820_181115.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999966
+source_csv=motor_overload_60_20260820_181115.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999969
+source_csv=motor_overload_60_20260820_181115.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999939
+source_csv=motor_overload_60_20260820_181115.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999959
+source_csv=motor_overload_60_20260820_181115.csv, true_class=overload, speed=60, true_label=overload, predicted_label=overload, prediction_confidence=0.999925
+
+Mechanical looseness focus
+--------------------------
+mechanical_looseness_40: misclassified source CSVs = none
+mechanical_looseness_60: misclassified source CSVs = ['mechanical_looseness_60_20260820_171323.csv', 'mechanical_looseness_60_20260820_172224.csv']
+Excluded diagnostic candidate 171626 remains outside training and is not included unless explicitly requested by another tool.

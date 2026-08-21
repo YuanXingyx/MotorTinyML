@@ -1,0 +1,47 @@
+MotorTinyML TFLite Conversion and Parity Report
+================================================
+tensorflow_version: 2.21.0
+keras_path: E:\project\MotorTinyML\models\final_model.keras
+float_tflite_path: E:\project\MotorTinyML\models\final_model_float32.tflite
+int8_tflite_path: E:\project\MotorTinyML\models\final_model_int8.tflite
+keras_size_bytes: 78889
+float_tflite_size_bytes: 19820
+int8_tflite_size_bytes: 12112
+normalization_mean: [-26.244976043701172, -7.357481479644775, 257.181396484375]
+normalization_std: [81.74789428710938, 247.98873901367188, 78.34064483642578]
+representative_window_count: 405
+class_mapping: 0 normal, 1 rotor_unbalance, 2 mechanical_looseness, 3 overload
+
+Float32 tensor contract:
+input_shape: [1, 200, 3]
+input_dtype: <class 'numpy.float32'>
+output_shape: [1, 4]
+output_dtype: <class 'numpy.float32'>
+
+INT8 tensor contract:
+input_shape: [1, 200, 3]
+input_dtype: <class 'numpy.int8'>
+output_shape: [1, 4]
+output_dtype: <class 'numpy.int8'>
+input_scale: 0.032843973487615585
+input_zero_point: -10
+output_scale: 0.00390625
+output_zero_point: -128
+
+keras_vs_float_predicted_class_agreement: 1.000000
+keras_vs_float_max_abs_probability_difference: 0.000000
+keras_vs_float_mean_abs_probability_difference: 0.000000
+keras_vs_int8_predicted_class_agreement: 1.000000
+keras_vs_int8_changed_predictions: 0
+keras_vs_int8_max_abs_probability_difference: 0.006402
+keras_vs_int8_mean_abs_probability_difference: 0.000984
+float_vs_int8_predicted_class_agreement: 1.000000
+
+keras_training_sanity_accuracy: 1.000000
+float_tflite_training_sanity_accuracy: 1.000000
+int8_tflite_training_sanity_accuracy: 1.000000
+These are NOT independent evaluation metrics; they are conversion sanity checks only.
+Independent generalization reference: LORO CV = 99.26% +/- 0.60%.
+
+Acceptance guidance: Float32 agreement should approach 100%; INT8 agreement ideally >= 99%. Agreement below 98% or a marked sanity-accuracy drop should block STM32 integration and require review.
+Known limitation: fan-related experimental confounding remains unresolved.

@@ -1,0 +1,74 @@
+MotorTinyML Looseness-60 Prediction Feature Analysis
+=======================================================
+Predictions are reused from aggregate out-of-fold CV output; no retraining was performed.
+No CSV, label, or exclusion list was modified.
+
+
+mechanical_looseness_60_20260820_170815.csv
+-------------------------------------------
+windows=15, correct=4, incorrect=11
+correct_looseness: count=4
+  y_std: mean=280.8299, std=1.2552; y_rms: mean=280.8491, std=1.2657; y_peak_to_peak: mean=853.2500, std=5.9739; y_mad: mean=267.0000, std=7.0622; y_dominant_frequency: mean=75.5000, std=0.8660; y_dominant_amplitude: mean=233.7722, std=44.2660; y_spectral_centroid: mean=75.6405, std=1.0491; y_spectral_energy: mean=157723.4122, std=1401.4474
+predicted_normal: count=0
+  count=0
+predicted_overload: count=11
+  y_std: mean=274.9644, std=3.0968; y_rms: mean=274.9828, std=3.0967; y_peak_to_peak: mean=838.5455, std=8.7112; y_mad: mean=250.6818, std=7.6404; y_dominant_frequency: mean=70.1818, std=2.1242; y_dominant_amplitude: mean=196.2778, std=27.6341; y_spectral_centroid: mean=70.1609, std=1.3135; y_spectral_energy: mean=151183.4616, std=3426.9268
+prediction-feature error correlations (UNKNOWN means insufficient evidence):
+  y_std: -0.6888
+  y_rms: -0.6887
+  y_peak_to_peak: -0.6273
+  y_mad: -0.6938
+  y_dominant_frequency: -0.7822
+  y_dominant_amplitude: -0.4500
+  y_spectral_centroid: -0.8889
+  y_spectral_energy: -0.6913
+window-level records are saved in looseness_60_window_predictions.csv
+
+mechanical_looseness_60_20260820_171323.csv
+-------------------------------------------
+windows=15, correct=15, incorrect=0
+correct_looseness: count=15
+  y_std: mean=211.0058, std=8.8721; y_rms: mean=211.0323, std=8.8784; y_peak_to_peak: mean=619.7333, std=11.0421; y_mad: mean=210.8333, std=13.2510; y_dominant_frequency: mean=94.3333, std=4.1258; y_dominant_amplitude: mean=155.7445, std=25.4570; y_spectral_centroid: mean=91.3536, std=2.5556; y_spectral_energy: mean=87242.4921, std=6708.5068
+predicted_normal: count=0
+  count=0
+predicted_overload: count=0
+  count=0
+prediction-feature error correlations (UNKNOWN means insufficient evidence):
+  y_std: UNKNOWN
+  y_rms: UNKNOWN
+  y_peak_to_peak: UNKNOWN
+  y_mad: UNKNOWN
+  y_dominant_frequency: UNKNOWN
+  y_dominant_amplitude: UNKNOWN
+  y_spectral_centroid: UNKNOWN
+  y_spectral_energy: UNKNOWN
+window-level records are saved in looseness_60_window_predictions.csv
+
+mechanical_looseness_60_20260820_172224.csv
+-------------------------------------------
+windows=15, correct=2, incorrect=13
+correct_looseness: count=2
+  y_std: mean=263.4729, std=0.8288; y_rms: mean=263.4804, std=0.8359; y_peak_to_peak: mean=782.0000, std=2.0000; y_mad: mean=260.7500, std=5.2500; y_dominant_frequency: mean=55.5000, std=1.5000; y_dominant_amplitude: mean=196.5825, std=31.7228; y_spectral_centroid: mean=56.3932, std=0.1551; y_spectral_energy: mean=138829.1938, std=874.2653
+predicted_normal: count=13
+  y_std: mean=260.8840, std=1.4711; y_rms: mean=260.9130, std=1.4773; y_peak_to_peak: mean=779.5385, std=7.7620; y_mad: mean=255.6538, std=5.6446; y_dominant_frequency: mean=46.6154, std=4.6664; y_dominant_amplitude: mean=255.8406, std=39.3752; y_spectral_centroid: mean=47.3037, std=4.5890; y_spectral_energy: mean=136101.7053, std=1537.1182
+predicted_overload: count=0
+  count=0
+prediction-feature error correlations (UNKNOWN means insufficient evidence):
+  y_std: -0.5315
+  y_rms: -0.5266
+  y_peak_to_peak: -0.1145
+  y_mad: -0.2958
+  y_dominant_frequency: -0.5678
+  y_dominant_amplitude: 0.4641
+  y_spectral_centroid: -0.5860
+  y_spectral_energy: -0.5345
+window-level records are saved in looseness_60_window_predictions.csv
+
+Focused interpretation
+------------------------
+170815: compare overload-predicted windows against correct looseness windows; frequency-only causation is UNKNOWN unless feature correlations support it.
+172224: compare normal-predicted windows against correct looseness windows; lower energy/amplitude or a distinct waveform signature should be treated as evidence, not a relabeling decision.
+171323: its correct windows should be compared across all listed features; dominant frequency alone is not sufficient to explain recognition.
+No evidence from this diagnostic proves any CSV label is wrong.
+The observed pattern is more consistent with a dataset-coverage or CNN-generalization question than an automatic label correction.
+Recommended next step: B/C/D (increase looseness intra-class coverage, consider training/model adjustments after review, or mark uncertain relationships UNKNOWN); do not automatically delete data.

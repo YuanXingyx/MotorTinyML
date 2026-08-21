@@ -1,0 +1,114 @@
+MotorTinyML mechanical_looseness_60 Analysis
+================================================
+Purpose: compare experimental states; do not delete or select data from model accuracy.
+window_size: 200
+sample_rate_hz: 200.0
+
+
+mechanical_looseness_60_20260820_170815.csv
+-------------------------------------------
+base statistics
+x: mean=-13.797, std=99.270, rms=100.225, min=-151.000, max=200.000, peak_to_peak=351.000, mad=52.000
+y: mean=-1.498, std=276.569, rms=276.573, min=-410.000, max=450.000, peak_to_peak=860.000, mad=255.500
+z: mean=255.965, std=62.836, rms=263.565, min=149.000, max=363.000, peak_to_peak=214.000, mad=57.000
+window statistics (15 complete windows)
+x_std: mean=99.130, std=5.176, min=89.854, max=107.048, cv=0.052
+x_rms: mean=100.096, std=5.075, min=91.053, max=107.752, cv=0.051
+x_peak_to_peak: mean=313.267, std=13.655, min=290.000, max=335.000, cv=0.044
+y_std: mean=276.529, std=3.766, min=270.802, max=282.245, cv=0.014
+y_rms: mean=276.547, std=3.767, min=270.838, max=282.266, cv=0.014
+y_peak_to_peak: mean=842.467, std=10.366, min=819.000, max=858.000, cv=0.012
+z_std: mean=62.649, std=4.777, min=56.677, max=70.966, cv=0.076
+z_rms: mean=263.561, std=1.454, min=261.000, max=266.417, cv=0.006
+z_peak_to_peak: mean=197.133, std=10.481, min=181.000, max=213.000, cv=0.053
+frequency statistics; Y axis is the primary focus
+x_dominant_frequency: mean=71.267, std=3.108, min=66.000, max=76.000, cv=0.044
+x_dominant_amplitude: mean=68.360, std=12.578, min=50.881, max=90.331, cv=0.184
+x_spectral_centroid: mean=68.773, std=1.232, min=67.128, max=71.014, cv=0.018
+x_spectral_energy: mean=19705.217, std=2042.465, min=16147.563, max=22913.822, cv=0.104
+y_dominant_frequency: mean=71.600, std=3.007, min=66.000, max=76.000, cv=0.042
+y_dominant_amplitude: mean=206.276, std=36.844, min=148.221, max=288.605, cv=0.179
+y_spectral_centroid: mean=71.622, std=2.726, min=67.975, max=76.661, cv=0.038
+y_spectral_energy: mean=152927.448, std=4183.298, min=146662.855, max=159308.232, cv=0.027
+z_dominant_frequency: mean=71.600, std=3.007, min=66.000, max=76.000, cv=0.042
+z_dominant_amplitude: mean=45.425, std=9.693, min=32.905, max=67.686, cv=0.213
+z_spectral_centroid: mean=70.507, std=2.670, min=67.445, max=75.833, cv=0.038
+z_spectral_energy: mean=7893.894, std=1215.440, min=6422.644, max=10071.960, cv=0.154
+
+mechanical_looseness_60_20260820_171323.csv
+-------------------------------------------
+base statistics
+x: mean=-13.937, std=52.912, rms=54.717, min=-123.000, max=98.000, peak_to_peak=221.000, mad=46.500
+y: mean=-0.471, std=211.218, rms=211.219, min=-337.000, max=299.000, peak_to_peak=636.000, mad=212.000
+z: mean=255.946, std=54.415, rms=261.666, min=150.000, max=343.000, peak_to_peak=193.000, mad=47.000
+window statistics (15 complete windows)
+x_std: mean=52.391, std=7.266, min=41.862, max=62.581, cv=0.139
+x_rms: mean=54.254, std=7.105, min=43.892, max=64.066, cv=0.131
+x_peak_to_peak: mean=184.333, std=18.586, min=159.000, max=221.000, cv=0.101
+y_std: mean=211.006, std=8.872, min=198.934, max=229.953, cv=0.042
+y_rms: mean=211.032, std=8.878, min=198.958, max=230.039, cv=0.042
+y_peak_to_peak: mean=619.733, std=11.042, min=603.000, max=636.000, cv=0.018
+z_std: mean=54.283, std=3.682, min=49.638, max=60.556, cv=0.068
+z_rms: mean=261.662, std=1.418, min=259.468, max=264.388, cv=0.005
+z_peak_to_peak: mean=169.733, std=12.025, min=152.000, max=193.000, cv=0.071
+frequency statistics; Y axis is the primary focus
+x_dominant_frequency: mean=95.733, std=2.407, min=91.000, max=100.000, cv=0.025
+x_dominant_amplitude: mean=36.667, std=8.607, min=20.031, max=50.905, cv=0.235
+x_spectral_centroid: mean=85.417, std=2.566, min=79.852, max=88.564, cv=0.030
+x_spectral_energy: mean=5418.901, std=1522.375, min=3495.006, max=7653.130, cv=0.281
+y_dominant_frequency: mean=94.333, std=4.126, min=84.000, max=99.000, cv=0.044
+y_dominant_amplitude: mean=155.745, std=25.457, min=101.656, max=197.744, cv=0.163
+y_spectral_centroid: mean=91.354, std=2.556, min=86.506, max=94.960, cv=0.028
+y_spectral_energy: mean=87242.492, std=6708.507, min=77280.413, max=98764.133, cv=0.077
+z_dominant_frequency: mean=95.133, std=2.895, min=91.000, max=99.000, cv=0.030
+z_dominant_amplitude: mean=40.427, std=7.973, min=25.147, max=54.969, cv=0.197
+z_spectral_centroid: mean=89.110, std=2.111, min=85.874, max=92.824, cv=0.024
+z_spectral_energy: mean=5837.188, std=778.876, min=4911.538, max=7277.705, cv=0.133
+
+mechanical_looseness_60_20260820_172224.csv
+-------------------------------------------
+base statistics
+x: mean=-14.099, std=100.662, rms=101.644, min=-186.000, max=174.000, peak_to_peak=360.000, mad=96.000
+y: mean=-0.072, std=261.261, rms=261.261, min=-381.000, max=423.000, peak_to_peak=804.000, mad=257.000
+z: mean=257.104, std=61.221, rms=264.292, min=142.000, max=361.000, peak_to_peak=219.000, mad=45.000
+window statistics (15 complete windows)
+x_std: mean=100.594, std=3.272, min=92.108, max=106.823, cv=0.033
+x_rms: mean=101.590, std=3.304, min=92.950, max=107.659, cv=0.033
+x_peak_to_peak: mean=342.867, std=7.365, min=328.000, max=360.000, cv=0.021
+y_std: mean=261.229, std=1.656, min=258.302, max=264.302, cv=0.006
+y_rms: mean=261.255, std=1.657, min=258.317, max=264.316, cv=0.006
+y_peak_to_peak: mean=779.867, std=7.311, min=762.000, max=796.000, cv=0.009
+z_std: mean=61.103, std=3.743, min=56.525, max=66.916, cv=0.061
+z_rms: mean=264.289, std=1.326, min=262.333, max=266.435, cv=0.005
+z_peak_to_peak: mean=198.133, std=9.722, min=182.000, max=214.000, cv=0.049
+frequency statistics; Y axis is the primary focus
+x_dominant_frequency: mean=47.800, std=5.319, min=40.000, max=57.000, cv=0.111
+x_dominant_amplitude: mean=91.760, std=16.536, min=60.772, max=118.816, cv=0.180
+x_spectral_centroid: mean=50.093, std=5.438, min=42.613, max=57.893, cv=0.109
+x_spectral_energy: mean=20255.325, std=1300.082, min=16964.262, max=22821.103, cv=0.064
+y_dominant_frequency: mean=47.800, std=5.319, min=40.000, max=57.000, cv=0.111
+y_dominant_amplitude: mean=247.939, std=43.401, min=164.860, max=317.486, cv=0.175
+y_spectral_centroid: mean=48.516, std=5.273, min=41.344, max=56.548, cv=0.109
+y_spectral_energy: mean=136465.370, std=1734.720, min=133429.742, max=139703.459, cv=0.013
+z_dominant_frequency: mean=47.800, std=5.319, min=40.000, max=57.000, cv=0.111
+z_dominant_amplitude: mean=53.767, std=9.687, min=37.374, max=66.796, cv=0.180
+z_spectral_centroid: mean=52.910, std=4.537, min=46.325, max=59.798, cv=0.086
+z_spectral_energy: mean=7491.218, std=920.552, min=6389.837, max=8954.292, cv=0.123
+
+Run comparison
+------------------------
+comparison vector: Y std, Y RMS, Y peak-to-peak, Y dominant frequency, Y spectral energy
+mechanical_looseness_60_20260820_170815 vs mechanical_looseness_60_20260820_171323: normalized_distance=4.845
+mechanical_looseness_60_20260820_170815 vs mechanical_looseness_60_20260820_172224: normalized_distance=1.693
+mechanical_looseness_60_20260820_171323 vs mechanical_looseness_60_20260820_172224: normalized_distance=4.319
+centroid distances: mechanical_looseness_60_20260820_170815=1.945, mechanical_looseness_60_20260820_171323=3.007, mechanical_looseness_60_20260820_172224=1.474
+
+diagnostic_pattern: REVIEW
+This label is diagnostic only; it does not authorize exclusion or relabeling.
+
+Interpretation prompts
+------------------------
+170815 overload-like assessment: REVIEW; compare with overload reference statistics before making any conclusion.
+172224 normal-like assessment: REVIEW; similarity to normal cannot be established from this script alone.
+171323 intermediate-state assessment: REVIEW; inspect its Y-axis window and spectral distributions.
+The three runs may reflect different looseness strengths or fixture states; this tool reports evidence rather than making a deletion decision.
