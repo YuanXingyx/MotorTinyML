@@ -202,7 +202,7 @@ int main(void)
                     HAL_MAX_DELAY);
 */
   Motor_Init();
-  Motor_SetSpeed(80);
+  Motor_SetSpeed(60);
   Motor_Start();
 
 

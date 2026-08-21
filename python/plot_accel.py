@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SCRIPT_DIR.parent
-CSV_FILE = PROJECT_ROOT / "dataset" / "raw" / "motor_normal_80_20260819_231433.csv"
+CSV_FILE = PROJECT_ROOT / "dataset" / "raw" / "motor_overload_60_20260820_181249.csv"
 PLOTS_DIR = PROJECT_ROOT / "dataset" / "plots"
 REPORTS_DIR = PROJECT_ROOT / "dataset" / "reports"
 EXPECTED_HEADER = ["timestamp_ms", "x", "y", "z"]

@@ -5,7 +5,7 @@ from pathlib import Path
 import serial
 
 
-SERIAL_PORT = "COM3"
+SERIAL_PORT = "COM10"
 BAUDRATE = 115200
 SERIAL_TIMEOUT_SECONDS = 1
 DURATION_SECONDS = 15

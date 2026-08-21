@@ -1,0 +1,58 @@
+MotorTinyML Dataset Audit
+==========================
+
+Per-file audit
+--------------------------
+INCLUDED     mechanical_looseness_40_20260820_165705.csv | class=mechanical_looseness speed=40 samples=3000 interval_ms=5.002 frequency_hz=199.933 windows=15 discarded=0
+INCLUDED     mechanical_looseness_40_20260820_165941.csv | class=mechanical_looseness speed=40 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     mechanical_looseness_40_20260820_170143.csv | class=mechanical_looseness speed=40 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     mechanical_looseness_60_20260820_170815.csv | class=mechanical_looseness speed=60 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     mechanical_looseness_60_20260820_171323.csv | class=mechanical_looseness speed=60 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+EXCLUDED     mechanical_looseness_60_20260820_171626.csv | class=mechanical_looseness speed=60 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+  reason: explicit exclusion list
+INCLUDED     mechanical_looseness_60_20260820_172224.csv | class=mechanical_looseness speed=60 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     motor_normal_40_20260819_225032.csv | class=normal speed=40 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     motor_normal_40_20260819_225634.csv | class=normal speed=40 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     motor_normal_40_20260819_225920.csv | class=normal speed=40 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     motor_normal_60_20260819_204215.csv | class=normal speed=60 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     motor_normal_60_20260819_230403.csv | class=normal speed=60 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     motor_normal_60_20260819_230612.csv | class=normal speed=60 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     motor_normal_80_20260819_231002.csv | class=normal speed=80 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     motor_normal_80_20260819_231204.csv | class=normal speed=80 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     motor_normal_80_20260819_231433.csv | class=normal speed=80 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+EXCLUDED     motor_overload_40_20260820_175006.csv | class=overload speed=40 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+  reason: explicit exclusion list
+EXCLUDED     motor_overload_40_20260820_175354.csv | class=overload speed=40 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+  reason: explicit exclusion list
+EXCLUDED     motor_overload_40_20260820_175538.csv | class=overload speed=40 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+  reason: explicit exclusion list
+INCLUDED     motor_overload_40_20260820_175854.csv | class=overload speed=40 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     motor_overload_40_20260820_180320.csv | class=overload speed=40 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     motor_overload_40_20260820_180451.csv | class=overload speed=40 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     motor_overload_60_20260820_180954.csv | class=overload speed=60 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     motor_overload_60_20260820_181115.csv | class=overload speed=60 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     motor_overload_60_20260820_181249.csv | class=overload speed=60 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     rotor_unbalance_40_20260820_141437.csv | class=rotor_unbalance speed=40 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     rotor_unbalance_40_20260820_142102.csv | class=rotor_unbalance speed=40 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     rotor_unbalance_40_20260820_142345.csv | class=rotor_unbalance speed=40 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     rotor_unbalance_60_20260820_143613.csv | class=rotor_unbalance speed=60 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     rotor_unbalance_60_20260820_144640.csv | class=rotor_unbalance speed=60 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+INCLUDED     rotor_unbalance_60_20260820_145113.csv | class=rotor_unbalance speed=60 samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+EXCLUDED     sensor_idle_20260814_211156.csv | class=- speed=- samples=3001 interval_ms=5 frequency_hz=200.000 windows=15 discarded=1
+  reason: explicit exclusion list
+
+Included training summary
+--------------------------
+class | speed | csv_count | total_samples | complete_windows | excluded_csv_count
+--------------------------------------------------------------------------------
+normal | 40,60,80 | 9 | 27009 | 135 | 0
+rotor_unbalance | 40,60 | 6 | 18006 | 90 | 0
+mechanical_looseness | 40,60 | 6 | 18005 | 90 | 1
+overload | 40,60 | 6 | 18006 | 90 | 3
+
+Four-class training candidate total
+CSV files: 27
+Windows: 405
+Classes: normal, rotor_unbalance, mechanical_looseness, overload
+
+No differences from expected dataset counts.

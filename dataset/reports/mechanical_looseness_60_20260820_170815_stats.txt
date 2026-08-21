@@ -1,0 +1,22 @@
+sample_count: 3001
+X:
+  mean: -13.827
+  min: -151
+  max: 200
+  peak_to_peak: 351
+  std: 99.268
+Y:
+  mean: -1.372
+  min: -410
+  max: 450
+  peak_to_peak: 860
+  std: 276.609
+Z:
+  mean: 255.990
+  min: 149
+  max: 363
+  peak_to_peak: 214
+  std: 62.841
+duration_s: 15.000
+avg_interval_ms: 5.000
+sampling_frequency_hz: 200.000
