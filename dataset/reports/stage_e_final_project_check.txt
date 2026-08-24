@@ -1,0 +1,53 @@
+MotorTinyML Stage E Final Project Check
+=======================================
+
+Core final-state checks
+-----------------------
+[PASS] final classifier API exists: App/Model/tiny_classifier_3class_final.h/.c
+[PASS] final parameter files exist: App/Model/tiny_classifier_3class_final_params.h/.c
+[PASS] main.c includes and calls the final classifier API
+[PASS] FINAL_DATA_CAPTURE_MODE = 0
+[PASS] MOTION_STOPPED_THRESHOLD_X1000 = 4000
+[PASS] ADXL345 path remains present
+[PASS] Motor/PWM path remains present, including Motor_SetSpeed(60)
+[PASS] OLED path and state display calls remain present
+[PASS] final-demo data directory exists with the expected nine-run collection area
+[PASS] Stage D-4B, D-4C, D-4D reports exist
+[PASS] Debug active objects now list only final classifier objects for the active classifier path
+
+Validation evidence
+--------------------
+Stage D-4B overall accuracy: 0.992593.
+Stage D-4B recalls: normal 1.000000, rotor_unbalance 1.000000, overload 0.977778.
+Stage D-4C windows: 135.
+Stage D-4C predicted-class agreement: 1.000000000.
+Stage D-4C PC/C parity: PASS.
+
+Resource status
+---------------
+No reliable final ELF Flash/SRAM total is recorded. The D-4D direct link attempt failed because stale objects were incompatible with the active ARM toolchain. Run STM32CubeIDE Clean Project + Build Project with one consistent toolchain before quoting .text, .data, .bss, Flash, or SRAM totals.
+
+Git cleanup recommendations (no deletion performed)
+------------------------------------------------------
+Historical files to retain:
+- prior four-class CNN/TFLM experiments and reports
+- prior three-class and augmented classifier parameters
+- golden-vector and parity reports
+- dataset quality and diagnostic reports
+
+Build/environment artifacts:
+- Debug/ and Release/ outputs should remain ignored; they are already covered by .gitignore.
+- .venv/ should remain ignored; it is already covered by .gitignore.
+- ELF, map, object, dependency, and generated IDE artifacts should remain ignored.
+
+Dataset policy:
+- dataset/raw/ and dataset/processed/ are currently ignored. For reproducibility, consider committing only a documented representative sample or using an external artifact store; do not silently change this policy during final cleanup.
+- Keep dataset/reports/ and experiment metadata under version control where appropriate.
+
+Demo video:
+- Do not place a large video directly in normal Git history. Prefer Git LFS, a release asset, or an external link with stable documentation.
+
+Open handoff items
+------------------
+- Perform a clean STM32CubeIDE rebuild and record trustworthy resource totals.
+- Complete the final hardware sequence: STOPPED, NORMAL, ROTOR_UNBALANCE, OVERLOAD.

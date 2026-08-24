@@ -1,0 +1,54 @@
+MotorTinyML Project Final Summary
+================================
+
+Project goal
+------------
+Build an offline embedded motor-state recognition demonstrator using STM32F103C8T6, ADXL345 vibration sensing, and an I2C OLED.
+
+Final system
+------------
+ADXL345 -> 200 Hz XYZ sampling -> 200-sample window -> 21 statistical features -> StandardScaler -> pure-C Logistic Regression -> five-window majority vote -> OLED state.
+STOPPED is evaluated first from the vibration metric and threshold 4000.
+
+Final classes
+-------------
+0 normal
+1 rotor_unbalance
+2 overload
+
+mechanical_looseness is excluded from the final embedded demo because its physical fault setup was not sufficiently reproducible. Historical four-class data and reports remain available.
+
+Final dataset
+-------------
+Nine final-demo runs: three normal, three rotor_unbalance, and three overload runs. Each run contains approximately 3000 samples and 15 complete windows, for 135 windows total.
+
+Validation
+----------
+Stage D-4B CSV-level leave-one-run-out accuracy: 0.992593.
+Normal recall: 1.000000.
+Rotor_unbalance recall: 1.000000.
+Overload recall: 0.977778.
+Confusion matrix: [[45,0,0],[0,45,0],[1,0,44]].
+
+PC/C parity
+-----------
+Predicted-class agreement: 1.000000000. Python-exported parameters and pure-C inference passed parity validation.
+
+STM32 deployment
+----------------
+The final path is pure C and does not depend on TensorFlow Lite Micro, C++ runtime, or a Tensor Arena. `libm` is used for feature calculations.
+
+OLED output
+-----------
+STOPPED, NORMAL, ROTOR/UNBALANCE, and OVERLOAD are displayed only when the final state changes.
+
+Key engineering decisions
+--------------------------
+TFLM was evaluated first, then replaced for the final STM32F103 path by 21 statistical features and Logistic Regression to reduce resource and runtime dependency cost while retaining strong run-level validation.
+
+Known limitations
+-----------------
+- Training and validation primarily represent the fixed final mechanical configuration.
+- Overload is a repeatable manual experimental load, not an industrial-standard fault definition.
+- Rotor_unbalance is a controlled eccentric-mass simulation.
+- STOPPED threshold 4000 was calibrated on the current hardware and should be recalibrated on a different mechanical/electrical setup.

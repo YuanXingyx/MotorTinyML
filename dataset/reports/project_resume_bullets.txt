@@ -1,0 +1,16 @@
+MotorTinyML — Resume Version
+============================
+
+中文
+----
+- 设计并实现基于 STM32F103C8T6 + ADXL345 的离线电机振动识别系统，200 Hz 采样、200 点窗口、OLED 状态显示。
+- 使用 21 维统计特征与纯 C Logistic Regression 实现 normal、rotor_unbalance、overload 三分类，避免 TFLM runtime 依赖。
+- 通过 9 个独立 run 的 CSV-level LORO 验证达到 99.2593% accuracy，并完成 Python/C predicted-class agreement 100% parity。
+- 建立串口采集、数据质量检查、窗口化处理和嵌入式部署验证流程，保留可追溯的历史实验记录。
+
+English
+-------
+- Built an offline motor-vibration demonstrator on STM32F103C8T6 with ADXL345, 200 Hz sampling, 200-sample windows, and OLED state display.
+- Deployed a pure-C Logistic Regression classifier using 21 statistical features for normal, rotor-unbalance, and overload states without a TFLM runtime.
+- Achieved 99.2593% CSV-level leave-one-run-out accuracy across nine independent final-demo runs with 100% PC/C predicted-class agreement.
+- Established UART capture, dataset-quality, windowing, and embedded parity-validation workflows with traceable experiment reports.

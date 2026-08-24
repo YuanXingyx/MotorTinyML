@@ -1,0 +1,40 @@
+MotorTinyML Interview Talking Points
+====================================
+
+30-second introduction
+----------------------
+MotorTinyML is an offline embedded motor-vibration demonstrator. An STM32F103 samples an ADXL345 at 200 Hz, extracts 21 statistical features from each 200-sample window, runs a pure-C three-class Logistic Regression model, and displays STOPPED, NORMAL, ROTOR_UNBALANCE, or OVERLOAD on an I2C OLED.
+
+Two-minute introduction
+----------------------
+The project started as a complete vibration-data and TinyML pipeline: STM32 acquisition, UART logging, Python CSV processing, windowing, model experiments, and PC-to-C parity checks. TFLite Micro was evaluated, but the STM32F103 resource budget made the runtime footprint and dependency closure unattractive. I therefore selected a small Logistic Regression model over 21 features per XYZ axis: mean, population standard deviation, RMS, min, max, peak-to-peak, and MAD. The final demo uses three classes and a separate vibration threshold for STOPPED. Nine fixed-configuration runs were evaluated with CSV-level leave-one-run-out, reaching 99.2593% accuracy. The exported parameters were then checked against a pure-C implementation with 100% predicted-class agreement.
+
+Likely questions and answers
+----------------------------
+
+Q: Why not TFLM?
+A: TFLM was explored first, but the STM32F103 Flash/RAM budget and runtime dependency closure were not a good fit. Pure-C feature extraction plus Logistic Regression was substantially smaller and easier to audit.
+
+Q: Why Logistic Regression?
+A: The 21 features already separate the selected experimental conditions well. Logistic Regression is deterministic, small, fast, and maps directly to C arrays, scaling, dot products, and argmax.
+
+Q: Why remove mechanical_looseness?
+A: Its physical setup was not reproducible enough between training and live demonstration. The historical data and reports are retained; the final embedded demo scope is three classes.
+
+Q: How was leakage prevented?
+A: Windows from one source CSV never cross train and test. Evaluation used CSV-level leave-one-run-out, so each run was completely unseen when tested.
+
+Q: What is PC/C parity?
+A: It recomputes features, scaling, scores, and class selection using the C formulas on the PC, then compares them with the Python reference. Agreement was 100%.
+
+Q: Why is STOPPED outside the model?
+A: A stopped motor is a device state, not one of the three running fault classes. A separately calibrated vibration threshold prevents a stopped window from being forced into NORMAL.
+
+Q: Why five-window majority vote?
+A: It reduces one-window prediction noise without changing the model and refreshes the OLED only when the stable state changes.
+
+Q: What are the limitations?
+A: Results primarily cover the fixed demonstration mechanics. Overload is a controlled manual experimental load, rotor_unbalance is a controlled eccentric simulation, and the STOPPED threshold must be recalibrated on changed hardware.
+
+Q: How would you upgrade on STM32F4/H7?
+A: Revisit the memory budget, then consider retaining the current feature contract while evaluating a richer model or TFLM path. I would preserve CSV-level isolation and PC/C parity as release gates.
