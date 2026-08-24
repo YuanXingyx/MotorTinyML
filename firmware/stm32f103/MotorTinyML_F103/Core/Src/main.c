@@ -25,9 +25,17 @@
 #include "Delay.h"
 #include "motor.h"
 #include "adxl345.h"
+#include "oled_ssd1306.h"
+#include "tiny_classifier_3class_final.h"
+#include "tiny_classifier_3class_final_params.h"
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 /* USER CODE END Includes */
+
+/* Set after collecting stopped and running windows; zero keeps the candidate disabled. */
+#define MOTION_STOPPED_THRESHOLD_X1000 4000U
+#define FINAL_DATA_CAPTURE_MODE 0
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
@@ -53,6 +61,23 @@ UART_HandleTypeDef huart1;
 
 /* USER CODE BEGIN PV */
 
+static int16_t inference_window[200][3];
+static uint16_t inference_sample_count = 0;
+static uint32_t total_windows = 0;
+static uint32_t predicted_count[3] = {0, 0, 0};
+static int32_t current_prediction = -1;
+static int last_predictions[5] = {-1, -1, -1, -1, -1};
+static uint8_t prediction_history_count = 0;
+static uint8_t prediction_history_index = 0;
+static int stable_class = -1;
+static int last_displayed_state = -1;
+static const char *const tiny_classifier_class_names[3] = {
+  "normal", "rotor_unbalance", "overload"
+};
+static const char *const device_state_names[5] = {
+  "STOPPED", "NORMAL", "ROTOR_UNBALANCE", "OVERLOAD", "UNKNOWN"
+};
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -61,12 +86,66 @@ static void MX_GPIO_Init(void);
 static void MX_USART1_UART_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_I2C1_Init(void);
+static void TinyClassifier3Final_StaticLinkCheck(void);
+static void TinyClassifier_PrintFeatureVector(const char *prefix,
+                                              const float features[TINY3_FINAL_FEATURE_COUNT]);
+static void TinyClassifier_PrintAxisFeatures(const float features[TINY3_FINAL_FEATURE_COUNT]);
+volatile uintptr_t g_tiny_classifier_link_check;
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+/* Keep the Stage C-3 classifier objects in the link without running inference. */
+__attribute__((noinline, used)) static void TinyClassifier3Final_StaticLinkCheck(void)
+{
+  void (*extract_fn)(const int16_t (*)[TINY3_FINAL_CHANNELS],
+                     float[TINY3_FINAL_FEATURE_COUNT]) = TinyClassifier3Final_ExtractFeatures;
+  int (*predict_fn)(const float[TINY3_FINAL_FEATURE_COUNT],
+                    float[TINY3_FINAL_CLASS_COUNT]) = TinyClassifier3Final_Predict;
+  g_tiny_classifier_link_check = (uintptr_t)extract_fn ^ (uintptr_t)predict_fn;
+}
+
+static void TinyClassifier_PrintFeatureVector(
+    const char *prefix,
+    const float features[TINY3_FINAL_FEATURE_COUNT])
+{
+  char line[64];
+  int length = snprintf(line, sizeof(line), "%s", prefix);
+  HAL_UART_Transmit(&huart1, (uint8_t *)line, (uint16_t)length, HAL_MAX_DELAY);
+  for (int index = 0; index < TINY3_FINAL_FEATURE_COUNT; ++index)
+  {
+    const int32_t scaled = (int32_t)(features[index] * 1000.0f);
+    length = snprintf(line, sizeof(line), " f%d=%ld", index, (long)scaled);
+    HAL_UART_Transmit(&huart1, (uint8_t *)line, (uint16_t)length, HAL_MAX_DELAY);
+  }
+  HAL_UART_Transmit(&huart1, (uint8_t *)"\r\n", 2, HAL_MAX_DELAY);
+}
+
+static void TinyClassifier_PrintAxisFeatures(
+    const float features[TINY3_FINAL_FEATURE_COUNT])
+{
+  static const char *const axis_names[3] = {"X", "Y", "Z"};
+  char line[192];
+  for (int axis = 0; axis < 3; ++axis)
+  {
+    const int base = axis * 7;
+    const int length = snprintf(
+        line, sizeof(line),
+        "[FEATURES_%s] mean=%ld std=%ld rms=%ld min=%ld max=%ld p2p=%ld mad=%ld\r\n",
+        axis_names[axis],
+        (long)(features[base + 0] * 1000.0f),
+        (long)(features[base + 1] * 1000.0f),
+        (long)(features[base + 2] * 1000.0f),
+        (long)(features[base + 3] * 1000.0f),
+        (long)(features[base + 4] * 1000.0f),
+        (long)(features[base + 5] * 1000.0f),
+        (long)(features[base + 6] * 1000.0f));
+    HAL_UART_Transmit(&huart1, (uint8_t *)line, (uint16_t)length, HAL_MAX_DELAY);
+  }
+}
 
 /* USER CODE END 0 */
 
@@ -107,15 +186,17 @@ int main(void)
 
  // Motor_Init();
   char boot_msg[] = "MotorTinyML STM32F103 boot\r\n";
+  char msg[192];
 
   HAL_UART_Transmit(&huart1,
                     (uint8_t *)boot_msg,
                     sizeof(boot_msg) - 1,
                     HAL_MAX_DELAY);
+
+  TinyClassifier3Final_StaticLinkCheck();
+
   /* 先确认芯片 ID */
   uint8_t devid = ADXL345_ReadDeviceID();
-
-  char msg[100];
 
   snprintf(msg,
            sizeof(msg),
@@ -128,14 +209,53 @@ int main(void)
                     HAL_MAX_DELAY);
 
   /* 再初始化 ADXL345 */
-  if (ADXL345_Init() != HAL_OK)
+  uint8_t oled_address = 0;
+  uint8_t oled_ready = 0;
+#if !FINAL_DATA_CAPTURE_MODE
+  if (OLED_ScanAndInit(&oled_address) == HAL_OK)
   {
-      char err[] = "ADXL345 init failed\r\n";
+      snprintf(msg, sizeof(msg), "OLED FOUND: 0x%02X\r\n", oled_address);
+      HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+      if (OLED_ShowStatus(oled_address) == HAL_OK)
+      {
+          oled_ready = 1;
+          char oled_ok[] = "OLED OK: MotorTinyML status displayed\r\n";
+          HAL_UART_Transmit(&huart1, (uint8_t *)oled_ok, sizeof(oled_ok) - 1, HAL_MAX_DELAY);
+      }
+      else
+      {
+          char oled_err[] = "OLED ERROR: display write failed\r\n";
+          HAL_UART_Transmit(&huart1, (uint8_t *)oled_err, sizeof(oled_err) - 1, HAL_MAX_DELAY);
+      }
+  }
+  else
+  {
+      char oled_missing[] = "OLED NOT FOUND: tried 0x3C and 0x3D\r\n";
+      HAL_UART_Transmit(&huart1, (uint8_t *)oled_missing, sizeof(oled_missing) - 1, HAL_MAX_DELAY);
+  }
+#else
+  HAL_UART_Transmit(&huart1,
+                    (uint8_t *)"FINAL_DATA_CAPTURE_MODE: classifier/OLED output disabled\r\n",
+                    sizeof("FINAL_DATA_CAPTURE_MODE: classifier/OLED output disabled\r\n") - 1,
+                    HAL_MAX_DELAY);
+#endif
 
-      HAL_UART_Transmit(&huart1,
-                        (uint8_t *)err,
-                        sizeof(err) - 1,
-                        HAL_MAX_DELAY);
+  uint8_t adxl_ready = 0;
+  if (devid != 0xE5)
+  {
+      char err[] = "ADXL345 ERROR: invalid Device ID, classification disabled\r\n";
+      HAL_UART_Transmit(&huart1, (uint8_t *)err, sizeof(err) - 1, HAL_MAX_DELAY);
+  }
+  else if (ADXL345_Init() != HAL_OK)
+  {
+      char err[] = "ADXL345 ERROR: init failed, classification disabled\r\n";
+      HAL_UART_Transmit(&huart1, (uint8_t *)err, sizeof(err) - 1, HAL_MAX_DELAY);
+  }
+  else
+  {
+      adxl_ready = 1;
+      char ready[] = "ADXL345 READY: realtime classifier enabled\r\n";
+      HAL_UART_Transmit(&huart1, (uint8_t *)ready, sizeof(ready) - 1, HAL_MAX_DELAY);
   }
 
 /*I2C方式扫描模块ID
@@ -209,6 +329,7 @@ int main(void)
   ADXL345_Data_t accel;
   uint32_t last_sample = HAL_GetTick();
   uint32_t last_heartbeat = HAL_GetTick();
+  uint32_t inference_window_start = 0;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -233,9 +354,9 @@ int main(void)
 	     {
 	         last_sample += 5;
 
-	         if (ADXL345_ReadXYZ(&accel) == HAL_OK)
-	         {
-	             uint32_t sample_time = HAL_GetTick();
+         if (adxl_ready && ADXL345_ReadXYZ(&accel) == HAL_OK)
+         {
+             uint32_t sample_time = HAL_GetTick();
 
 	             snprintf(msg,
 	                      sizeof(msg),
@@ -245,13 +366,151 @@ int main(void)
 	                      accel.y,
 	                      accel.z);
 
-	             HAL_UART_Transmit(&huart1,
-	                               (uint8_t *)msg,
-	                               strlen(msg),
-	                               HAL_MAX_DELAY);
-	         }
-	         else
-	         {
+             HAL_UART_Transmit(&huart1,
+                               (uint8_t *)msg,
+                               strlen(msg),
+                               HAL_MAX_DELAY);
+
+             
+#if !FINAL_DATA_CAPTURE_MODE
+             if (inference_sample_count == 0)
+             {
+                 inference_window_start = sample_time;
+             }
+             inference_window[inference_sample_count][0] = accel.x;
+             inference_window[inference_sample_count][1] = accel.y;
+             inference_window[inference_sample_count][2] = accel.z;
+             inference_sample_count++;
+
+             if (inference_sample_count >= 200)
+             {
+                 float features[TINY3_FINAL_FEATURE_COUNT];
+                 float scores[TINY3_FINAL_CLASS_COUNT];
+                 uint32_t feature_start = HAL_GetTick();
+                 TinyClassifier3Final_ExtractFeatures(inference_window, features);
+                 uint32_t feature_extract_ms = HAL_GetTick() - feature_start;
+                 const float vibration_metric = sqrtf(
+                     (features[1] * features[1] +
+                      features[8] * features[8] +
+                      features[15] * features[15]) / 3.0f);
+                 const int stopped_candidate =
+                     ((uint32_t)(vibration_metric * 1000.0f) < MOTION_STOPPED_THRESHOLD_X1000) ? 1 : 0;
+                 snprintf(msg, sizeof(msg),
+                          "[MOTION] vibration_metric=%ld stopped_candidate=%d\r\n",
+                          (long)(vibration_metric * 1000.0f), stopped_candidate);
+                 HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+                 float scaled_features[TINY3_FINAL_FEATURE_COUNT];
+                 for (int feature_index = 0;
+                      feature_index < TINY3_FINAL_FEATURE_COUNT;
+                      ++feature_index)
+                 {
+                     scaled_features[feature_index] =
+                         (features[feature_index] - g_tiny3_final_feature_mean[feature_index]) /
+                         g_tiny3_final_feature_std[feature_index];
+                 }
+                 TinyClassifier_PrintFeatureVector("[FEATURES]", features);
+                 TinyClassifier_PrintFeatureVector("[SCALED_FEATURES]", scaled_features);
+                 TinyClassifier_PrintAxisFeatures(features);
+                 uint32_t inference_start = HAL_GetTick();
+                 int predicted_class = TinyClassifier3Final_Predict(features, scores);
+                 uint32_t inference_ms = HAL_GetTick() - inference_start;
+                 uint32_t total_cycle_ms = HAL_GetTick() - inference_window_start;
+                 uint32_t window_acquisition_ms = sample_time - inference_window_start;
+                 int32_t score0 = (int32_t)(scores[0] * 1000.0f);
+                 int32_t score1 = (int32_t)(scores[1] * 1000.0f);
+                 int32_t score2 = (int32_t)(scores[2] * 1000.0f);
+
+                 total_windows++;
+                 if (predicted_class >= 0 && predicted_class < 3)
+                 {
+                     predicted_count[predicted_class]++;
+                 }
+                 current_prediction = predicted_class;
+
+                 snprintf(msg, sizeof(msg),
+                          "[CLASS] CLASS=%s ID=%d scores_x1000=[%ld,%ld,%ld]\r\n",
+                          tiny_classifier_class_names[predicted_class], predicted_class,
+                          (long)score0, (long)score1, (long)score2);
+                 HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+                 if (predicted_class >= 0 && predicted_class < 3)
+                 {
+                     uint32_t votes[3] = {0, 0, 0};
+                     last_predictions[prediction_history_index] = predicted_class;
+                     prediction_history_index = (uint8_t)((prediction_history_index + 1U) % 5U);
+                     if (prediction_history_count < 5U)
+                     {
+                         prediction_history_count++;
+                     }
+
+                     for (uint8_t history_index = 0;
+                          history_index < prediction_history_count;
+                          ++history_index)
+                     {
+                         const int history_class = last_predictions[history_index];
+                         if (history_class >= 0 && history_class < 3)
+                         {
+                             votes[history_class]++;
+                         }
+                     }
+
+                     if (prediction_history_count >= 3U)
+                     {
+                         for (int vote_class = 0; vote_class < 3; ++vote_class)
+                         {
+                             if (votes[vote_class] >= 3U)
+                             {
+                                 stable_class = vote_class;
+                                 break;
+                             }
+                         }
+                     }
+
+                     snprintf(msg, sizeof(msg),
+                              "[CLASS_VOTE] votes=[%lu,%lu,%lu] stable_class=%d\r\n",
+                              (unsigned long)votes[0],
+                              (unsigned long)votes[1],
+                              (unsigned long)votes[2],
+                              stable_class);
+                     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+
+                     const int final_state = stopped_candidate ? 0 :
+                                             (stable_class >= 0 ? stable_class + 1 : -1);
+                     if (oled_ready && final_state >= 0 &&
+                         final_state != last_displayed_state)
+                     {
+                         if (OLED_ShowDeviceState(oled_address, final_state) == HAL_OK)
+                         {
+                             last_displayed_state = final_state;
+                         }
+                     }
+                     const int report_state = final_state >= 0 && final_state < 4 ? final_state : 4;
+                     snprintf(msg, sizeof(msg), "[DEVICE_STATE] state=%s\r\n",
+                              device_state_names[report_state]);
+                     HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+                 }
+                 snprintf(msg, sizeof(msg),
+                          "[CLASS_STATS] total_windows=%lu\r\n"
+                          "predicted_count=[%lu,%lu,%lu]\r\n"
+                          "current_prediction=%ld\r\n",
+                          (unsigned long)total_windows,
+                          (unsigned long)predicted_count[0],
+                          (unsigned long)predicted_count[1],
+                          (unsigned long)predicted_count[2],
+                          (long)current_prediction);
+                 HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+                 snprintf(msg, sizeof(msg),
+                          "[CLASS_TIMING] sample_interval_ms=5 window_acquisition_ms=%lu feature_extract_ms=%lu inference_ms=%lu total_cycle_ms=%lu\r\n",
+                          (unsigned long)window_acquisition_ms,
+                          (unsigned long)feature_extract_ms,
+                          (unsigned long)inference_ms,
+                          (unsigned long)total_cycle_ms);
+                 HAL_UART_Transmit(&huart1, (uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
+                 inference_sample_count = 0;
+             }
+#endif
+         }
+         else if (adxl_ready)
+         {
 	             char err[] = "ADXL345 read error\r\n";
 
 	             HAL_UART_Transmit(&huart1,

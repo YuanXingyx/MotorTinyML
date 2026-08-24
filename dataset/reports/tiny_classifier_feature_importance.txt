@@ -1,0 +1,24 @@
+Best classifier: Logistic Regression
+Feature importance is mean absolute coefficient (linear models) or split importance (tree), averaged across LORO folds.
+
+x_mean: 1.39145431
+z_max: 0.89800804
+z_peak_to_peak: 0.69091154
+z_min: 0.56202562
+z_std: 0.55325679
+z_mad: 0.51356360
+y_min: 0.48293166
+x_max: 0.43608215
+x_min: 0.41298331
+y_peak_to_peak: 0.40169117
+x_peak_to_peak: 0.36952785
+z_mean: 0.35906325
+y_max: 0.33796693
+y_rms: 0.32609340
+y_std: 0.32391618
+y_mad: 0.31103969
+y_mean: 0.28626812
+z_rms: 0.23034136
+x_rms: 0.19690906
+x_std: 0.14500660
+x_mad: 0.10682937

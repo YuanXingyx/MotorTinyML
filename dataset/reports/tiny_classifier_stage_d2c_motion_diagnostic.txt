@@ -1,0 +1,46 @@
+MotorTinyML Stage D-2C Motion / Device-State Diagnostic
+========================================================
+
+Implementation
+--------------
+- Three-class model and parameters are unchanged.
+- Each completed 200-sample window computes a DC-removed vibration metric:
+  sqrt((x_std^2 + y_std^2 + z_std^2) / 3).
+- UART output:
+  [MOTION] vibration_metric=<metric_x1000> stopped_candidate=<0|1>
+- STOPPED has priority over the stable three-class result when a calibrated
+  threshold is enabled.
+- `MOTION_STOPPED_THRESHOLD_X1000` is currently 0, which intentionally keeps
+  stopped-candidate classification disabled until stopped and running windows
+  are collected and compared. No threshold was invented.
+- OLED refresh remains limited to changes in stable device state.
+
+Device states
+-------------
+0 STOPPED
+1 NORMAL
+2 ROTOR_UNBALANCE
+3 OVERLOAD
+
+OLED character validation
+-------------------------
+The SSD1306 5x7 glyph map now includes all characters required by:
+MotorTinyML, MOTOR, STOPPED, RUNNING, NORMAL, FAULT, ROTOR, UNBALANCE,
+and OVERLOAD. Each glyph uses a five-pixel bitmap with one-pixel spacing.
+
+Build validation
+----------------
+- main.c compile: PASS
+- OLED driver compile: PASS
+- direct STM32 GCC link: PASS
+- text: 27060 bytes
+- data: 124 bytes
+- bss: 3356 bytes
+- total: 30540 bytes
+- Flash estimate (text + data): 27184 bytes
+
+Calibration status
+------------------
+Collect 20-30 stopped windows and comparable running windows, then choose and
+review a threshold before enabling `MOTION_STOPPED_THRESHOLD_X1000`.
+No hardware STOPPED accuracy result is fabricated here.

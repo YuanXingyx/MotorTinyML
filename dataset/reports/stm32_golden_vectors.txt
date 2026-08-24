@@ -1,10 +1,9 @@
 MotorTinyML STM32 Golden Vectors
 ================================
-Purpose: deployment preprocessing/parity test vector; not an independent accuracy test.
-Expected INT8 output vector requires local TFLite runtime execution.
+Generated from final_model_int8.tflite using TensorFlow Lite Interpreter.
+These vectors are deployment parity tests, not independent accuracy metrics.
 
 class: normal
-source_csv: motor_normal_40_20260819_225032.csv
 window_index: 0
 raw_samples_x_y_z:
 -40,-76,246
@@ -207,7 +206,7 @@ raw_samples_x_y_z:
 -31,-83,240
 -30,-47,243
 -28,-30,239
-quantized_input_x_y_z:
+expected_quantized_input_x_y_z:
 -15,-18,-14
 -13,-15,-14
 -11,-13,-16
@@ -408,11 +407,11 @@ quantized_input_x_y_z:
 -12,-19,-17
 -11,-15,-16
 -11,-13,-17
-expected_predicted_class: normal
-expected_int8_output: PENDING_LOCAL_TFLITE_RUNTIME
+expected_int8_output: 124,-127,-127,-126
+expected_dequantized_output: 0.98437500,0.00390625,0.00390625,0.00781250
+expected_predicted_class: 0 (normal)
 
 class: rotor_unbalance
-source_csv: rotor_unbalance_40_20260820_141437.csv
 window_index: 0
 raw_samples_x_y_z:
 69,38,369
@@ -615,7 +614,7 @@ raw_samples_x_y_z:
 17,-61,229
 -25,-797,266
 303,-503,164
-quantized_input_x_y_z:
+expected_quantized_input_x_y_z:
 25,-4,33
 -105,88,-19
 -19,28,-34
@@ -816,11 +815,11 @@ quantized_input_x_y_z:
 6,-17,-21
 -10,-107,-7
 113,-71,-46
-expected_predicted_class: rotor_unbalance
-expected_int8_output: PENDING_LOCAL_TFLITE_RUNTIME
+expected_int8_output: -128,127,-128,-128
+expected_dequantized_output: 0.00000000,0.99609375,0.00000000,0.00000000
+expected_predicted_class: 1 (rotor_unbalance)
 
 class: mechanical_looseness
-source_csv: mechanical_looseness_40_20260820_165705.csv
 window_index: 0
 raw_samples_x_y_z:
 -9,-26,253
@@ -1023,7 +1022,7 @@ raw_samples_x_y_z:
 8,72,263
 2,74,264
 -1,69,266
-quantized_input_x_y_z:
+expected_quantized_input_x_y_z:
 -4,-12,-12
 -7,-15,-11
 -5,-14,-11
@@ -1224,11 +1223,11 @@ quantized_input_x_y_z:
 3,0,-8
 1,0,-7
 -1,-1,-7
-expected_predicted_class: mechanical_looseness
-expected_int8_output: PENDING_LOCAL_TFLITE_RUNTIME
+expected_int8_output: -125,-126,123,-128
+expected_dequantized_output: 0.01171875,0.00781250,0.98046875,0.00000000
+expected_predicted_class: 2 (mechanical_looseness)
 
 class: overload
-source_csv: motor_overload_40_20260820_175854.csv
 window_index: 0
 raw_samples_x_y_z:
 -29,-17,255
@@ -1431,7 +1430,7 @@ raw_samples_x_y_z:
 -15,-6,259
 -25,-27,252
 -25,-14,265
-quantized_input_x_y_z:
+expected_quantized_input_x_y_z:
 -11,-11,-11
 3,-8,-9
 -15,-8,-9
@@ -1632,5 +1631,6 @@ quantized_input_x_y_z:
 -6,-10,-9
 -10,-12,-12
 -10,-11,-7
-expected_predicted_class: overload
-expected_int8_output: PENDING_LOCAL_TFLITE_RUNTIME
+expected_int8_output: -125,-128,-128,125
+expected_dequantized_output: 0.01171875,0.00000000,0.00000000,0.98828125
+expected_predicted_class: 3 (overload)

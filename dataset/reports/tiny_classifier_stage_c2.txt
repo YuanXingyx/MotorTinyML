@@ -1,0 +1,23 @@
+MotorTinyML Stage C-2 Tiny Classifier Export
+================================================
+included_csv_count: 27
+included_window_count: 405
+training_accuracy: 1.000000 (not an independent test metric)
+feature_count: 21
+feature_order: x_mean, x_std, x_rms, x_min, x_max, x_peak_to_peak, x_mad, y_mean, y_std, y_rms, y_min, y_max, y_peak_to_peak, y_mad, z_mean, z_std, z_rms, z_min, z_max, z_peak_to_peak, z_mad
+class_mapping: 0 normal, 1 rotor_unbalance, 2 mechanical_looseness, 3 overload
+std: population std (ddof=0)
+rms: sqrt(mean(x^2)); mad: mean(abs(x - mean))
+scaler_mean: -26.244976f, 62.9652634f, 72.0260086f, -140.903702f, 94.4296265f, 235.333328f, 52.925869f, -7.35748148f, 180.276428f, 181.093231f, -278.311096f, 258.918518f, 537.229614f, 162.138367f, 257.181274f, 51.4709816f, 267.457581f, 169.809875f, 352.362976f, 182.553085f, 44.6993179f
+scaler_std: 7.5483098f, 51.5862312f, 46.7310791f, 85.1908722f, 90.6077881f, 173.021759f, 43.6243782f, 7.37417126f, 170.132339f, 169.582886f, 233.3526f, 245.131561f, 477.00116f, 154.359467f, 8.78657436f, 58.4047241f, 27.3169212f, 81.1836548f, 93.2768021f, 171.306702f, 52.8930969f
+weights and bias: emitted to tiny_classifier_params.c
+PC/C feature max abs diff: 0.000366210938
+PC/C scaled feature max abs diff: 2.14576721e-06
+PC/C score max abs diff: 1.90734863e-06
+PC/C parity: PASS
+C contract: raw int16_t[200][3] -> 21 float features -> scaled linear scores -> argmax
+No TensorFlow, TFLite, TFLite Micro, dynamic allocation, or softmax is required.
+Flash estimate: 88 float parameters + scaler arrays + code; typically well below a few KiB.
+RAM estimate: raw window 1200 bytes plus 21-feature/score working buffers.
+LORO reference: mean 0.9975, std 0.0035, mechanical_looseness recall 1.0000.
+warnings: none

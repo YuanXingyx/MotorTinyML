@@ -1,0 +1,89 @@
+MotorTinyML Stage C-6A Feature Shift Diagnostic
+==================================================
+realtime_log: E:\project\MotorTinyML\dataset\reports\normal_realtime_uart.txt
+training_files: motor_normal_60_20260819_204215.csv, motor_normal_60_20260819_230403.csv, motor_normal_60_20260819_230612.csv
+training_windows: 45
+realtime_samples: 7341
+realtime_windows: 36
+realtime_discarded_samples: 141
+realtime_timestamp_breaks: 37
+realtime_duplicate_rows: 0
+realtime_malformed_numeric_lines: 0
+realtime_avg_positive_interval_ms: 5.0000
+
+Feature comparison (training normal_60 vs realtime normal)
+feature | train_mean | train_std | realtime_mean | realtime_min | realtime_max | realtime_z
+x_mean | -31.5962 | 3.5314 | -32.7539 | -40.7950 | -27.7600 | -0.3278
+x_std | 116.7905 | 17.9390 | 80.4536 | 73.3586 | 87.8043 | -2.0256
+x_rms | 121.0490 | 17.8815 | 86.9011 | 80.6686 | 93.6278 | -1.9097
+x_min | -221.4889 | 44.4590 | -183.4444 | -212.0000 | -162.0000 | 0.8557
+x_max | 135.9778 | 23.2173 | 124.4722 | 105.0000 | 142.0000 | -0.4956
+x_peak_to_peak | 357.4667 | 67.0090 | 307.9167 | 290.0000 | 346.0000 | -0.7395
+x_mad | 105.2023 | 14.4420 | 67.9958 | 61.4239 | 75.3056 | -2.5763
+y_mean | -8.6733 | 2.8394 | -27.2683 | -30.7550 | -24.3500 | -6.5489
+y_std | 93.6877 | 9.8008 | 120.5490 | 113.0333 | 125.3915 | 2.7407
+y_rms | 94.1213 | 9.8954 | 123.6074 | 115.6263 | 128.4050 | 2.9798
+y_min | -136.2444 | 12.8550 | -190.7222 | -207.0000 | -177.0000 | -4.2379
+y_max | 151.7778 | 7.3178 | 173.9722 | 158.0000 | 186.0000 | 3.0329
+y_peak_to_peak | 288.0222 | 17.5581 | 364.6944 | 343.0000 | 386.0000 | 4.3668
+y_mad | 85.2750 | 11.0520 | 109.7766 | 103.7208 | 113.9690 | 2.2169
+z_mean | 257.8577 | 4.8058 | 259.6433 | 254.9000 | 265.6000 | 0.3716
+z_std | 84.8213 | 25.1835 | 93.7909 | 85.9914 | 116.1722 | 0.3562
+z_rms | 272.5199 | 8.6845 | 276.1250 | 269.5605 | 289.8954 | 0.4151
+z_min | 114.2222 | 37.1070 | 136.9722 | 129.0000 | 144.0000 | 0.6131
+z_max | 377.5778 | 25.3381 | 452.3056 | 435.0000 | 471.0000 | 2.9492
+z_peak_to_peak | 263.3556 | 61.8619 | 315.3333 | 292.0000 | 339.0000 | 0.8402
+z_mad | 75.8019 | 23.8415 | 78.4200 | 70.5031 | 101.4780 | 0.1098
+
+Scaled feature summary
+feature | scaler_mean | scaler_std | realtime_scaled_mean | realtime_scaled_min | realtime_scaled_max
+x_mean | -26.2450 | 7.5483 | -0.8623 | -1.9276 | -0.2007
+x_std | 62.9653 | 51.5862 | 0.3390 | 0.2015 | 0.4815
+x_rms | 72.0260 | 46.7311 | 0.3183 | 0.1849 | 0.4623
+x_min | -140.9037 | 85.1909 | -0.4994 | -0.8346 | -0.2476
+x_max | 94.4296 | 90.6078 | 0.3316 | 0.1167 | 0.5250
+x_peak_to_peak | 235.3333 | 173.0218 | 0.4195 | 0.3160 | 0.6396
+x_mad | 52.9259 | 43.6244 | 0.3454 | 0.1948 | 0.5130
+y_mean | -7.3575 | 7.3742 | -2.7001 | -3.1729 | -2.3043
+y_std | 180.2764 | 170.1323 | -0.3511 | -0.3952 | -0.3226
+y_rms | 181.0932 | 169.5829 | -0.3390 | -0.3860 | -0.3107
+y_min | -278.3111 | 233.3526 | 0.3753 | 0.3056 | 0.4342
+y_max | 258.9185 | 245.1316 | -0.3465 | -0.4117 | -0.2975
+y_peak_to_peak | 537.2296 | 477.0012 | -0.3617 | -0.4072 | -0.3170
+y_mad | 162.1384 | 154.3595 | -0.3392 | -0.3785 | -0.3121
+z_mean | 257.1813 | 8.7866 | 0.2802 | -0.2596 | 0.9581
+z_std | 51.4710 | 58.4047 | 0.7246 | 0.5911 | 1.1078
+z_rms | 267.4576 | 27.3169 | 0.3173 | 0.0770 | 0.8214
+z_min | 169.8099 | 81.1837 | -0.4045 | -0.5027 | -0.3179
+z_max | 352.3630 | 93.2768 | 1.0715 | 0.8859 | 1.2719
+z_peak_to_peak | 182.5531 | 171.3067 | 0.7751 | 0.6389 | 0.9133
+z_mad | 44.6993 | 52.8931 | 0.6375 | 0.4878 | 1.0735
+
+Features beyond training distribution
+count_abs_z_gt_3: 4
+- y_mean: z=-6.5489
+- y_min: z=-4.2379
+- y_max: z=3.0329
+- y_peak_to_peak: z=4.3668
+
+Logistic score analysis
+class | train_score_mean | realtime_score_mean | realtime_contribution_sum
+normal | 5.7136 | 7.3216 | 4.0946
+rotor_unbalance | -3.3382 | -1.2901 | -1.2125
+mechanical_looseness | -0.6159 | -2.2139 | -3.2191
+overload | -1.7594 | -3.8176 | 0.3370
+realtime_predicted_distribution: [36, 0, 0, 0]
+
+Sampling and unit consistency
+CONFIRMED: STM32 ADXL345 path reads signed little-endian int16 X/Y/Z values without g/mg conversion.
+CONFIRMED: firmware feature order is X then Y then Z, seven statistics per axis.
+CONFIRMED: training CSV schema is timestamp_ms,x,y,z and training windows use 200 samples.
+CONFIRMED: ADXL345 configuration is full-resolution +/-4g (DATA_FORMAT=0x09) and 200 Hz ODR (BW_RATE=0x0B).
+LIKELY: a large feature shift with clean timestamps indicates data distribution/fixture drift rather than a classifier formula mismatch.
+UNKNOWN: exact physical cause requires inspecting the saved UART log, sensor mounting, motor condition, and supply during the run.
+
+Interpretation
+- realtime normal predicted distribution is [36, 0, 0, 0].
+- score contribution identifies which scaled features push each class score; it is diagnostic only.
+- no CSV is deleted, relabeled, or automatically excluded by this script.
+- parity status: the existing PC/C golden parity remains unchanged; this report evaluates runtime data shift.

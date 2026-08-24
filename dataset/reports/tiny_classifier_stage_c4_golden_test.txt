@@ -1,0 +1,50 @@
+MotorTinyML Stage C-4 STM32 Tiny Classifier Golden-Vector Parity
+===============================================================
+
+Implementation status
+---------------------
+Golden test module and PC-to-C data generator added.
+STM32 execution status: WAITING FOR GOLDEN DATA GENERATION AND HARDWARE EXECUTION.
+
+New files
+---------
+python/generate_tiny_classifier_golden_c.py
+firmware/stm32f103/MotorTinyML_F103/App/Model/tiny_classifier_golden_test.h
+firmware/stm32f103/MotorTinyML_F103/App/Model/tiny_classifier_golden_test.c
+The generator will create:
+firmware/stm32f103/MotorTinyML_F103/App/Model/tiny_classifier_golden_data.h
+firmware/stm32f103/MotorTinyML_F103/App/Model/tiny_classifier_golden_data.c
+
+Test contract
+-------------
+Four Stage C-2 cases are used without reselection: normal, rotor_unbalance,
+mechanical_looseness and overload. Each case executes
+TinyClassifier_ExtractFeatures() and TinyClassifier_Predict() once at startup.
+No real-time ADXL345 window, PWM control or continuous loop is used.
+Feature tolerance: 1e-3. Score tolerance: 1e-3. Class id must match exactly.
+UART reports case, expected/predicted class, feature max difference, scores,
+expected scores and PASS/FAIL. Scores are printed as integer values multiplied
+by 1000 to avoid requiring embedded printf floating-point support.
+
+Current verification
+--------------------
+PC golden source exists at dataset/reports/tiny_classifier_golden_vectors.txt.
+The C data source exists and is included in the Debug build. The first rebuild
+found a generator formatting defect: integer-valued float literals such as
+`-133f` are invalid C. The generator was corrected to emit `-133.0f`; the
+existing generated C data must be regenerated before the next build.
+The current Codex environment has no working Python interpreter (the checked-in
+.venv points to a missing Python 3.11 installation), so the corrected generator
+could not be run here. Firmware build and board UART result are therefore not
+claimed. No board PASS is fabricated.
+
+Next local steps
+----------------
+1. .\\.venv\\Scripts\\python.exe python/generate_tiny_classifier_golden_c.py
+2. Build the Debug target with the generated golden data C source.
+3. Flash STM32F103C8T6 and open USART1 at 115200 8-N-1.
+4. Record all four UART cases and final TINY CLASSIFIER GOLDEN TEST PASS/FAIL.
+
+Stage C-5 readiness
+-------------------
+Pending generated-data build, hardware flash and UART parity evidence.

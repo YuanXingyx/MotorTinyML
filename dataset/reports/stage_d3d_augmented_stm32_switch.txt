@@ -1,0 +1,53 @@
+MotorTinyML Stage D-3D Augmented STM32 Switch
+==============================================
+
+Active model
+------------
+The STM32 realtime path now uses:
+
+- tiny_classifier_3class_aug.c/.h
+- tiny_classifier_3class_aug_params.c/.h
+
+Class mapping remains 0=normal, 1=rotor_unbalance, 2=overload.
+The previous tiny_classifier_3class files remain in the repository for
+rollback and were not deleted.
+
+Preserved behavior
+------------------
+- 21 statistical features and 200x3 windows
+- ADXL345 path and 200 Hz sampling
+- Motor_SetSpeed(60) and PWM
+- STOPPED threshold 4000
+- five-window majority vote
+- OLED layout and final device states
+- UART MOTION, CLASS, CLASS_VOTE, and DEVICE_STATE output
+
+Build validation
+----------------
+- main.c compile: PASS
+- augmented classifier compile: PASS
+- augmented parameter compile: PASS
+- direct STM32 GCC link: PASS
+- text: 27336 bytes
+- data: 124 bytes
+- bss: 3356 bytes
+- total: 30816 bytes
+- Flash estimate (text + data): 27460 bytes
+
+ELF symbol verification
+-----------------------
+Confirmed in the active ELF:
+- g_tiny3_aug_feature_mean
+- g_tiny3_aug_feature_std
+- g_tiny3_aug_logreg_weights
+- g_tiny3_aug_logreg_bias
+- TinyClassifier3Aug_ExtractFeatures
+- TinyClassifier3Aug_Predict
+
+The old active three-class parameter symbols are absent from the ELF, while
+their source files remain available in the repository.
+
+Hardware validation
+-------------------
+WAITING FOR STM32 FLASH/RESET VALIDATION.
+Required order: STOPPED, NORMAL, ROTOR_UNBALANCE, fixed-position OVERLOAD.

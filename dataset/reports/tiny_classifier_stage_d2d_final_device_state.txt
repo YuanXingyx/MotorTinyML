@@ -1,0 +1,57 @@
+MotorTinyML Stage D-2D Final Device State
+=========================================
+
+Final device states
+-------------------
+0 STOPPED
+1 NORMAL
+2 ROTOR_UNBALANCE
+3 OVERLOAD
+
+Motion threshold
+-----------------
+MOTION_STOPPED_THRESHOLD_X1000 = 4000
+
+Measured reference ranges:
+- STOPPED vibration_metric: approximately 1600-1800
+- Obstructed-load vibration_metric: approximately 7011-13703
+- RUNNING at 60%: approximately 52676-67449
+
+The earlier threshold 10000 could classify the obstructed-load range as
+STOPPED. Based on the measured stopped and obstructed-load data, the threshold
+was adjusted to 4000. STOPPED has priority over the three-class model.
+The comparison is strict: vibration_metric < 4000 produces STOPPED;
+vibration_metric >= 4000 proceeds to the stable three-class vote.
+
+UART output
+-----------
+- [MOTION] vibration_metric=<x1000> stopped_candidate=<0|1>
+- [CLASS] three-class scores and prediction
+- [CLASS_VOTE] recent five-window vote
+- [DEVICE_STATE] state=STOPPED|NORMAL|ROTOR_UNBALANCE|OVERLOAD
+
+OLED behavior
+-------------
+The OLED is refreshed only when final device state changes. STOPPED displays
+MotorTinyML / MOTOR / STOPPED. Running states display the corresponding
+NORMAL, ROTOR_UNBALANCE, or OVERLOAD layout.
+
+Protected components
+--------------------
+No three-class parameters, feature definitions, ADXL345 driver, PWM,
+Motor_SetSpeed(60), or I2C hardware configuration were changed.
+
+Build validation
+----------------
+- main.c compile: PASS
+- direct STM32 GCC link: PASS
+- text: 27340 bytes
+- data: 124 bytes
+- bss: 3356 bytes
+- total: 30820 bytes
+- Flash estimate (text + data): 27464 bytes
+
+Hardware status
+---------------
+WAITING FOR REAL STM32 FLASH/RESET VALIDATION. No new hardware accuracy or
+STOPPED classification result is fabricated.

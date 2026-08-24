@@ -1,0 +1,62 @@
+# MotorTinyML — STM32 TFLM Stage B-1
+
+Status: BLOCKED; target build/link and hardware allocation verification did not pass.
+
+## Frozen runtime
+
+- Upstream: https://github.com/tensorflow/tflite-micro
+- Commit: `90b983c2b3f1480642e040bbd2ddb37b998f3424`
+- Acquisition: official upstream archive; Python site-packages and full TensorFlow were not vendored.
+- Pinned dependencies: FlatBuffers v25.9.23; Gemmlowp commit `719139ce755a0f31cbf1c37f7f98adcc7fc9f425`.
+- Vendored root: `firmware/stm32f103/MotorTinyML_F103/ThirdParty/tflite-micro/`
+
+## Resolver
+
+The reduced resolver registers exactly the seven operators present in the frozen
+INT8 model: ExpandDims, Conv2D, Reshape, MaxPool2D, Mean, FullyConnected and
+Softmax. The XNNPACK delegate is not registered.
+
+## Model initialization
+
+`App/Model/model_inference.cc` performs schema-version validation, constructs a
+`MicroInterpreter`, calls `AllocateTensors()`, and validates INT8 input shape
+`[1, 200, 3]` and output shape `[1, 4]`. It does not call `Invoke()` and is not
+connected to `main.c`, ADXL345, PWM, or the real-time loop.
+
+## Tensor arena and resource risk
+
+Initial arena: 16 KiB, aligned to 16 bytes. This is an intentionally bounded
+starting value for STM32F103 SRAM and must be confirmed with the STM32CubeIDE
+linker map and target `AllocateTensors()` result. The model array is 12,112
+bytes; runtime and selected kernels add Flash usage. Exact arena usage and
+build headroom are not yet measured on the target.
+
+## Static validation
+
+`model_inference.cc` passed `arm-none-eabi-g++ -std=gnu++17 -fsyntax-only`
+with the vendored include paths. A complete CubeIDE link and target
+`AllocateTensors()` measurement remain required. The selected upstream commit
+uses C++17 facilities, so the Stage B-1 C++ compiler setting is gnu++17.
+
+## Stage boundary
+
+Golden-vector Invoke/parity is Stage B-2 and has not been run. No firmware
+runtime behavior was changed.
+
+## Stage B-1.5 validation result (2026-08-23)
+
+- Startup call was added after UART initialization and boot message.
+- `Invoke()` was not called; ADXL345, PWM and the real-time loop were not changed.
+- Full compilation progressed through the added TFLM sources.
+- Final link failed: Flash region overflowed by approximately 86,064 bytes.
+- The link also exposed unresolved TFLM dependency symbols while the reduced
+  source closure is still incomplete; therefore no valid ELF was produced.
+- Flash used: unavailable (link failed).
+- SRAM, `.bss`, `.data`: unavailable from a valid linked image.
+- Tensor Arena configured: 16 KiB; target `AllocateTensors()` was not executed.
+
+The dominant immediate risk is Flash capacity, not a reason to change the
+arena blindly. The next adjustment should reduce the vendored/build source
+closure to the exact runtime and 7 kernels, then re-measure with the linker
+map. Stage B-2 is not approved until the image links and the target confirms
+`Model_Init()`/`AllocateTensors()`.

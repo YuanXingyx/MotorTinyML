@@ -1,0 +1,376 @@
+MotorTinyML Stage D-4 Final Demo Dataset Collection
+===============================================
+
+Recommended capture entry: python/serial_logger.py
+Historical capture_overload_realtime.py is retained for diagnostics.
+
+Fixed baseline: one fan blade, ADXL345 position/orientation, I2C, 200 Hz, UART 115200, and Motor_SetSpeed(60).
+Each class requires three independently started runs.
+
+Condition: normal
+Run: 1
+CSV: E:\project\MotorTinyML\dataset\raw\final_demo\motor_final_normal_01.csv
+------------------------------------------------------------
+sample_count: 0
+status: NO_VALID_SAMPLES
+dataset_usable: NO
+
+Condition: normal
+Run: 1
+CSV: E:\project\MotorTinyML\dataset\raw\final_demo\motor_final_normal_01.csv
+------------------------------------------------------------
+sample_count: 0
+status: NO_VALID_SAMPLES
+dataset_usable: NO
+
+Condition: normal
+Run: 1
+CSV: E:\project\MotorTinyML\dataset\raw\final_demo\motor_final_normal_01.csv
+------------------------------------------------------------
+sample_count: 111
+duration_s: 0.550
+avg_interval_ms: 5.000
+timestamp_nonpositive_jumps: 0
+timestamp_large_jumps_over_100ms: 0
+duplicate_rows: 0
+complete_windows: 0
+discarded_samples: 111
+x_min: -102
+x_max: 67
+x_mean: -28.964
+x_std_population: 48.992
+x_rms: 56.913
+y_min: -168
+y_max: 122
+y_mean: -14.000
+y_std_population: 87.157
+y_rms: 88.274
+z_min: 233
+z_max: 271
+z_mean: 253.613
+z_std_population: 8.652
+z_rms: 253.760
+dataset_usable: NO
+
+Condition: normal
+Run: 2
+CSV: E:\project\MotorTinyML\dataset\raw\final_demo\motor_final_normal_02.csv
+------------------------------------------------------------
+sample_count: 70
+duration_s: 0.345
+avg_interval_ms: 5.000
+timestamp_nonpositive_jumps: 0
+timestamp_large_jumps_over_100ms: 0
+duplicate_rows: 0
+complete_windows: 0
+discarded_samples: 70
+x_min: -97
+x_max: 61
+x_mean: -28.643
+x_std_population: 47.391
+x_rms: 55.374
+y_min: -168
+y_max: 124
+y_mean: -13.957
+y_std_population: 87.645
+y_rms: 88.749
+z_min: 234
+z_max: 273
+z_mean: 253.614
+z_std_population: 9.282
+z_rms: 253.784
+dataset_usable: NO
+
+Condition: normal
+Run: 3
+CSV: E:\project\MotorTinyML\dataset\raw\final_demo\motor_final_normal_03.csv
+------------------------------------------------------------
+sample_count: 148
+duration_s: 0.735
+avg_interval_ms: 5.000
+timestamp_nonpositive_jumps: 0
+timestamp_large_jumps_over_100ms: 0
+duplicate_rows: 0
+complete_windows: 0
+discarded_samples: 148
+x_min: -107
+x_max: 64
+x_mean: -26.581
+x_std_population: 48.027
+x_rms: 54.892
+y_min: -165
+y_max: 124
+y_mean: -15.622
+y_std_population: 84.991
+y_rms: 86.415
+z_min: 230
+z_max: 275
+z_mean: 253.865
+z_std_population: 8.906
+z_rms: 254.021
+dataset_usable: NO
+
+Condition: normal
+Run: 1
+CSV: E:\project\MotorTinyML\dataset\raw\final_demo\motor_final_normal_01.partial
+------------------------------------------------------------
+sample_count: 0
+status: NO_VALID_SAMPLES
+dataset_usable: NO
+
+Condition: normal
+Run: 1
+CSV: E:\project\MotorTinyML\dataset\raw\final_demo\motor_final_normal_01.csv
+------------------------------------------------------------
+sample_count: 3000
+duration_s: 14.995
+avg_interval_ms: 5.000
+timestamp_nonpositive_jumps: 0
+timestamp_large_jumps_over_100ms: 0
+duplicate_rows: 0
+complete_windows: 15
+discarded_samples: 0
+x_min: -100
+x_max: 66
+x_mean: -27.688
+x_std_population: 38.494
+x_rms: 47.417
+y_min: -195
+y_max: 152
+y_mean: -13.060
+y_std_population: 101.554
+y_rms: 102.390
+z_min: 208
+z_max: 287
+z_mean: 253.586
+z_std_population: 8.463
+z_rms: 253.727
+vibration_metric_mean: 62.880
+vibration_metric_min: 61.382
+vibration_metric_max: 65.219
+dataset_usable: YES
+
+Condition: normal
+Run: 2
+CSV: E:\project\MotorTinyML\dataset\raw\final_demo\motor_final_normal_02.csv
+------------------------------------------------------------
+sample_count: 3000
+duration_s: 14.995
+avg_interval_ms: 5.000
+timestamp_nonpositive_jumps: 0
+timestamp_large_jumps_over_100ms: 0
+duplicate_rows: 0
+complete_windows: 15
+discarded_samples: 0
+x_min: -102
+x_max: 67
+x_mean: -27.817
+x_std_population: 39.096
+x_rms: 47.982
+y_min: -250
+y_max: 164
+y_mean: -12.882
+y_std_population: 111.171
+y_rms: 111.914
+z_min: 214
+z_max: 285
+z_mean: 253.288
+z_std_population: 9.084
+z_rms: 253.451
+vibration_metric_mean: 68.224
+vibration_metric_min: 66.106
+vibration_metric_max: 69.826
+dataset_usable: YES
+
+Condition: normal
+Run: 3
+CSV: E:\project\MotorTinyML\dataset\raw\final_demo\motor_final_normal_03.csv
+------------------------------------------------------------
+sample_count: 3000
+duration_s: 14.995
+avg_interval_ms: 5.000
+timestamp_nonpositive_jumps: 0
+timestamp_large_jumps_over_100ms: 0
+duplicate_rows: 0
+complete_windows: 15
+discarded_samples: 0
+x_min: -104
+x_max: 61
+x_mean: -27.631
+x_std_population: 38.696
+x_rms: 47.548
+y_min: -219
+y_max: 168
+y_mean: -12.595
+y_std_population: 107.962
+y_rms: 108.695
+z_min: 221
+z_max: 279
+z_mean: 253.397
+z_std_population: 8.342
+z_rms: 253.535
+vibration_metric_mean: 66.377
+vibration_metric_min: 64.396
+vibration_metric_max: 68.379
+dataset_usable: YES
+
+Condition: rotor_unbalance
+Run: 1
+CSV: E:\project\MotorTinyML\dataset\raw\final_demo\motor_final_rotor_unbalance_01.csv
+------------------------------------------------------------
+sample_count: 3000
+duration_s: 14.995
+avg_interval_ms: 5.000
+timestamp_nonpositive_jumps: 0
+timestamp_large_jumps_over_100ms: 0
+duplicate_rows: 0
+complete_windows: 15
+discarded_samples: 0
+x_min: -404
+x_max: 252
+x_mean: -38.653
+x_std_population: 159.024
+x_rms: 163.654
+y_min: -529
+y_max: 731
+y_mean: -12.465
+y_std_population: 386.238
+y_rms: 386.439
+z_min: 184
+z_max: 423
+z_mean: 250.075
+z_std_population: 37.288
+z_rms: 252.840
+vibration_metric_mean: 241.097
+vibration_metric_min: 204.094
+vibration_metric_max: 273.371
+dataset_usable: YES
+
+Condition: rotor_unbalance
+Run: 2
+CSV: E:\project\MotorTinyML\dataset\raw\final_demo\motor_final_rotor_unbalance_02.csv
+------------------------------------------------------------
+sample_count: 3000
+duration_s: 14.995
+avg_interval_ms: 5.000
+timestamp_nonpositive_jumps: 0
+timestamp_large_jumps_over_100ms: 0
+duplicate_rows: 0
+complete_windows: 15
+discarded_samples: 0
+x_min: -334
+x_max: 214
+x_mean: -39.675
+x_std_population: 144.795
+x_rms: 150.133
+y_min: -490
+y_max: 612
+y_mean: -12.888
+y_std_population: 310.157
+y_rms: 310.424
+z_min: 201
+z_max: 384
+z_mean: 250.459
+z_std_population: 27.927
+z_rms: 252.011
+vibration_metric_mean: 197.755
+vibration_metric_min: 170.719
+vibration_metric_max: 226.558
+dataset_usable: YES
+
+Condition: rotor_unbalance
+Run: 3
+CSV: E:\project\MotorTinyML\dataset\raw\final_demo\motor_final_rotor_unbalance_03.csv
+------------------------------------------------------------
+sample_count: 3000
+duration_s: 14.995
+avg_interval_ms: 5.000
+timestamp_nonpositive_jumps: 0
+timestamp_large_jumps_over_100ms: 0
+duplicate_rows: 0
+complete_windows: 15
+discarded_samples: 0
+x_min: -208
+x_max: 163
+x_mean: -40.362
+x_std_population: 70.668
+x_rms: 81.382
+y_min: -353
+y_max: 383
+y_mean: -9.608
+y_std_population: 217.681
+y_rms: 217.893
+z_min: 227
+z_max: 335
+z_mean: 250.975
+z_std_population: 16.998
+z_rms: 251.550
+vibration_metric_mean: 132.138
+vibration_metric_min: 116.178
+vibration_metric_max: 151.647
+dataset_usable: YES
+
+Condition: rotor_unbalance
+Run: 3
+CSV: E:\project\MotorTinyML\dataset\raw\final_demo\motor_final_rotor_unbalance_03.csv
+------------------------------------------------------------
+sample_count: 3000
+duration_s: 14.995
+avg_interval_ms: 5.000
+timestamp_nonpositive_jumps: 0
+timestamp_large_jumps_over_100ms: 0
+duplicate_rows: 0
+complete_windows: 15
+discarded_samples: 0
+x_min: -95
+x_max: 15
+x_mean: -38.730
+x_std_population: 21.886
+x_rms: 44.486
+y_min: -231
+y_max: 219
+y_mean: -10.076
+y_std_population: 127.351
+y_rms: 127.749
+z_min: 237
+z_max: 289
+z_mean: 252.063
+z_std_population: 7.366
+z_rms: 252.170
+vibration_metric_mean: 74.655
+vibration_metric_min: 68.982
+vibration_metric_max: 78.496
+dataset_usable: YES
+
+Condition: rotor_unbalance
+Run: 3
+CSV: E:\project\MotorTinyML\dataset\raw\final_demo\motor_final_rotor_unbalance_03.csv
+------------------------------------------------------------
+sample_count: 3000
+duration_s: 14.995
+avg_interval_ms: 5.000
+timestamp_nonpositive_jumps: 0
+timestamp_large_jumps_over_100ms: 0
+duplicate_rows: 0
+complete_windows: 15
+discarded_samples: 0
+x_min: -323
+x_max: 198
+x_mean: -43.079
+x_std_population: 139.171
+x_rms: 145.686
+y_min: -436
+y_max: 593
+y_mean: -9.443
+y_std_population: 295.190
+y_rms: 295.341
+z_min: 200
+z_max: 375
+z_mean: 249.700
+z_std_population: 27.689
+z_rms: 251.230
+vibration_metric_mean: 188.801
+vibration_metric_min: 156.662
+vibration_metric_max: 197.617
+dataset_usable: YES
+

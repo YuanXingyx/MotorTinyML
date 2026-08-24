@@ -1,0 +1,122 @@
+# MotorTinyML — ISSUE-0034 Stage B-1.6
+# STM32F103 TFLM Flash Footprint / Link Closure Diagnostic
+
+Date: 2026-08-23
+Status: LINK_BLOCKED
+
+## Build result
+
+- Full build command: STM32CubeIDE GNU Make, `all -j1`
+- Detailed build log: `dataset/reports/stm32_tflm_stage_b16_build.log`
+- Linker script: `firmware/stm32f103/MotorTinyML_F103/STM32F103C8TX_FLASH.ld`
+- ELF: not produced
+- Flash overflow observed in the previous complete link: approximately 86 KiB
+- Current rerun stops earlier at a missing dependency: `tensorflow/lite/context_util.h`
+- `AllocateTensors()` and target flashing were not executed.
+- `Invoke()` and golden vectors were not executed.
+
+## Compiler and linker flags
+
+Existing application C compilation uses `-O0`, `-ffunction-sections`, and
+`-fdata-sections`. The TFLM C++ compilation also uses `-O0`,
+`-ffunction-sections`, `-fdata-sections`, `-fno-exceptions`, `-fno-rtti`, and
+`-fno-threadsafe-statics`. The linker uses `--gc-sections`, but the image is
+not size-optimized because `-Os` is absent. C++17 is required by the pinned
+TFLM snapshot. The diagnostic linker was changed to `arm-none-eabi-g++` so
+that C++ symbols can be resolved; this did not remove the Flash overflow.
+
+## Top object-level footprint
+
+Values are `arm-none-eabi-size` totals for generated objects, before a valid
+final ELF exists:
+
+| Object | text | data | bss | total |
+|---|---:|---:|---:|---:|
+| flatbuffer_conversions.o | 105154 | 0 | 0 | 105154 |
+| portable_tensor_utils.o | 28807 | 0 | 0 | 28807 |
+| stm32f1xx_hal_i2c.o | 25788 | 0 | 0 | 25788 |
+| stm32f1xx_hal_tim.o | 22782 | 0 | 0 | 22782 |
+| model_inference.o | 3390 | 0 | 16873 | 20263 |
+| reduce_common.o | 15698 | 0 | 0 | 15698 |
+| model_data.o | 12116 | 0 | 0 | 12116 |
+| micro_allocator.o | 11162 | 0 | 0 | 11162 |
+| micro_interpreter_graph.o | 10849 | 0 | 0 | 10849 |
+| stm32f1xx_hal_uart.o | 10660 | 0 | 0 | 10660 |
+| micro_interpreter.o | 10407 | 0 | 0 | 10407 |
+| softmax.o | 9790 | 0 | 0 | 9790 |
+| fully_connected.o | 8369 | 0 | 0 | 8369 |
+| micro_allocation_info.o | 8112 | 0 | 0 | 8112 |
+| conv.o | 7377 | 0 | 0 | 7377 |
+| pooling.o | 5574 | 0 | 0 | 5574 |
+| pooling_common.o | 5215 | 0 | 0 | 5215 |
+| micro_op_resolver.o | 4712 | 0 | 0 | 4712 |
+
+`model_data.o` is one copy of the 12,112-byte model array and is placed in
+read-only Flash data. The 16 KiB arena accounts for most of the `model_inference.o`
+`.bss` value; it is not the current Flash blocker.
+
+## Source-closure analysis
+
+### Must retain
+
+- `micro_interpreter`, `micro_interpreter_graph`, `micro_allocator`
+- arena allocator and memory planner components actually referenced by the
+  selected interpreter
+- `micro_mutable_op_resolver` and resolver support
+- schema/model parsing required by `GetModel()` and `AllocateTensors()`
+- Conv2D, MaxPool2D, Mean/Reduce, FullyConnected, Softmax, Reshape and
+  ExpandDims registrations and kernels
+- model data and the existing input/output contract checks
+
+### Common runtime likely required
+
+- FlatBuffers headers and only the schema parsing helpers used by the model
+- kernel quantization helpers
+- Gemmlowp/Ruy portions required by the int8 Conv2D/FullyConnected path
+- one error reporter implementation
+
+### Currently excessive or not required for this stage
+
+- `flatbuffer_conversions.o` full generic conversion implementation
+- `portable_tensor_utils.o` portions unrelated to the seven model operators
+- recording allocator and profiler sources
+- signal kernels, examples, tests, test helpers and desktop support
+- unused operator headers/registrations
+- duplicate or alternative optimized kernel implementations
+- full C++ runtime components beyond the required ABI support
+
+### Missing dependencies observed
+
+- `tensorflow/lite/context_util.h` in the current reduced closure
+- Additional schema and kernel utility implementation files are required by
+  unresolved symbols such as `GetBuiltinCode`,
+  `PopulateConvolutionQuantizationParams`, and
+  `CalculateActivationRangeQuantized`.
+
+## Flash budget estimate
+
+The model alone consumes about 12.1 KiB. Existing firmware already consumes a
+substantial portion of the 64 KiB Flash region. The current closure is clearly
+over budget: one generic `flatbuffer_conversions.o` is approximately 105 KiB.
+After removing that generic implementation and unrelated sources, a realistic
+custom-minimal closure is estimated at roughly 45–70 KiB for runtime, required
+kernels, parsing, C++ support and the model. This is a range, not a measured
+final image; it depends on exact kernel implementations and optimization.
+
+## Feasibility conclusion
+
+**NOT_PRACTICAL** for the current upstream closure on STM32F103C8T6.
+
+One carefully controlled source-closure reduction is technically worth doing,
+but the present excess is too large to justify claiming that a normal TFLM
+integration will fit in 64 KiB. A larger STM32 target such as STM32F407 is the
+lower-risk deployment path if the minimal closure still exceeds the Flash
+budget.
+
+## Recommendation
+
+Do not change the 16 KiB Tensor Arena in this stage. First generate a genuinely
+minimal TFLM tree from the fixed upstream commit, retain only the seven kernel
+registrations and their transitive dependencies, enable `-Os`, and re-run the
+size report. If that controlled pass remains above the Flash budget, stop F103
+TFLM integration and continue deployment work on the approved larger platform.

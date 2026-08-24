@@ -1,0 +1,40 @@
+MotorTinyML Three-Class Tiny Classifier LORO Report
+====================================================
+class_mapping: 0=normal, 1=rotor_unbalance, 2=overload
+mechanical_looseness: excluded from final embedded demo due to poor reproducibility of the physical fault setup; historical four-class data and reports are retained.
+split_unit: CSV file; each CSV is test exactly once and never crosses train/test within a fold
+normalization: population mean/std computed from train windows only in each LORO fold
+feature_count: 21
+included_csv_count: 21
+included_window_count: 315
+
+Fold results
+fold 1: accuracy=1.000000, train_csv=14, test_csv=7
+fold 2: accuracy=0.990476, train_csv=14, test_csv=7
+fold 3: accuracy=0.980952, train_csv=14, test_csv=7
+loro_mean_accuracy: 0.990476
+loro_std_accuracy: 0.007776
+aggregate_confusion_matrix:
+[[132   0   3]
+ [  0  90   0]
+ [  0   0  90]]
+aggregate_classification_report:
+                 precision    recall  f1-score   support
+
+         normal       1.00      0.98      0.99       135
+rotor_unbalance       1.00      1.00      1.00        90
+       overload       0.97      1.00      0.98        90
+
+       accuracy                           0.99       315
+      macro avg       0.99      0.99      0.99       315
+   weighted avg       0.99      0.99      0.99       315
+
+
+Final model and PC/C parity
+Final model uses all INCLUDED three-class windows after LORO evaluation.
+feature_max_abs_diff: 0
+scaled_feature_max_abs_diff: 1.25389919e-06
+score_max_abs_diff: 5.82188278e-07
+predicted_class_agreement: 1.000000000
+changed_predictions: 0
+C parameter files are generated only for the three-class path; the existing four-class parameters remain unchanged.

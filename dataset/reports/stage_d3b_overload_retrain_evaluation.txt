@@ -1,0 +1,145 @@
+MotorTinyML Stage D-3B Overload Retrain Evaluation
+======================================================
+
+New files are explicit evaluation candidates; dataset_audit.py and current C parameters are unchanged.
+
+motor_overload_realtime_01.csv
+------------------------------
+sample_count: 3000
+complete_windows: 15
+discarded_samples: 0
+avg_interval_ms: 5
+timestamp_breaks: 15
+duplicate_rows: 0
+axis_mean: [-27.07566667 -13.137      254.674     ]
+axis_std: [6.70104031 5.53656611 2.89016562]
+axis_rms: [ 27.89257368  14.25602796 254.69039898]
+axis_min: [-49. -55. 241.]
+axis_max: [  1.   7. 265.]
+window_vibration_metric: [5.464557774117378, 5.628192427413973, 5.302768930788268, 5.133921503100724, 5.414722984604104, 5.281066022436507, 5.049407556007601, 5.281890444402142, 5.74245229264757, 3.8662072284518487, 4.561544877195296, 6.41311351840898, 5.099914214964797, 5.247639151720199, 5.3100776830475835]
+
+motor_overload_realtime_02.csv
+------------------------------
+sample_count: 3000
+complete_windows: 15
+discarded_samples: 0
+avg_interval_ms: 5
+timestamp_breaks: 15
+duplicate_rows: 0
+axis_mean: [-27.13133333 -13.28833333 254.18466667]
+axis_std: [7.60767715 5.7878491  3.86003863]
+axis_rms: [ 28.17775719  14.49410225 254.21397418]
+axis_min: [-52. -42. 242.]
+axis_max: [ -3.   8. 271.]
+window_vibration_metric: [6.619835093615751, 7.070798516905051, 6.869025282624409, 6.358188290176169, 7.4954602927371985, 6.850905657891762, 5.7026623899134465, 4.708070199136797, 4.650510724640897, 4.446764741547125, 5.258043837778457, 5.149419870237812, 5.856345561297877, 5.649186519609114, 5.184797488812844]
+
+motor_overload_realtime_03.csv
+------------------------------
+sample_count: 3000
+complete_windows: 15
+discarded_samples: 0
+avg_interval_ms: 5.001000333444481
+timestamp_breaks: 15
+duplicate_rows: 0
+axis_mean: [-27.19033333 -13.00533333 254.31433333]
+axis_std: [ 8.14719419 13.42673843  3.73535289]
+axis_rms: [ 28.38469658  18.69267236 254.34176417]
+axis_min: [ -62. -107.  228.]
+axis_max: [ 28.  69. 270.]
+window_vibration_metric: [27.064621895259005, 11.76642752353775, 8.311693569904994, 6.569443152454653, 5.057948365361853, 5.332134500679192, 5.835856835118557, 5.185858173918759, 5.407826889487743, 5.04635099188843, 5.244035500769739, 5.469133843672143, 5.412777321609798, 5.684927440170193, 5.314404952579357]
+
+A_original_three_class
+----------------------
+fold_accuracies: [1.0, 0.9904761904761905, 0.9809523809523809]
+mean_accuracy: 0.990476
+confusion_matrix:
+[[132   0   3]
+ [  0  90   0]
+ [  0   0  90]]
+classification_report:
+                 precision    recall  f1-score   support
+
+         normal       1.00      0.98      0.99       135
+rotor_unbalance       1.00      1.00      1.00        90
+       overload       0.97      1.00      0.98        90
+
+       accuracy                           0.99       315
+      macro avg       0.99      0.99      0.99       315
+   weighted avg       0.99      0.99      0.99       315
+
+per_run_accuracy:
+  motor_normal_40_20260819_225032.csv: [1.0]
+  motor_normal_40_20260819_225634.csv: [1.0]
+  motor_normal_40_20260819_225920.csv: [1.0]
+  motor_normal_60_20260819_204215.csv: [0.9333333333333333]
+  motor_normal_60_20260819_230403.csv: [0.9333333333333333]
+  motor_normal_60_20260819_230612.csv: [1.0]
+  motor_normal_80_20260819_231002.csv: [0.9333333333333333]
+  motor_normal_80_20260819_231204.csv: [1.0]
+  motor_normal_80_20260819_231433.csv: [1.0]
+  motor_overload_40_20260820_175854.csv: [1.0]
+  motor_overload_40_20260820_180320.csv: [1.0]
+  motor_overload_40_20260820_180451.csv: [1.0]
+  motor_overload_60_20260820_180954.csv: [1.0]
+  motor_overload_60_20260820_181115.csv: [1.0]
+  motor_overload_60_20260820_181249.csv: [1.0]
+  rotor_unbalance_40_20260820_141437.csv: [1.0]
+  rotor_unbalance_40_20260820_142102.csv: [1.0]
+  rotor_unbalance_40_20260820_142345.csv: [1.0]
+  rotor_unbalance_60_20260820_143613.csv: [1.0]
+  rotor_unbalance_60_20260820_144640.csv: [1.0]
+  rotor_unbalance_60_20260820_145113.csv: [1.0]
+
+B_original_plus_new_overload
+----------------------------
+fold_accuracies: [0.9916666666666667, 0.9666666666666667, 0.9916666666666667]
+mean_accuracy: 0.983333
+confusion_matrix:
+[[130   0   5]
+ [  0  90   0]
+ [  1   0 134]]
+classification_report:
+                 precision    recall  f1-score   support
+
+         normal       0.99      0.96      0.98       135
+rotor_unbalance       1.00      1.00      1.00        90
+       overload       0.96      0.99      0.98       135
+
+       accuracy                           0.98       360
+      macro avg       0.99      0.99      0.99       360
+   weighted avg       0.98      0.98      0.98       360
+
+per_run_accuracy:
+  motor_normal_40_20260819_225032.csv: [0.9333333333333333]
+  motor_normal_40_20260819_225634.csv: [1.0]
+  motor_normal_40_20260819_225920.csv: [0.9333333333333333]
+  motor_normal_60_20260819_204215.csv: [1.0]
+  motor_normal_60_20260819_230403.csv: [0.8]
+  motor_normal_60_20260819_230612.csv: [1.0]
+  motor_normal_80_20260819_231002.csv: [1.0]
+  motor_normal_80_20260819_231204.csv: [1.0]
+  motor_normal_80_20260819_231433.csv: [1.0]
+  motor_overload_40_20260820_175854.csv: [1.0]
+  motor_overload_40_20260820_180320.csv: [1.0]
+  motor_overload_40_20260820_180451.csv: [1.0]
+  motor_overload_60_20260820_180954.csv: [0.9333333333333333]
+  motor_overload_60_20260820_181115.csv: [1.0]
+  motor_overload_60_20260820_181249.csv: [1.0]
+  motor_overload_realtime_01.csv: [1.0]
+  motor_overload_realtime_02.csv: [1.0]
+  motor_overload_realtime_03.csv: [1.0]
+  rotor_unbalance_40_20260820_141437.csv: [1.0]
+  rotor_unbalance_40_20260820_142102.csv: [1.0]
+  rotor_unbalance_40_20260820_142345.csv: [1.0]
+  rotor_unbalance_60_20260820_143613.csv: [1.0]
+  rotor_unbalance_60_20260820_144640.csv: [1.0]
+  rotor_unbalance_60_20260820_145113.csv: [1.0]
+
+base_recall_normal: 0.977778
+base_recall_rotor_unbalance: 1.000000
+base_recall_overload: 1.000000
+augmented_recall_normal: 0.962963
+augmented_recall_rotor_unbalance: 1.000000
+augmented_recall_overload: 0.992593
+RECOMMEND_RETRAIN: NO
+No C parameters were exported or overwritten.

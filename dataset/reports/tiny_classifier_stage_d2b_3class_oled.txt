@@ -1,0 +1,68 @@
+MotorTinyML Stage D-2B Three-Class Inference + OLED
+====================================================
+
+Deployment contract
+-------------------
+- Class 0: normal
+- Class 1: rotor_unbalance
+- Class 2: overload
+- mechanical_looseness remains excluded from the final embedded demo.
+- Input: 200 non-overlapping ADXL345 XYZ samples at 200 Hz.
+- Features: the existing 21 statistical features.
+- Motor speed: fixed Motor_SetSpeed(60).
+
+Implementation
+--------------
+- Added tiny_classifier_3class.h/.c as an independent pure-C inference path.
+- Active Debug build now links tiny_classifier_3class and
+  tiny_classifier_3class_params only for classifier inference.
+- Historical four-class classifier, parameters, and golden-test sources remain
+  in the repository but are not linked by the active Debug objects.list.
+- UART output now contains three scores:
+  [CLASS] CLASS=<name> ID=<id> scores_x1000=[s0,s1,s2]
+- OLED classification status is refreshed after every completed 200-sample
+  window. Prediction does not control PWM or motor shutdown.
+
+OLED states
+-----------
+- normal: explicit pages `MotorTinyML`, `Speed 60%`, `NORMAL`
+- rotor_unbalance: explicit pages `MotorTinyML`, `FAULT`, `ROTOR`, `UNBALANCE`
+- overload: explicit pages `MotorTinyML`, `FAULT`, `OVERLOAD`
+- Each update clears all eight pages first and starts each string at column 0.
+- The 5-pixel glyph plus 1-pixel spacing gives six pixels per character; the
+  longest line is 15 characters (90 pixels), within the 128-pixel display.
+- OLED state selection uses a majority vote over the most recent five valid
+  predictions. A class needs at least three votes and the display refreshes
+  only when the selected stable class changes.
+
+PC validation reference
+-----------------------
+- Three-class PC LORO mean accuracy: 0.990476 (provided verified result).
+- PC/C predicted-class agreement: 1.0 (provided verified result).
+
+Build validation
+----------------
+- main.c compile: PASS
+- tiny_classifier_3class.c compile: PASS
+- tiny_classifier_3class_params.c compile: PASS
+- OLED driver compile: PASS
+- direct STM32 GCC link: PASS
+- ELF: firmware/stm32f103/MotorTinyML_F103/Debug/MotorTinyML_F103.elf
+
+arm-none-eabi-size:
+
+- text: 26708 bytes
+- data: 124 bytes
+- bss: 3356 bytes
+- total: 30188 bytes
+- Flash estimate (text + data): 26832 bytes
+
+ELF symbol verification confirms g_tiny3_feature_mean,
+g_tiny3_feature_std, g_tiny3_logreg_weights, g_tiny3_logreg_bias,
+TinyClassifier3_ExtractFeatures, and TinyClassifier3_Predict. No legacy
+four-class parameter symbols are present in the active ELF.
+
+Hardware observation
+--------------------
+WAITING FOR HARDWARE EXECUTION. The three-class OLED behavior and UART
+three-score output require a new board flash/reset test.

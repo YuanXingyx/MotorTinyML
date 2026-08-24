@@ -1,0 +1,52 @@
+MotorTinyML Stage D-2A OLED Bring-up
+====================================
+
+Scope
+-----
+SSD1306-compatible 128x64 I2C OLED bring-up only. The OLED shares the
+existing I2C1 bus with ADXL345:
+
+- PB6 = I2C1_SCL
+- PB7 = I2C1_SDA
+- I2C1 speed = 100 kHz
+
+Implementation
+--------------
+- Added App/OLED/oled_ssd1306.h and oled_ssd1306.c.
+- Existing hi2c1 is reused; the OLED module does not reinitialize I2C1.
+- Startup probes 7-bit addresses 0x3C and 0x3D.
+- The first responding address receives a minimal SSD1306-compatible init.
+- The display is cleared and receives the fixed text MotorTinyML / OLED OK.
+- ADXL345 Device ID is still read and ADXL345_Init() remains unchanged.
+- OLED failure only reports through UART and does not disable ADXL345 logic.
+
+UART messages
+-------------
+- OLED FOUND: 0x3C or 0x3D
+- OLED OK: MotorTinyML status displayed
+- OLED NOT FOUND: tried 0x3C and 0x3D
+- OLED ERROR: display write failed
+
+Build validation
+----------------
+- main.c syntax check: PASS
+- oled_ssd1306.c syntax check: PASS
+- direct STM32 GCC link: PASS
+- ELF: firmware/stm32f103/MotorTinyML_F103/Debug/MotorTinyML_F103.elf
+
+arm-none-eabi-size:
+
+- text: 25848 bytes
+- data: 96 bytes
+- bss: 3360 bytes
+- total: 29304 bytes
+- Flash estimate (text + data): 25944 bytes
+
+The generated Debug build includes App/OLED/oled_ssd1306.o. No ADXL345,
+PWM, Tiny Classifier, model parameter, or TFLM source was changed.
+
+Hardware observation
+--------------------
+WAITING FOR HARDWARE EXECUTION. The OLED controller and address must be
+confirmed on the actual board. The driver assumes SSD1306-compatible command
+behavior; this assumption is not a hardware confirmation.

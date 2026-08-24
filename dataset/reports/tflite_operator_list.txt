@@ -1,0 +1,51 @@
+MotorTinyML TFLite Operator Inspection
+==========================================
+model: E:\project\MotorTinyML\models\final_model_int8.tflite
+model_size_bytes: 12112
+tensorflow_version: 2.21.0
+
+Input tensor contract:
+  name: serving_default_input_layer:0
+  shape: [1, 200, 3]
+  dtype: <class 'numpy.int8'>
+  quantization: (0.032843973487615585, -10)
+Output tensor contract:
+  name: StatefulPartitionedCall_1:0
+  shape: [1, 4]
+  dtype: <class 'numpy.int8'>
+  quantization: (0.00390625, -128)
+
+Operator codes from FlatBuffer:
+  index=0, builtin_code=70, name=UNKNOWN, version=1
+  index=1, builtin_code=3, name=UNKNOWN, version=3
+  index=2, builtin_code=22, name=UNKNOWN, version=1
+  index=3, builtin_code=17, name=UNKNOWN, version=2
+  index=4, builtin_code=40, name=UNKNOWN, version=2
+  index=5, builtin_code=9, name=UNKNOWN, version=4
+  index=6, builtin_code=25, name=UNKNOWN, version=2
+
+Interpreter operator execution list:
+  node=0, op_name=EXPAND_DIMS, inputs=[0 1], outputs=[15]
+  node=1, op_name=CONV_2D, inputs=[15 14 13], outputs=[16]
+  node=2, op_name=RESHAPE, inputs=[16  2], outputs=[17]
+  node=3, op_name=EXPAND_DIMS, inputs=[17  3], outputs=[18]
+  node=4, op_name=MAX_POOL_2D, inputs=[18], outputs=[19]
+  node=5, op_name=RESHAPE, inputs=[19  4], outputs=[20]
+  node=6, op_name=EXPAND_DIMS, inputs=[20  1], outputs=[21]
+  node=7, op_name=CONV_2D, inputs=[21 12 11], outputs=[22]
+  node=8, op_name=RESHAPE, inputs=[22  5], outputs=[23]
+  node=9, op_name=EXPAND_DIMS, inputs=[23  3], outputs=[24]
+  node=10, op_name=MAX_POOL_2D, inputs=[24], outputs=[25]
+  node=11, op_name=RESHAPE, inputs=[25  6], outputs=[26]
+  node=12, op_name=MEAN, inputs=[26  3], outputs=[27]
+  node=13, op_name=FULLY_CONNECTED, inputs=[27 10  9], outputs=[28]
+  node=14, op_name=FULLY_CONNECTED, inputs=[28  8  7], outputs=[29]
+  node=15, op_name=SOFTMAX, inputs=[29], outputs=[30]
+  node=16, op_name=DELEGATE, inputs=[ 2 13 14 15], outputs=[17]
+  node=17, op_name=DELEGATE, inputs=[ 4 18], outputs=[20]
+  node=18, op_name=DELEGATE, inputs=[ 5 11 12 21], outputs=[23]
+  node=19, op_name=DELEGATE, inputs=[ 3  6  7  8  9 10 24], outputs=[29]
+
+TFLite Micro integration note:
+Use only the operators listed above; do not use AllOpsResolver.
+Operator resolver selection requires a compatible TFLite Micro runtime version and kernel API.

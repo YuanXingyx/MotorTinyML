@@ -1,0 +1,57 @@
+MotorTinyML Stage C-6 Hardware Validation
+=========================================
+
+Test configuration
+------------------
+Motor speed: fixed 60% PWM for all four conditions.
+Window: 200 valid ADXL345 XYZ samples, non-overlapping.
+Target: at least 30 windows per condition; extend to 60 if stable.
+Expected duration: approximately 30 s to 60 s per condition.
+The condition label and expected class are statistics-only metadata and are
+not used by feature extraction, score calculation or prediction.
+
+UART statistics format
+----------------------
+[CLASS] CLASS=<name> ID=<id> scores_x1000=[s0,s1,s2,s3]
+[CLASS_STATS] condition=<condition> total_windows=<n>
+predicted_count=[n0,n1,n2,n3]
+correct_windows=<n>
+accuracy_x1000=<n>
+current_prediction=<id>
+
+Results table (fill from real board UART logs)
+-----------------------------------------------
+| Condition | Windows | Correct | Accuracy | Predicted distribution | Common misclassification |
+|---|---:|---:|---:|---|---|
+| normal | PENDING | PENDING | PENDING | PENDING | PENDING |
+| rotor_unbalance | PENDING | PENDING | PENDING | PENDING | PENDING |
+| mechanical_looseness | PENDING | PENDING | PENDING | PENDING | PENDING |
+| overload | PENDING | PENDING | PENDING | PENDING | PENDING |
+
+Hardware status
+---------------
+Build changes are implemented. Hardware runtime results remain PENDING until
+each condition is run at fixed 60% speed and the UART statistics are captured.
+No hardware accuracy or confusion result is fabricated by Codex.
+
+Build/resource verification
+---------------------------
+The STM32F103 Debug ELF was generated with the Stage C-6 changes. The IDE
+make wrapper returned host-side `Error -1` after producing the ELF; no compiler
+diagnostic or linker overflow was reported, and the ELF was inspected directly.
+
+`arm-none-eabi-size`:
+
+- text: 22048 bytes
+- data: 96 bytes
+- bss: 3360 bytes
+- total: 25504 bytes
+
+Flash estimate (text + data): 22144 bytes.
+The static `inference_window[200][3]` accounts for 1200 bytes of RAM. The
+remaining `.bss` includes existing firmware state and classifier statistics.
+The ELF contains TinyClassifier symbols and no `model_inference`, `tflite`,
+`tflm`, or `Model_Init` symbols; the Stage C-6 build is therefore fully
+detached from the TFLM runtime.
+
+Runtime observation: WAITING FOR HARDWARE EXECUTION.

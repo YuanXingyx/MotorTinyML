@@ -1,157 +1,177 @@
+"""Final UART CSV capture entry point for MotorTinyML demo datasets."""
+
+from __future__ import annotations
+
 import csv
-from datetime import datetime
 from pathlib import Path
 
 import serial
 
+from capture_overload_realtime import summarize
 
-SERIAL_PORT = "COM10"
+SERIAL_PORT = "COM7"
 BAUDRATE = 115200
 SERIAL_TIMEOUT_SECONDS = 1
-DURATION_SECONDS = 15
+TARGET_SAMPLES = 3000
+MAX_TIMESTAMP_DELTA_MS = 100
+FINAL_DEMO_CLASSES = ("normal", "rotor_unbalance", "overload")
+FINAL_DEMO_RUNS = (1, 2, 3)
 
 SCRIPT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = SCRIPT_DIR.parent
-OUTPUT_DIR = PROJECT_ROOT / "dataset" / "raw"
+OUTPUT_DIR = PROJECT_ROOT / "dataset" / "raw" / "final_demo"
+REPORT_PATH = PROJECT_ROOT / "dataset" / "reports" / "stage_d4_final_demo_collection.txt"
 
 
 def parse_sample(line: str) -> tuple[int, int, int, int] | None:
-    """Parse one CSV-like sensor line; return None for logs or malformed data."""
-
+    """Parse only timestamp,x,y,z integer rows; ignore all UART diagnostics."""
     parts = [part.strip() for part in line.split(",")]
-
     if len(parts) != 4:
         return None
-
     try:
-        timestamp_ms = int(parts[0])
-        x = int(parts[1])
-        y = int(parts[2])
-        z = int(parts[3])
+        return tuple(int(part) for part in parts)  # type: ignore[return-value]
     except ValueError:
         return None
 
-    return timestamp_ms, x, y, z
+
+def ask_condition() -> str:
+    while True:
+        value = input("Condition (normal/rotor_unbalance/overload): ").strip().lower()
+        if value in FINAL_DEMO_CLASSES:
+            return value
+        print("Please enter normal, rotor_unbalance, or overload.")
 
 
-def get_label() -> str:
-    """Read and normalize the acquisition-condition label."""
-    label = input("请输入采集工况 label（直接回车使用 unlabeled）: ").strip()
-    label = "_".join(label.split())
-    return label or "unlabeled"
+def ask_run_number() -> int:
+    while True:
+        value = input("Run number (1-3): ").strip()
+        if value in {str(run) for run in FINAL_DEMO_RUNS}:
+            return int(value)
+        print("Please enter 1, 2, or 3.")
+
+
+def append_report(condition: str, run_number: int, output_file: Path,
+                  samples: list[tuple[int, int, int, int]], dataset_usable: bool) -> None:
+    """Append the shared capture quality summary to the final-demo report."""
+    REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    new_report = not REPORT_PATH.exists()
+    with REPORT_PATH.open("a", encoding="utf-8") as report:
+        if new_report:
+            report.write("MotorTinyML Stage D-4 Final Demo Dataset Collection\n")
+            report.write("===============================================\n\n")
+            report.write("Recommended capture entry: python/serial_logger.py\n")
+            report.write("Historical capture_overload_realtime.py is retained for diagnostics.\n\n")
+            report.write("Fixed baseline: one fan blade, ADXL345 position/orientation, I2C, "
+                         "200 Hz, UART 115200, and Motor_SetSpeed(60).\n")
+            report.write("Each class requires three independently started runs.\n\n")
+        report.write(f"Condition: {condition}\nRun: {run_number}\nCSV: {output_file}\n")
+        report.write("-" * 60 + "\n")
+        report.write("\n".join(summarize(samples)) + "\n")
+        report.write(f"dataset_usable: {'YES' if dataset_usable else 'NO'}\n\n")
+
+
+def quality_passed(samples: list[tuple[int, int, int, int]]) -> bool:
+    """Require a complete, continuous 3000-sample run before promotion."""
+    if len(samples) != TARGET_SAMPLES:
+        return False
+    if any(later[0] - earlier[0] <= 0 or
+           later[0] - earlier[0] > MAX_TIMESTAMP_DELTA_MS
+           for earlier, later in zip(samples, samples[1:])):
+        return False
+    return not any(first == second for first, second in zip(samples, samples[1:]))
 
 
 def main() -> None:
-    label = get_label()
+    condition = ask_condition()
+    run_number = ask_run_number()
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_file = OUTPUT_DIR / f"{label}_{timestamp}.csv"
-    sample_count = 0
+    output_file = OUTPUT_DIR / f"motor_final_{condition}_{run_number:02d}.csv"
+    if output_file.exists():
+        raise FileExistsError(f"Refusing to overwrite existing formal CSV: {output_file}")
+    partial_file = output_file.with_suffix(".partial")
+    if partial_file.exists():
+        raise FileExistsError(f"Refusing to overwrite existing partial capture: {partial_file}")
+
+    samples: list[tuple[int, int, int, int]] = []
+    candidate_sample: tuple[int, int, int, int] | None = None
     first_timestamp_ms: int | None = None
     last_timestamp_ms: int | None = None
-    candidate_sample: tuple[int, int, int, int] | None = None
     formal_collection_started = False
     dataset_usable = False
+    print(f"Capture {condition} run {run_number}: {SERIAL_PORT} @ {BAUDRATE} 8-N-1")
+    print(f"Target: {TARGET_SAMPLES} valid samples")
+    print("Keep the approved mechanical configuration unchanged. Press Ctrl+C to stop.")
 
     try:
-        with serial.Serial(
-            port=SERIAL_PORT,
-            baudrate=BAUDRATE,
-            bytesize=serial.EIGHTBITS,
-            parity=serial.PARITY_NONE,
-            stopbits=serial.STOPBITS_ONE,
-            timeout=SERIAL_TIMEOUT_SECONDS,
-        ) as ser, output_file.open("w", newline="", encoding="utf-8") as csv_file:
+        with serial.Serial(port=SERIAL_PORT, baudrate=BAUDRATE,
+                           bytesize=serial.EIGHTBITS, parity=serial.PARITY_NONE,
+                           stopbits=serial.STOPBITS_ONE,
+                           timeout=SERIAL_TIMEOUT_SECONDS) as ser, \
+             partial_file.open("w", newline="", encoding="utf-8") as csv_file:
             ser.reset_input_buffer()
-
             writer = csv.writer(csv_file)
             writer.writerow(["timestamp_ms", "x", "y", "z"])
-            csv_file.flush()
-
-            print(f"开始采集: {SERIAL_PORT} @ {BAUDRATE} baud")
-            print(f"输出文件: {output_file}")
-            print("按 Ctrl+C 停止采集")
-
-            while True:
+            while len(samples) < TARGET_SAMPLES:
                 raw_line = ser.readline()
                 if not raw_line:
                     continue
-
-                line = raw_line.decode("utf-8", errors="ignore").strip()
-                if not line:
-                    continue
-
-                print(line)
-                sample = parse_sample(line)
+                sample = parse_sample(raw_line.decode("utf-8", errors="ignore").strip())
                 if sample is None:
                     continue
-
                 current_timestamp_ms = sample[0]
                 if not formal_collection_started:
                     if candidate_sample is None:
                         candidate_sample = sample
                         continue
-
                     delta_ms = current_timestamp_ms - candidate_sample[0]
-                    if not 0 < delta_ms <= 100:
-                        print(
-                            f"起始时间戳异常: delta_ms={delta_ms}，"
-                            "重新寻找连续采集起点"
-                        )
+                    if not 0 < delta_ms <= MAX_TIMESTAMP_DELTA_MS:
+                        print(f"Timestamp startup jump ignored: delta_ms={delta_ms}")
                         candidate_sample = sample
                         continue
-
                     first_timestamp_ms = candidate_sample[0]
                     last_timestamp_ms = current_timestamp_ms
                     formal_collection_started = True
                     dataset_usable = True
-
-                    writer.writerow(candidate_sample)
-                    writer.writerow(sample)
+                    samples.extend((candidate_sample, sample))
+                    writer.writerows((candidate_sample, sample))
                     csv_file.flush()
-                    sample_count += 2
+                    print(f"valid_samples={len(samples)}")
                     candidate_sample = None
                     continue
-
-                delta_ms = current_timestamp_ms - last_timestamp_ms
-                if not 0 < delta_ms <= 100:
+                delta_ms = current_timestamp_ms - last_timestamp_ms  # type: ignore[operator]
+                if not 0 < delta_ms <= MAX_TIMESTAMP_DELTA_MS:
                     dataset_usable = False
-                    print(
-                        f"时间戳异常: delta_ms={delta_ms}，采集已终止。"
-                    )
-                    print("警告：此次 CSV 数据不应作为正式数据集使用。")
+                    print(f"Timestamp continuity error: delta_ms={delta_ms}; capture stopped.")
+                    print("WARNING: this CSV must not be used as a formal dataset.")
                     break
-
+                samples.append(sample)
                 writer.writerow(sample)
                 csv_file.flush()
-                sample_count += 1
                 last_timestamp_ms = current_timestamp_ms
-
-                elapsed_ms = last_timestamp_ms - first_timestamp_ms
-                if elapsed_ms >= DURATION_SECONDS * 1000:
-                    print(f"达到 {DURATION_SECONDS} 秒采集时长，自动停止")
-                    break
-
-    except serial.SerialException as exc:
-        print(f"串口错误: {exc}")
-    except OSError as exc:
-        print(f"文件错误: {exc}")
+                if len(samples) % 200 == 0 or len(samples) == TARGET_SAMPLES:
+                    print(f"valid_samples={len(samples)}")
     except KeyboardInterrupt:
-        print("\n采集已停止")
+        print("Capture stopped by user.")
+    except (serial.SerialException, OSError) as exc:
+        print(f"Capture error: {exc}")
     finally:
-        if first_timestamp_ms is not None and last_timestamp_ms is not None:
-            actual_duration_seconds = (
-                last_timestamp_ms - first_timestamp_ms
-            ) / 1000.0
+        dataset_usable = dataset_usable and quality_passed(samples)
+        report_file = output_file if dataset_usable else partial_file
+        if dataset_usable:
+            partial_file.replace(output_file)
+            print("Quality checks passed; partial capture promoted to formal CSV.")
         else:
-            actual_duration_seconds = 0.0
-        print(f"有效样本数: {sample_count}")
-        print(f"实际采集时长: {actual_duration_seconds:.3f} 秒")
-        if formal_collection_started and dataset_usable:
-            print("数据集状态: 可作为正式数据集使用")
-        else:
-            print("数据集状态: 不可作为正式数据集使用")
-        print(f"CSV 已保存到: {output_file}")
+            print(f"Capture retained as partial only: {partial_file}")
+            print("It must not be used as a formal dataset.")
+        append_report(condition, run_number, report_file, samples, dataset_usable)
+        duration_s = ((last_timestamp_ms - first_timestamp_ms) / 1000.0
+                      if first_timestamp_ms is not None and last_timestamp_ms is not None else 0.0)
+        print(f"Valid samples: {len(samples)}")
+        print(f"Actual duration: {duration_s:.3f} s")
+        print(f"CSV path: {report_file}")
+        print(f"Quality report: {REPORT_PATH}")
+        if len(samples) < TARGET_SAMPLES:
+            print("WARNING: fewer than 3000 valid samples; review before training use.")
 
 
 if __name__ == "__main__":

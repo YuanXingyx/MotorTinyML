@@ -1,0 +1,51 @@
+MotorTinyML Stage C-5 Realtime Tiny Classifier
+===============================================
+
+Implementation
+--------------
+The existing 5 ms ADXL345_ReadXYZ() path now feeds a static, non-overlapping
+int16_t inference_window[200][3]. Only HAL_OK samples are counted. Read errors
+are not stored and do not advance inference_sample_count.
+
+Golden test mode remains compiled but defaults to:
+TINY_CLASSIFIER_GOLDEN_TEST_ENABLE = 0
+
+Device ID protection requires 0xE5 and a successful ADXL345_Init(). Otherwise
+classification is disabled and an explicit UART error is emitted.
+
+Realtime inference after every 200 valid samples calls:
+TinyClassifier_ExtractFeatures() followed by TinyClassifier_Predict().
+No overlap, dynamic allocation, TFLM, PWM control or model changes are used.
+
+UART format
+-----------
+[CLASS] CLASS=<name> ID=<id> scores_x1000=[s0,s1,s2,s3]
+[CLASS_TIMING] sample_interval_ms=5 window_acquisition_ms=<ms>
+              feature_extract_ms=<ms> inference_ms=<ms> total_cycle_ms=<ms>
+
+Timing uses HAL_GetTick() with 1 ms resolution. Zero feature/inference timing
+is valid at this resolution.
+
+Build status
+------------
+The direct STM32 GCC build produced a valid ELF and map after the realtime
+changes. arm-none-eabi-size reported:
+text=21556 bytes, data=92 bytes, bss=3340 bytes, total=24988 bytes.
+The Debug make wrapper still returns host-side Error -1 after producing the ELF;
+the generated ELF and symbol/section inspection are valid. No compiler warning
+remains from the realtime UART formatting.
+
+The default-disabled golden test is retained in source but is garbage-collected
+from this realtime ELF, as intended. TFLM symbols are absent.
+
+Flash/RAM summary
+-----------------
+Approximate load Flash: text + data = 21648 bytes.
+SRAM allocation reported by size: data + bss = 3432 bytes (bss includes the
+static 200x3 inference buffer and linker-reserved runtime area).
+The inference buffer itself is 1200 bytes.
+
+Hardware runtime observation
+----------------------------
+WAITING FOR HARDWARE EXECUTION. No realtime classification result is claimed
+until this ELF is flashed and observed on USART1 at 115200 8-N-1.

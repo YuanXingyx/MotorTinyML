@@ -1,0 +1,149 @@
+MotorTinyML Stage C-1 Tiny Classifier LORO Experiment
+=======================================================
+
+experiment: feature extraction + lightweight classifier (no TensorFlow/TFLite)
+included_speeds: 40, 60, 80
+window_size: 200
+feature_count: 21
+features: x_mean, x_std, x_rms, x_min, x_max, x_peak_to_peak, x_mad, y_mean, y_std, y_rms, y_min, y_max, y_peak_to_peak, y_mad, z_mean, z_std, z_rms, z_min, z_max, z_peak_to_peak, z_mad
+feature_definition: per-axis mean, population std, RMS, min, max, peak_to_peak, mean absolute deviation
+split: CSV-level leave-one-run-out; each class+speed has one unseen test CSV per fold
+scaling: mean/std fit only on each fold's train windows, then applied to test windows
+
+Dataset groups
+--------------------
+mechanical_looseness_40: 3 INCLUDED CSV files
+mechanical_looseness_60: 3 INCLUDED CSV files
+normal_40: 3 INCLUDED CSV files
+normal_60: 3 INCLUDED CSV files
+normal_80: 3 INCLUDED CSV files
+overload_40: 3 INCLUDED CSV files
+overload_60: 3 INCLUDED CSV files
+rotor_unbalance_40: 3 INCLUDED CSV files
+rotor_unbalance_60: 3 INCLUDED CSV files
+
+Classifier results
+--------------------
+
+Logistic Regression
+configuration: {'C': 1.0, 'class_weight': None, 'dual': False, 'fit_intercept': True, 'intercept_scaling': 1, 'l1_ratio': 0.0, 'max_iter': 2000, 'n_jobs': None, 'penalty': 'deprecated', 'random_state': 42, 'solver': 'lbfgs', 'tol': 0.0001, 'verbose': 0, 'warm_start': False}
+fold accuracies: 1.0000, 0.9926, 1.0000
+LORO mean accuracy: 0.9975
+LORO std accuracy: 0.0035
+aggregate confusion matrix:
+[[134   0   0   1]
+ [  0  90   0   0]
+ [  0   0  90   0]
+ [  0   0   0  90]]
+aggregate classification report:
+                      precision    recall  f1-score   support
+
+              normal       1.00      0.99      1.00       135
+     rotor_unbalance       1.00      1.00      1.00        90
+mechanical_looseness       1.00      1.00      1.00        90
+            overload       0.99      1.00      0.99        90
+
+            accuracy                           1.00       405
+           macro avg       1.00      1.00      1.00       405
+        weighted avg       1.00      1.00      1.00       405
+
+fold 1: train_csv=18, train_windows=270, test_csv=9, test_windows=135, test_accuracy=1.0000
+  train: mechanical_looseness_40_20260820_170143.csv, mechanical_looseness_40_20260820_165705.csv, mechanical_looseness_60_20260820_170815.csv, mechanical_looseness_60_20260820_172224.csv, motor_normal_40_20260819_225634.csv, motor_normal_40_20260819_225032.csv, motor_normal_60_20260819_230403.csv, motor_normal_60_20260819_204215.csv, motor_normal_80_20260819_231204.csv, motor_normal_80_20260819_231002.csv, motor_overload_40_20260820_175854.csv, motor_overload_40_20260820_180451.csv, motor_overload_60_20260820_180954.csv, motor_overload_60_20260820_181115.csv, rotor_unbalance_40_20260820_141437.csv, rotor_unbalance_40_20260820_142345.csv, rotor_unbalance_60_20260820_143613.csv, rotor_unbalance_60_20260820_145113.csv
+  test: mechanical_looseness_40_20260820_165941.csv, mechanical_looseness_60_20260820_171323.csv, motor_normal_40_20260819_225920.csv, motor_normal_60_20260819_230612.csv, motor_normal_80_20260819_231433.csv, motor_overload_40_20260820_180320.csv, motor_overload_60_20260820_181249.csv, rotor_unbalance_40_20260820_142102.csv, rotor_unbalance_60_20260820_144640.csv
+fold 2: train_csv=18, train_windows=270, test_csv=9, test_windows=135, test_accuracy=0.9926
+  train: mechanical_looseness_40_20260820_165941.csv, mechanical_looseness_40_20260820_165705.csv, mechanical_looseness_60_20260820_171323.csv, mechanical_looseness_60_20260820_172224.csv, motor_normal_40_20260819_225920.csv, motor_normal_40_20260819_225032.csv, motor_normal_60_20260819_230612.csv, motor_normal_60_20260819_204215.csv, motor_normal_80_20260819_231433.csv, motor_normal_80_20260819_231002.csv, motor_overload_40_20260820_180320.csv, motor_overload_40_20260820_180451.csv, motor_overload_60_20260820_181249.csv, motor_overload_60_20260820_181115.csv, rotor_unbalance_40_20260820_142102.csv, rotor_unbalance_40_20260820_142345.csv, rotor_unbalance_60_20260820_144640.csv, rotor_unbalance_60_20260820_145113.csv
+  test: mechanical_looseness_40_20260820_170143.csv, mechanical_looseness_60_20260820_170815.csv, motor_normal_40_20260819_225634.csv, motor_normal_60_20260819_230403.csv, motor_normal_80_20260819_231204.csv, motor_overload_40_20260820_175854.csv, motor_overload_60_20260820_180954.csv, rotor_unbalance_40_20260820_141437.csv, rotor_unbalance_60_20260820_143613.csv
+fold 3: train_csv=18, train_windows=270, test_csv=9, test_windows=135, test_accuracy=1.0000
+  train: mechanical_looseness_40_20260820_165941.csv, mechanical_looseness_40_20260820_170143.csv, mechanical_looseness_60_20260820_171323.csv, mechanical_looseness_60_20260820_170815.csv, motor_normal_40_20260819_225920.csv, motor_normal_40_20260819_225634.csv, motor_normal_60_20260819_230612.csv, motor_normal_60_20260819_230403.csv, motor_normal_80_20260819_231433.csv, motor_normal_80_20260819_231204.csv, motor_overload_40_20260820_180320.csv, motor_overload_40_20260820_175854.csv, motor_overload_60_20260820_181249.csv, motor_overload_60_20260820_180954.csv, rotor_unbalance_40_20260820_142102.csv, rotor_unbalance_40_20260820_141437.csv, rotor_unbalance_60_20260820_144640.csv, rotor_unbalance_60_20260820_143613.csv
+  test: mechanical_looseness_40_20260820_165705.csv, mechanical_looseness_60_20260820_172224.csv, motor_normal_40_20260819_225032.csv, motor_normal_60_20260819_204215.csv, motor_normal_80_20260819_231002.csv, motor_overload_40_20260820_180451.csv, motor_overload_60_20260820_181115.csv, rotor_unbalance_40_20260820_142345.csv, rotor_unbalance_60_20260820_145113.csv
+
+Linear SVM
+configuration: {'C': 1.0, 'class_weight': None, 'dual': 'auto', 'fit_intercept': True, 'intercept_scaling': 1, 'loss': 'squared_hinge', 'max_iter': 5000, 'multi_class': 'ovr', 'penalty': 'l2', 'random_state': 42, 'tol': 0.0001, 'verbose': 0}
+fold accuracies: 0.9926, 0.9630, 0.9926
+LORO mean accuracy: 0.9827
+LORO std accuracy: 0.0140
+aggregate confusion matrix:
+[[130   0   2   3]
+ [  0  90   0   0]
+ [  2   0  88   0]
+ [  0   0   0  90]]
+aggregate classification report:
+                      precision    recall  f1-score   support
+
+              normal       0.98      0.96      0.97       135
+     rotor_unbalance       1.00      1.00      1.00        90
+mechanical_looseness       0.98      0.98      0.98        90
+            overload       0.97      1.00      0.98        90
+
+            accuracy                           0.98       405
+           macro avg       0.98      0.99      0.98       405
+        weighted avg       0.98      0.98      0.98       405
+
+fold 1: train_csv=18, train_windows=270, test_csv=9, test_windows=135, test_accuracy=0.9926
+  train: mechanical_looseness_40_20260820_170143.csv, mechanical_looseness_40_20260820_165705.csv, mechanical_looseness_60_20260820_170815.csv, mechanical_looseness_60_20260820_172224.csv, motor_normal_40_20260819_225634.csv, motor_normal_40_20260819_225032.csv, motor_normal_60_20260819_230403.csv, motor_normal_60_20260819_204215.csv, motor_normal_80_20260819_231204.csv, motor_normal_80_20260819_231002.csv, motor_overload_40_20260820_175854.csv, motor_overload_40_20260820_180451.csv, motor_overload_60_20260820_180954.csv, motor_overload_60_20260820_181115.csv, rotor_unbalance_40_20260820_141437.csv, rotor_unbalance_40_20260820_142345.csv, rotor_unbalance_60_20260820_143613.csv, rotor_unbalance_60_20260820_145113.csv
+  test: mechanical_looseness_40_20260820_165941.csv, mechanical_looseness_60_20260820_171323.csv, motor_normal_40_20260819_225920.csv, motor_normal_60_20260819_230612.csv, motor_normal_80_20260819_231433.csv, motor_overload_40_20260820_180320.csv, motor_overload_60_20260820_181249.csv, rotor_unbalance_40_20260820_142102.csv, rotor_unbalance_60_20260820_144640.csv
+fold 2: train_csv=18, train_windows=270, test_csv=9, test_windows=135, test_accuracy=0.9630
+  train: mechanical_looseness_40_20260820_165941.csv, mechanical_looseness_40_20260820_165705.csv, mechanical_looseness_60_20260820_171323.csv, mechanical_looseness_60_20260820_172224.csv, motor_normal_40_20260819_225920.csv, motor_normal_40_20260819_225032.csv, motor_normal_60_20260819_230612.csv, motor_normal_60_20260819_204215.csv, motor_normal_80_20260819_231433.csv, motor_normal_80_20260819_231002.csv, motor_overload_40_20260820_180320.csv, motor_overload_40_20260820_180451.csv, motor_overload_60_20260820_181249.csv, motor_overload_60_20260820_181115.csv, rotor_unbalance_40_20260820_142102.csv, rotor_unbalance_40_20260820_142345.csv, rotor_unbalance_60_20260820_144640.csv, rotor_unbalance_60_20260820_145113.csv
+  test: mechanical_looseness_40_20260820_170143.csv, mechanical_looseness_60_20260820_170815.csv, motor_normal_40_20260819_225634.csv, motor_normal_60_20260819_230403.csv, motor_normal_80_20260819_231204.csv, motor_overload_40_20260820_175854.csv, motor_overload_60_20260820_180954.csv, rotor_unbalance_40_20260820_141437.csv, rotor_unbalance_60_20260820_143613.csv
+fold 3: train_csv=18, train_windows=270, test_csv=9, test_windows=135, test_accuracy=0.9926
+  train: mechanical_looseness_40_20260820_165941.csv, mechanical_looseness_40_20260820_170143.csv, mechanical_looseness_60_20260820_171323.csv, mechanical_looseness_60_20260820_170815.csv, motor_normal_40_20260819_225920.csv, motor_normal_40_20260819_225634.csv, motor_normal_60_20260819_230612.csv, motor_normal_60_20260819_230403.csv, motor_normal_80_20260819_231433.csv, motor_normal_80_20260819_231204.csv, motor_overload_40_20260820_180320.csv, motor_overload_40_20260820_175854.csv, motor_overload_60_20260820_181249.csv, motor_overload_60_20260820_180954.csv, rotor_unbalance_40_20260820_142102.csv, rotor_unbalance_40_20260820_141437.csv, rotor_unbalance_60_20260820_144640.csv, rotor_unbalance_60_20260820_143613.csv
+  test: mechanical_looseness_40_20260820_165705.csv, mechanical_looseness_60_20260820_172224.csv, motor_normal_40_20260819_225032.csv, motor_normal_60_20260819_204215.csv, motor_normal_80_20260819_231002.csv, motor_overload_40_20260820_180451.csv, motor_overload_60_20260820_181115.csv, rotor_unbalance_40_20260820_142345.csv, rotor_unbalance_60_20260820_145113.csv
+
+Decision Tree
+configuration: {'ccp_alpha': 0.0, 'class_weight': None, 'criterion': 'gini', 'max_depth': 4, 'max_features': None, 'max_leaf_nodes': None, 'min_impurity_decrease': 0.0, 'min_samples_leaf': 2, 'min_samples_split': 2, 'min_weight_fraction_leaf': 0.0, 'monotonic_cst': None, 'random_state': 42, 'splitter': 'best'}
+fold accuracies: 0.9852, 0.8963, 1.0000
+LORO mean accuracy: 0.9605
+LORO std accuracy: 0.0458
+aggregate confusion matrix:
+[[135   0   0   0]
+ [  2  88   0   0]
+ [  0  12  76   2]
+ [  0   0   0  90]]
+aggregate classification report:
+                      precision    recall  f1-score   support
+
+              normal       0.99      1.00      0.99       135
+     rotor_unbalance       0.88      0.98      0.93        90
+mechanical_looseness       1.00      0.84      0.92        90
+            overload       0.98      1.00      0.99        90
+
+            accuracy                           0.96       405
+           macro avg       0.96      0.96      0.96       405
+        weighted avg       0.96      0.96      0.96       405
+
+fold 1: train_csv=18, train_windows=270, test_csv=9, test_windows=135, test_accuracy=0.9852
+  train: mechanical_looseness_40_20260820_170143.csv, mechanical_looseness_40_20260820_165705.csv, mechanical_looseness_60_20260820_170815.csv, mechanical_looseness_60_20260820_172224.csv, motor_normal_40_20260819_225634.csv, motor_normal_40_20260819_225032.csv, motor_normal_60_20260819_230403.csv, motor_normal_60_20260819_204215.csv, motor_normal_80_20260819_231204.csv, motor_normal_80_20260819_231002.csv, motor_overload_40_20260820_175854.csv, motor_overload_40_20260820_180451.csv, motor_overload_60_20260820_180954.csv, motor_overload_60_20260820_181115.csv, rotor_unbalance_40_20260820_141437.csv, rotor_unbalance_40_20260820_142345.csv, rotor_unbalance_60_20260820_143613.csv, rotor_unbalance_60_20260820_145113.csv
+  test: mechanical_looseness_40_20260820_165941.csv, mechanical_looseness_60_20260820_171323.csv, motor_normal_40_20260819_225920.csv, motor_normal_60_20260819_230612.csv, motor_normal_80_20260819_231433.csv, motor_overload_40_20260820_180320.csv, motor_overload_60_20260820_181249.csv, rotor_unbalance_40_20260820_142102.csv, rotor_unbalance_60_20260820_144640.csv
+fold 2: train_csv=18, train_windows=270, test_csv=9, test_windows=135, test_accuracy=0.8963
+  train: mechanical_looseness_40_20260820_165941.csv, mechanical_looseness_40_20260820_165705.csv, mechanical_looseness_60_20260820_171323.csv, mechanical_looseness_60_20260820_172224.csv, motor_normal_40_20260819_225920.csv, motor_normal_40_20260819_225032.csv, motor_normal_60_20260819_230612.csv, motor_normal_60_20260819_204215.csv, motor_normal_80_20260819_231433.csv, motor_normal_80_20260819_231002.csv, motor_overload_40_20260820_180320.csv, motor_overload_40_20260820_180451.csv, motor_overload_60_20260820_181249.csv, motor_overload_60_20260820_181115.csv, rotor_unbalance_40_20260820_142102.csv, rotor_unbalance_40_20260820_142345.csv, rotor_unbalance_60_20260820_144640.csv, rotor_unbalance_60_20260820_145113.csv
+  test: mechanical_looseness_40_20260820_170143.csv, mechanical_looseness_60_20260820_170815.csv, motor_normal_40_20260819_225634.csv, motor_normal_60_20260819_230403.csv, motor_normal_80_20260819_231204.csv, motor_overload_40_20260820_175854.csv, motor_overload_60_20260820_180954.csv, rotor_unbalance_40_20260820_141437.csv, rotor_unbalance_60_20260820_143613.csv
+fold 3: train_csv=18, train_windows=270, test_csv=9, test_windows=135, test_accuracy=1.0000
+  train: mechanical_looseness_40_20260820_165941.csv, mechanical_looseness_40_20260820_170143.csv, mechanical_looseness_60_20260820_171323.csv, mechanical_looseness_60_20260820_170815.csv, motor_normal_40_20260819_225920.csv, motor_normal_40_20260819_225634.csv, motor_normal_60_20260819_230612.csv, motor_normal_60_20260819_230403.csv, motor_normal_80_20260819_231433.csv, motor_normal_80_20260819_231204.csv, motor_overload_40_20260820_180320.csv, motor_overload_40_20260820_175854.csv, motor_overload_60_20260820_181249.csv, motor_overload_60_20260820_180954.csv, rotor_unbalance_40_20260820_142102.csv, rotor_unbalance_40_20260820_141437.csv, rotor_unbalance_60_20260820_144640.csv, rotor_unbalance_60_20260820_143613.csv
+  test: mechanical_looseness_40_20260820_165705.csv, mechanical_looseness_60_20260820_172224.csv, motor_normal_40_20260819_225032.csv, motor_normal_60_20260819_204215.csv, motor_normal_80_20260819_231002.csv, motor_overload_40_20260820_180451.csv, motor_overload_60_20260820_181115.csv, rotor_unbalance_40_20260820_142345.csv, rotor_unbalance_60_20260820_145113.csv
+Model selection
+--------------------
+best_classifier: Logistic Regression
+selection_rule: LORO mean accuracy first; within 0.010, prefer Logistic Regression, then Linear SVM, then small Decision Tree.
+mechanical_looseness recall: 1.0000
+
+CNN reference (existing experiment)
+--------------------
+CNN LORO mean accuracy: 0.9926
+CNN LORO std accuracy: 0.0060
+CNN mechanical_looseness recall: 0.97
+The CNN figures are an independent reference, not a target used to fit this experiment.
+
+STM32F103 implementation estimate
+--------------------
+Feature extraction: 21 statistics over 200x3 samples; integer sums/sums-of-squares and min/max are pure-C friendly.
+Logistic/linear model: 4*21 weights + 4 biases = 88 parameters (about 352 bytes at float32, before optional fixed-point packing).
+Decision Tree (max_depth=4): at most 31 nodes; estimated <1.5 KiB including thresholds, feature indices and leaf outputs.
+Runtime RAM: approximately 1.2 KiB for a retained int16 200x3 window, plus <0.5 KiB feature/scaler/model working state; streaming accumulation can reduce this.
+Compute: one pass over 600 samples plus 84 feature-weight products for a linear classifier; no FFT or dynamic allocation required.
+These are engineering estimates; C fixed-point representation and compiler layout must be measured in Stage C-2.
+
+Known limitations
+- only three independent runs per class+speed are available
+- fan-related experimental confounding remains unresolved
+- diagnostic accuracy does not establish unknown-device generalization
+confusion_matrix_png: E:\project\MotorTinyML\dataset\reports\tiny_classifier_confusion_matrix.png

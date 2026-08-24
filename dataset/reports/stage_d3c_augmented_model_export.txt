@@ -1,0 +1,16 @@
+MotorTinyML Stage D-3C Augmented Candidate Export
+====================================================
+candidate_model: augmented three-class Logistic Regression
+active_model_overwritten: NO
+purpose: improve compatibility with the fixed manual-overload interview demonstration
+class_mapping: 0=normal, 1=rotor_unbalance, 2=overload
+included_feature_rows: 360
+source_csv_count: 24
+reference_loro_mean_accuracy: 0.983333
+reference_new_overload_per_run_accuracy: 1.000000, 1.000000, 1.000000
+feature_max_abs_diff: 0.0 (same raw feature matrix)
+scaled_feature_max_abs_diff: 1.14405887e-06
+score_max_abs_diff: 7.45609821e-07
+predicted_class_agreement: 1.000000000
+generated: E:\project\MotorTinyML\firmware\stm32f103\MotorTinyML_F103\App\Model\tiny_classifier_3class_aug_params.h, E:\project\MotorTinyML\firmware\stm32f103\MotorTinyML_F103\App\Model\tiny_classifier_3class_aug_params.c, E:\project\MotorTinyML\firmware\stm32f103\MotorTinyML_F103\App\Model\tiny_classifier_3class_aug.h, E:\project\MotorTinyML\firmware\stm32f103\MotorTinyML_F103\App\Model\tiny_classifier_3class_aug.c
+STM32 active model switch: NOT PERFORMED; awaiting explicit approval.

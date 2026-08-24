@@ -1,0 +1,5 @@
+TFLM upstream repository: https://github.com/tensorflow/tflite-micro
+Pinned commit: 90b983c2b3f1480642e040bbd2ddb37b998f3424
+Acquisition: official upstream archive at the pinned commit; no Python TensorFlow files vendored.
+Scope: reduced source snapshot for MotorTinyML Stage B-1.
+Pinned dependencies: FlatBuffers v25.9.23; Gemmlowp commit 719139ce755a0f31cbf1c37f7f98adcc7fc9f425.

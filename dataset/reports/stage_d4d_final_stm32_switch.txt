@@ -1,0 +1,51 @@
+MotorTinyML Stage D-4D Final STM32 Active Model Switch
+=======================================================
+
+Requested active model: tiny_classifier_3class_final
+FINAL_DATA_CAPTURE_MODE: 0
+STOPPED threshold: 4000
+Class mapping: 0=normal, 1=rotor_unbalance, 2=overload
+
+Source/build changes
+--------------------
+- main.c includes and calls tiny_classifier_3class_final API.
+- Debug/App/Model/subdir.mk includes only the final classifier sources for the active model path.
+- Debug/objects.list includes tiny_classifier_3class_final.o and tiny_classifier_3class_final_params.o.
+- Augmented and historical classifier files remain in the repository but are not in the active object list.
+
+Compilation
+-----------
+main.c: PASS (arm-none-eabi-gcc)
+tiny_classifier_3class_final.c: PASS
+tiny_classifier_3class_final_params.c: PASS
+
+Object resource snapshot (before final link)
+---------------------------------------------
+main.o: text=5096 data=32 bss=1452
+tiny_classifier_3class_final.o: text=808 data=0 bss=0
+tiny_classifier_3class_final_params.o: text=432 data=0 bss=0
+Final parameter symbols are in read-only Flash (.rodata):
+g_tiny3_final_feature_mean
+g_tiny3_final_feature_std
+g_tiny3_final_logreg_weights
+g_tiny3_final_logreg_bias
+
+Link status
+-----------
+FAIL in the direct command-line link attempt. The linker reported ARM/Thumb
+relocation errors against pre-existing object files and libgcc/libm objects;
+no new final ELF was produced by this attempt. This is a toolchain/object
+compatibility issue, not a model symbol or Flash-overflow error.
+The STM32CubeIDE Clean Project + Build Project must rebuild all objects with
+the same installed ARM GCC toolchain before ELF resource numbers can be
+accepted.
+
+Flash/SRAM ELF totals
+---------------------
+Unavailable: final ELF was not produced in this environment.
+No Flash/RAM figures are fabricated.
+
+Hardware status
+---------------
+Waiting for STM32CubeIDE clean rebuild, flash, and the required STOPPED,
+NORMAL, ROTOR_UNBALANCE, and OVERLOAD hardware sequence.

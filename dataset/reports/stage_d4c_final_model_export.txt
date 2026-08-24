@@ -1,0 +1,17 @@
+MotorTinyML Stage D-4C Final Demo Model Export
+=================================================
+source: dataset/raw/final_demo (9 explicitly listed CSV files)
+windows: 135
+class_mapping: 0=normal, 1=rotor_unbalance, 2=overload
+feature_order: x/y/z mean,std,rms,min,max,peak_to_peak,mad
+training: StandardScaler population mean/std + LogisticRegression(lbfgs, max_iter=2000)
+D-4B LORO overall_accuracy: 0.992593
+D-4B recalls: normal=1.000000, rotor_unbalance=1.000000, overload=0.977778
+D-4B confusion_matrix: [[45,0,0],[0,45,0],[1,0,44]]
+
+feature_max_abs_diff: 0.000340023548
+scaled_feature_max_abs_diff: 9.32293699e-06
+score_max_abs_diff: 5.51513961e-06
+predicted_class_agreement: 1.000000000
+PC/C parity: PASS
+active STM32 model switch: NOT PERFORMED

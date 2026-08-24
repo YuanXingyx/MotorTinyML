@@ -1,0 +1,299 @@
+MotorTinyML Stage D-4B Final Demo Dataset LORO
+===============================================
+
+Evaluation is limited to the nine explicitly selected final-demo runs.
+No historical training data is automatically added.
+Feature order: x_mean, x_std, x_rms, x_min, x_max, x_peak_to_peak, x_mad, y_mean, y_std, y_rms, y_min, y_max, y_peak_to_peak, y_mad, z_mean, z_std, z_rms, z_min, z_max, z_peak_to_peak, z_mad
+
+Run quality
+-----------
+[normal / normal_01] E:\project\MotorTinyML\dataset\raw\final_demo\motor_final_normal_01.csv
+sample_count: 3000
+complete_windows: 15
+discarded_samples: 0
+duration_s: 14.995
+avg_interval_ms: 5.000
+timestamp_breaks_nonpositive: 0
+timestamp_breaks_over_100ms: 0
+duplicate_rows: 0
+x_mean: -27.688
+x_std: 38.494
+x_rms: 47.417
+x_min: -100
+x_max: 66
+y_mean: -13.060
+y_std: 101.554
+y_rms: 102.390
+y_min: -195
+y_max: 152
+z_mean: 253.586
+z_std: 8.463
+z_rms: 253.727
+z_min: 208
+z_max: 287
+vibration_metric_min: 61.382
+vibration_metric_mean: 62.880
+vibration_metric_max: 65.219
+
+[normal / normal_02] E:\project\MotorTinyML\dataset\raw\final_demo\motor_final_normal_02.csv
+sample_count: 3000
+complete_windows: 15
+discarded_samples: 0
+duration_s: 14.995
+avg_interval_ms: 5.000
+timestamp_breaks_nonpositive: 0
+timestamp_breaks_over_100ms: 0
+duplicate_rows: 0
+x_mean: -27.817
+x_std: 39.096
+x_rms: 47.982
+x_min: -102
+x_max: 67
+y_mean: -12.882
+y_std: 111.171
+y_rms: 111.914
+y_min: -250
+y_max: 164
+z_mean: 253.288
+z_std: 9.084
+z_rms: 253.451
+z_min: 214
+z_max: 285
+vibration_metric_min: 66.106
+vibration_metric_mean: 68.224
+vibration_metric_max: 69.826
+
+[normal / normal_03] E:\project\MotorTinyML\dataset\raw\final_demo\motor_final_normal_03.csv
+sample_count: 3000
+complete_windows: 15
+discarded_samples: 0
+duration_s: 14.995
+avg_interval_ms: 5.000
+timestamp_breaks_nonpositive: 0
+timestamp_breaks_over_100ms: 0
+duplicate_rows: 0
+x_mean: -27.631
+x_std: 38.696
+x_rms: 47.548
+x_min: -104
+x_max: 61
+y_mean: -12.595
+y_std: 107.962
+y_rms: 108.695
+y_min: -219
+y_max: 168
+z_mean: 253.397
+z_std: 8.342
+z_rms: 253.535
+z_min: 221
+z_max: 279
+vibration_metric_min: 64.396
+vibration_metric_mean: 66.377
+vibration_metric_max: 68.379
+
+[rotor_unbalance / rotor_unbalance_01] E:\project\MotorTinyML\dataset\raw\final_demo\motor_final_rotor_unbalance_01.csv
+sample_count: 3000
+complete_windows: 15
+discarded_samples: 0
+duration_s: 14.995
+avg_interval_ms: 5.000
+timestamp_breaks_nonpositive: 0
+timestamp_breaks_over_100ms: 0
+duplicate_rows: 0
+x_mean: -38.653
+x_std: 159.024
+x_rms: 163.654
+x_min: -404
+x_max: 252
+y_mean: -12.465
+y_std: 386.238
+y_rms: 386.439
+y_min: -529
+y_max: 731
+z_mean: 250.075
+z_std: 37.288
+z_rms: 252.840
+z_min: 184
+z_max: 423
+vibration_metric_min: 204.094
+vibration_metric_mean: 241.097
+vibration_metric_max: 273.371
+
+[rotor_unbalance / rotor_unbalance_02] E:\project\MotorTinyML\dataset\raw\final_demo\motor_final_rotor_unbalance_02.csv
+sample_count: 3000
+complete_windows: 15
+discarded_samples: 0
+duration_s: 14.995
+avg_interval_ms: 5.000
+timestamp_breaks_nonpositive: 0
+timestamp_breaks_over_100ms: 0
+duplicate_rows: 0
+x_mean: -39.675
+x_std: 144.795
+x_rms: 150.133
+x_min: -334
+x_max: 214
+y_mean: -12.888
+y_std: 310.157
+y_rms: 310.424
+y_min: -490
+y_max: 612
+z_mean: 250.459
+z_std: 27.927
+z_rms: 252.011
+z_min: 201
+z_max: 384
+vibration_metric_min: 170.719
+vibration_metric_mean: 197.755
+vibration_metric_max: 226.558
+
+[rotor_unbalance / rotor_unbalance_03] E:\project\MotorTinyML\dataset\raw\final_demo\motor_final_rotor_unbalance_03.csv
+sample_count: 3000
+complete_windows: 15
+discarded_samples: 0
+duration_s: 14.995
+avg_interval_ms: 5.000
+timestamp_breaks_nonpositive: 0
+timestamp_breaks_over_100ms: 0
+duplicate_rows: 0
+x_mean: -43.079
+x_std: 139.171
+x_rms: 145.686
+x_min: -323
+x_max: 198
+y_mean: -9.443
+y_std: 295.190
+y_rms: 295.341
+y_min: -436
+y_max: 593
+z_mean: 249.700
+z_std: 27.689
+z_rms: 251.230
+z_min: 200
+z_max: 375
+vibration_metric_min: 156.662
+vibration_metric_mean: 188.801
+vibration_metric_max: 197.617
+
+[overload / overload_01] E:\project\MotorTinyML\dataset\raw\final_demo\motor_overload_realtime_01.csv
+sample_count: 3000
+complete_windows: 15
+discarded_samples: 0
+duration_s: 14.995
+avg_interval_ms: 5.000
+timestamp_breaks_nonpositive: 0
+timestamp_breaks_over_100ms: 15
+duplicate_rows: 0
+x_mean: -27.076
+x_std: 6.701
+x_rms: 27.893
+x_min: -49
+x_max: 1
+y_mean: -13.137
+y_std: 5.537
+y_rms: 14.256
+y_min: -55
+y_max: 7
+z_mean: 254.674
+z_std: 2.890
+z_rms: 254.690
+z_min: 241
+z_max: 265
+vibration_metric_min: 3.866
+vibration_metric_mean: 5.253
+vibration_metric_max: 6.413
+
+[overload / overload_02] E:\project\MotorTinyML\dataset\raw\final_demo\motor_overload_realtime_02.csv
+sample_count: 3000
+complete_windows: 15
+discarded_samples: 0
+duration_s: 14.995
+avg_interval_ms: 5.000
+timestamp_breaks_nonpositive: 0
+timestamp_breaks_over_100ms: 15
+duplicate_rows: 0
+x_mean: -27.131
+x_std: 7.608
+x_rms: 28.178
+x_min: -52
+x_max: -3
+y_mean: -13.288
+y_std: 5.788
+y_rms: 14.494
+y_min: -42
+y_max: 8
+z_mean: 254.185
+z_std: 3.860
+z_rms: 254.214
+z_min: 242
+z_max: 271
+vibration_metric_min: 4.447
+vibration_metric_mean: 5.858
+vibration_metric_max: 7.495
+
+[overload / overload_03] E:\project\MotorTinyML\dataset\raw\final_demo\motor_overload_realtime_03.csv
+sample_count: 3000
+complete_windows: 15
+discarded_samples: 0
+duration_s: 14.998
+avg_interval_ms: 5.001
+timestamp_breaks_nonpositive: 0
+timestamp_breaks_over_100ms: 15
+duplicate_rows: 0
+x_mean: -27.190
+x_std: 8.147
+x_rms: 28.385
+x_min: -62
+x_max: 28
+y_mean: -13.005
+y_std: 13.427
+y_rms: 18.693
+y_min: -107
+y_max: 69
+z_mean: 254.314
+z_std: 3.735
+z_rms: 254.342
+z_min: 228
+z_max: 270
+vibration_metric_min: 5.046
+vibration_metric_mean: 7.514
+vibration_metric_max: 27.065
+
+LORO results
+------------
+split: one complete CSV held out per fold; 9 folds
+
+normal_01: support=15, accuracy=1.000000, predicted=[normal=15, rotor_unbalance=0, overload=0]
+normal_02: support=15, accuracy=1.000000, predicted=[normal=15, rotor_unbalance=0, overload=0]
+normal_03: support=15, accuracy=1.000000, predicted=[normal=15, rotor_unbalance=0, overload=0]
+rotor_unbalance_01: support=15, accuracy=1.000000, predicted=[normal=0, rotor_unbalance=15, overload=0]
+rotor_unbalance_02: support=15, accuracy=1.000000, predicted=[normal=0, rotor_unbalance=15, overload=0]
+rotor_unbalance_03: support=15, accuracy=1.000000, predicted=[normal=0, rotor_unbalance=15, overload=0]
+overload_01: support=15, accuracy=1.000000, predicted=[normal=0, rotor_unbalance=0, overload=15]
+overload_02: support=15, accuracy=1.000000, predicted=[normal=0, rotor_unbalance=0, overload=15]
+overload_03: support=15, accuracy=0.933333, predicted=[normal=1, rotor_unbalance=0, overload=14]
+
+overall_accuracy: 0.992593
+fold_accuracy_mean: 0.992593
+fold_accuracy_std: 0.020951
+aggregate_confusion_matrix:
+[[45  0  0]
+ [ 0 45  0]
+ [ 1  0 44]]
+
+                 precision    recall  f1-score   support
+
+         normal   0.978261  1.000000  0.989011        45
+rotor_unbalance   1.000000  1.000000  1.000000        45
+       overload   1.000000  0.977778  0.988764        45
+
+       accuracy                       0.992593       135
+      macro avg   0.992754  0.992593  0.992592       135
+   weighted avg   0.992754  0.992593  0.992592       135
+
+Interpretation
+--------------
+The report is diagnostic only; no CSV is deleted, relabeled, or added to the historical training set.
+
+Recommendation rule: overall accuracy >= 0.95, every class recall >= 0.90, and every run accuracy >= 0.90.
+RECOMMEND_FINAL_TRAIN: YES

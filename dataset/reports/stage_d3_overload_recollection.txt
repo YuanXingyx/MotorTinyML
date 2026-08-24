@@ -1,0 +1,149 @@
+MotorTinyML Stage D-3 Overload Recollection
+============================================
+
+Status: collection workflow prepared; waiting for three independent hardware runs.
+
+Collection constraints
+----------------------
+- Keep STM32F103, ADXL345, 200 Hz, 200-sample windows, and 60% PWM unchanged.
+- Use a fixed, repeatable resistance method instead of arbitrary hand pressure.
+- Keep the resistance location and method consistent between runs.
+- The motor must continue rotating; do not allow complete stall.
+- Start and stop each run independently. Do not split one continuous log into three runs.
+- Target each run: 3000-4000 valid samples (approximately 15-20 windows).
+
+Capture command
+---------------
+python python/capture_overload_realtime.py
+
+The script writes:
+
+dataset/raw/overload_realtime/motor_overload_realtime_01.csv
+dataset/raw/overload_realtime/motor_overload_realtime_02.csv
+dataset/raw/overload_realtime/motor_overload_realtime_03.csv
+
+Run results
+-----------
+Run 01: PENDING
+Run 02: PENDING
+Run 03: PENDING
+
+No model retraining, C parameter export, STM32 inference change, OLED change,
+old-data deletion, or automatic training inclusion is performed in Stage D-3.
+Run 1: E:\project\MotorTinyML\dataset\raw\overload_realtime\motor_overload_realtime_01.csv
+------------------------------------------------
+sample_count: 0
+status: NO_VALID_SAMPLES
+result: PENDING_MANUAL_REVIEW
+
+Comparison with normal realtime: PENDING
+Training inclusion decision: PENDING; no automatic inclusion or deletion.
+
+Run 1: E:\project\MotorTinyML\dataset\raw\overload_realtime\motor_overload_realtime_01.csv
+------------------------------------------------
+sample_count: 0
+status: NO_VALID_SAMPLES
+result: PENDING_MANUAL_REVIEW
+
+Comparison with normal realtime: PENDING
+Training inclusion decision: PENDING; no automatic inclusion or deletion.
+
+Run 1: E:\project\MotorTinyML\dataset\raw\overload_realtime\motor_overload_realtime_01.csv
+------------------------------------------------
+sample_count: 3000
+duration_s: 14.995
+avg_interval_ms: 5.000
+timestamp_nonpositive_jumps: 0
+timestamp_large_jumps_over_100ms: 15
+duplicate_rows: 0
+complete_windows: 15
+discarded_samples: 0
+x_min: -49
+x_max: 1
+x_mean: -27.076
+x_std_population: 6.701
+x_rms: 27.893
+y_min: -55
+y_max: 7
+y_mean: -13.137
+y_std_population: 5.537
+y_rms: 14.256
+z_min: 241
+z_max: 265
+z_mean: 254.674
+z_std_population: 2.890
+z_rms: 254.690
+vibration_metric_mean: 5.253
+vibration_metric_min: 3.866
+vibration_metric_max: 6.413
+result: PENDING_MANUAL_REVIEW
+
+Comparison with normal realtime: PENDING
+Training inclusion decision: PENDING; no automatic inclusion or deletion.
+
+Run 2: E:\project\MotorTinyML\dataset\raw\overload_realtime\motor_overload_realtime_02.csv
+------------------------------------------------
+sample_count: 3000
+duration_s: 14.995
+avg_interval_ms: 5.000
+timestamp_nonpositive_jumps: 0
+timestamp_large_jumps_over_100ms: 15
+duplicate_rows: 0
+complete_windows: 15
+discarded_samples: 0
+x_min: -52
+x_max: -3
+x_mean: -27.131
+x_std_population: 7.608
+x_rms: 28.178
+y_min: -42
+y_max: 8
+y_mean: -13.288
+y_std_population: 5.788
+y_rms: 14.494
+z_min: 242
+z_max: 271
+z_mean: 254.185
+z_std_population: 3.860
+z_rms: 254.214
+vibration_metric_mean: 5.858
+vibration_metric_min: 4.447
+vibration_metric_max: 7.495
+result: PENDING_MANUAL_REVIEW
+
+Comparison with normal realtime: PENDING
+Training inclusion decision: PENDING; no automatic inclusion or deletion.
+
+Run 3: E:\project\MotorTinyML\dataset\raw\overload_realtime\motor_overload_realtime_03.csv
+------------------------------------------------
+sample_count: 3000
+duration_s: 14.998
+avg_interval_ms: 5.001
+timestamp_nonpositive_jumps: 0
+timestamp_large_jumps_over_100ms: 15
+duplicate_rows: 0
+complete_windows: 15
+discarded_samples: 0
+x_min: -62
+x_max: 28
+x_mean: -27.190
+x_std_population: 8.147
+x_rms: 28.385
+y_min: -107
+y_max: 69
+y_mean: -13.005
+y_std_population: 13.427
+y_rms: 18.693
+z_min: 228
+z_max: 270
+z_mean: 254.314
+z_std_population: 3.735
+z_rms: 254.342
+vibration_metric_mean: 7.514
+vibration_metric_min: 5.046
+vibration_metric_max: 27.065
+result: PENDING_MANUAL_REVIEW
+
+Comparison with normal realtime: PENDING
+Training inclusion decision: PENDING; no automatic inclusion or deletion.
+

@@ -1,0 +1,74 @@
+MotorTinyML Stage C-3 STM32F103 Tiny Classifier Build Report
+============================================================
+
+Target
+------
+MCU: STM32F103C8T6 (Cortex-M3)
+Build: Debug Stage C-3 pure-C classifier path
+Compiler: GNU Arm Embedded Toolchain 14.3.1
+Optimization: Tiny Classifier objects use -Os, -ffunction-sections, -fdata-sections
+Linker: --gc-sections, -mfloat-abi=soft, -lc, -lm
+
+Build result
+------------
+Compilation: SUCCESS
+Link: SUCCESS (direct arm-none-eabi-gcc target produced MotorTinyML_F103.elf)
+ELF: Debug/MotorTinyML_F103.elf
+Map: Debug/MotorTinyML_F103.map
+The STM32CubeIDE make wrapper returned a host-side Error -1 after producing the
+ELF; direct compiler/linker invocation returned exit code 0. The ELF, map and
+symbol checks below are valid.
+
+Memory summary
+--------------
+arm-none-eabi-size MotorTinyML_F103.elf:
+text: 19896 bytes
+data: 92 bytes
+bss: 2132 bytes (includes the linker-reserved user heap/stack region)
+total: 22120 bytes
+
+arm-none-eabi-objdump section sizes:
+.isr_vector: 268 bytes
+.text: 18860 bytes (0x49ac)
+.rodata: 752 bytes (0x2f0)
+.data: 92 bytes (0x5c)
+.bss: 596 bytes (0x254)
+._user_heap_stack: 1540 bytes (0x604) reserved
+
+Load-image Flash usage (vector + text + rodata + ARM/init/fini + data):
+approximately 19988 bytes (19.52 KiB).
+Runtime SRAM used by data and bss excluding reserved heap/stack: 688 bytes.
+Linker-reported SRAM allocation including reserved heap/stack: 2228 bytes.
+
+Tiny Classifier object sizes
+---------------------------
+tiny_classifier.o: 448 bytes text, 0 data, 0 bss
+tiny_classifier_params.o: 520 bytes text/rodata contribution, 0 data, 0 bss
+The parameter symbols are in read-only Flash (.rodata):
+g_logreg_bias[4], g_logreg_weights[4][21], g_feature_std[21], g_feature_mean[21].
+
+TFLM separation checks
+----------------------
+Current Stage C-3 link response file is objects_c3.list and contains only the
+application, HAL, startup, tiny_classifier.o and tiny_classifier_params.o C objects.
+The TFLM subdir makefile is not included by the Stage C-3 makefile.
+model_inference.o and model_data.o are not in objects_c3.list.
+No TFLM runtime/kernel object is in objects_c3.list.
+Final ELF nm check found no tflite, tflm, MicroInterpreter, Model_Init or g_model symbols.
+The link command uses arm-none-eabi-gcc with -lc and -lm only; it does not use
+arm-none-eabi-g++, libstdc++ or libsupc++.
+No Tensor Arena or dynamic allocation is present in the Tiny Classifier path.
+
+Runtime scope
+-------------
+The old TFLM Model_Init startup call was removed from main.c only for this
+Stage C-3 build. ADXL345 sampling, UART, LED and PWM control logic were not
+changed. TinyClassifier_StaticLinkCheck() only retains the pure-C functions in
+the ELF; it does not run inference or use a sensor window.
+
+Conclusion
+----------
+The pure-C Tiny Classifier path compiles and links independently of TFLM.
+Resource usage is comfortably below STM32F103C8T6 Flash/RAM limits for this
+non-inference build. Stage C-4 may proceed with STM32 golden-vector parity,
+subject to hardware flashing and serial verification.
